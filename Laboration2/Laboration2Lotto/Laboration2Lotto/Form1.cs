@@ -44,10 +44,10 @@ namespace Laboration2Lotto
 
                         if (temp == userNumbers[k])
                         {
-                            throw new Exception("Nummer " + temp + " finns flera gånger");
+                            throw new Exception("Number " + temp + " finns flera gånger");
                         }
+                        userNumbers[j] = temp;
                     }
-
                 }
 
                 for (int i = 0; i < amountOfLotto; i++)
@@ -71,7 +71,6 @@ namespace Laboration2Lotto
                             while (temp == lotto[k])
                             {
                                 temp = rnd.Next(1, 36);
-                                // textBox8.Text += "*" + temp + "*";
                             }
 
                             lotto[j] = temp;
