@@ -1,0 +1,17 @@
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\bin\Debug\net6.0-windows\Laboration2Miniräknare.exe
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\bin\Debug\net6.0-windows\Laboration2Miniräknare.deps.json
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\bin\Debug\net6.0-windows\Laboration2Miniräknare.runtimeconfig.json
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\bin\Debug\net6.0-windows\Laboration2Miniräknare.dll
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\bin\Debug\net6.0-windows\Laboration2Miniräknare.pdb
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\Laboration2Miniräknare.csproj.AssemblyReference.cache
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\Laboration2Miniräknare.csproj.GenerateResource.cache
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\Laboration2Miniräknare.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\Laboration2Miniräknare.AssemblyInfoInputs.cache
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\Laboration2Miniräknare.AssemblyInfo.cs
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\Laboration2Miniräknare.csproj.CoreCompileInputs.cache
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\Laboration2Miniräknare.dll
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\refint\Laboration2Miniräknare.dll
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\Laboration2Miniräknare.pdb
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\Laboration2Miniräknare.genruntimeconfig.cache
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\ref\Laboration2Miniräknare.dll
+C:\Users\anna-\source\repos\Laboration2Miniräknare\Laboration2Miniräknare\obj\Debug\net6.0-windows\Laboration2Miniräknare.Form1.resources
