@@ -1,0 +1,11 @@
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Lotto\Lotto\bin\Debug\Lotto.exe.config
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Lotto\Lotto\bin\Debug\Lotto.exe
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Lotto\Lotto\bin\Debug\Lotto.pdb
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Lotto\Lotto\obj\Debug\Lotto.csproj.AssemblyReference.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Lotto\Lotto\obj\Debug\Lotto.csproj.SuggestedBindingRedirects.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Lotto\Lotto\obj\Debug\Lotto.Form1.resources
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Lotto\Lotto\obj\Debug\Lotto.Properties.Resources.resources
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Lotto\Lotto\obj\Debug\Lotto.csproj.GenerateResource.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Lotto\Lotto\obj\Debug\Lotto.csproj.CoreCompileInputs.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Lotto\Lotto\obj\Debug\Lotto.exe
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Lotto\Lotto\obj\Debug\Lotto.pdb
