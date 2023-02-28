@@ -35,6 +35,13 @@
             this.buttonOpen = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rows = new System.Windows.Forms.Label();
+            this.words = new System.Windows.Forms.Label();
+            this.charWOSpace = new System.Windows.Forms.Label();
+            this.charWSpace = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -42,9 +49,10 @@
             this.richTextBox1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(12, 62);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(549, 247);
+            this.richTextBox1.Size = new System.Drawing.Size(539, 247);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // buttonSave
             // 
@@ -66,6 +74,7 @@
             this.buttonClear.TabIndex = 2;
             this.buttonClear.Text = "Clear";
             this.buttonClear.UseVisualStyleBackColor = false;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
             // buttonSaveAs
             // 
@@ -76,6 +85,7 @@
             this.buttonSaveAs.TabIndex = 3;
             this.buttonSaveAs.Text = "Save As...";
             this.buttonSaveAs.UseVisualStyleBackColor = false;
+            this.buttonSaveAs.Click += new System.EventHandler(this.buttonSaveAs_Click);
             // 
             // buttonOpen
             // 
@@ -92,11 +102,85 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // buttonClose
+            // 
+            this.buttonClose.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.buttonClose.Location = new System.Drawing.Point(448, 12);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(103, 43);
+            this.buttonClose.TabIndex = 5;
+            this.buttonClose.Text = "Close";
+            this.buttonClose.UseVisualStyleBackColor = false;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.rows);
+            this.panel1.Controls.Add(this.words);
+            this.panel1.Controls.Add(this.charWOSpace);
+            this.panel1.Controls.Add(this.charWSpace);
+            this.panel1.Location = new System.Drawing.Point(12, 315);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(539, 79);
+            this.panel1.TabIndex = 6;
+            // 
+            // rows
+            // 
+            this.rows.AutoSize = true;
+            this.rows.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.rows.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rows.Location = new System.Drawing.Point(296, 44);
+            this.rows.Name = "rows";
+            this.rows.Size = new System.Drawing.Size(51, 18);
+            this.rows.TabIndex = 3;
+            this.rows.Text = "Rows:";
+            this.rows.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // words
+            // 
+            this.words.AutoSize = true;
+            this.words.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.words.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.words.Location = new System.Drawing.Point(290, 11);
+            this.words.Name = "words";
+            this.words.Size = new System.Drawing.Size(57, 18);
+            this.words.TabIndex = 2;
+            this.words.Text = "Words:";
+            this.words.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // charWOSpace
+            // 
+            this.charWOSpace.AutoSize = true;
+            this.charWOSpace.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.charWOSpace.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.charWOSpace.Location = new System.Drawing.Point(3, 44);
+            this.charWOSpace.Name = "charWOSpace";
+            this.charWOSpace.Size = new System.Drawing.Size(182, 18);
+            this.charWOSpace.TabIndex = 1;
+            this.charWOSpace.Text = "Characters without Space:";
+            this.charWOSpace.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // charWSpace
+            // 
+            this.charWSpace.AutoSize = true;
+            this.charWSpace.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.charWSpace.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.charWSpace.Location = new System.Drawing.Point(3, 11);
+            this.charWSpace.Name = "charWSpace";
+            this.charWSpace.Size = new System.Drawing.Size(161, 18);
+            this.charWSpace.TabIndex = 0;
+            this.charWSpace.Text = "Characters with Space:";
+            this.charWSpace.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 365);
+            this.ClientSize = new System.Drawing.Size(577, 406);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.buttonOpen);
             this.Controls.Add(this.buttonSaveAs);
             this.Controls.Add(this.buttonClear);
@@ -104,7 +188,12 @@
             this.Controls.Add(this.richTextBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -118,6 +207,12 @@
         private System.Windows.Forms.Button buttonOpen;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button buttonClose;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label charWSpace;
+        private System.Windows.Forms.Label rows;
+        private System.Windows.Forms.Label words;
+        private System.Windows.Forms.Label charWOSpace;
     }
 }
 
