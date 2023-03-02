@@ -1,0 +1,11 @@
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Laboration3TextEditor\Laboration3TextEditor\bin\Debug\Laboration3TextEditor.exe.config
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Laboration3TextEditor\Laboration3TextEditor\bin\Debug\Laboration3TextEditor.exe
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Laboration3TextEditor\Laboration3TextEditor\bin\Debug\Laboration3TextEditor.pdb
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Laboration3TextEditor\Laboration3TextEditor\obj\Debug\Laboration3TextEditor.csproj.AssemblyReference.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Laboration3TextEditor\Laboration3TextEditor\obj\Debug\Laboration3TextEditor.csproj.SuggestedBindingRedirects.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Laboration3TextEditor\Laboration3TextEditor\obj\Debug\Laboration3TextEditor.TextEditor.resources
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Laboration3TextEditor\Laboration3TextEditor\obj\Debug\Laboration3TextEditor.Properties.Resources.resources
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Laboration3TextEditor\Laboration3TextEditor\obj\Debug\Laboration3TextEditor.csproj.GenerateResource.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Laboration3TextEditor\Laboration3TextEditor\obj\Debug\Laboration3TextEditor.csproj.CoreCompileInputs.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Laboration3TextEditor\Laboration3TextEditor\obj\Debug\Laboration3TextEditor.exe
+C:\Users\anna-\source\repos\DVGB03\Laboration2\Laboration2\Laboration3TextEditor\Laboration3TextEditor\obj\Debug\Laboration3TextEditor.pdb
