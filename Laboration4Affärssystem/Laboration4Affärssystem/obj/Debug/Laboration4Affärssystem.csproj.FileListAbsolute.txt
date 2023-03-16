@@ -1,0 +1,12 @@
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\bin\Debug\Laboration4Affärssystem.exe.config
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\bin\Debug\Laboration4Affärssystem.exe
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\bin\Debug\Laboration4Affärssystem.pdb
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.csproj.AssemblyReference.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.csproj.SuggestedBindingRedirects.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.Properties.Resources.resources
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.csproj.GenerateResource.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.csproj.CoreCompileInputs.cache
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.exe
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.pdb
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.itemList.resources
+C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.View.resources
