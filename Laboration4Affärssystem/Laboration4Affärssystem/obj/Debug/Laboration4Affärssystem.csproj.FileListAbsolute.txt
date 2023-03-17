@@ -8,5 +8,4 @@ C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssy
 C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.csproj.CoreCompileInputs.cache
 C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.exe
 C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.pdb
-C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.itemList.resources
 C:\Users\anna-\source\repos\DVGB03\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.View.resources
