@@ -24,8 +24,8 @@ namespace Laboration4Affärssystem
         public void createBookList()
         {
             
-            bookList.Add(new Book(11, "One Piece", 70, "Eichhiro Oda", "Shonen", "Manga", "German"));
-            bookList.Add(new Book(12, "Bello Callico et Civili", 449, "Julius Ceasar", "Historia", "Inbunden", "Latin"));
+            bookList.Add(new Book(11, "One Piece", 70, 1, "Eichhiro Oda", "Shonen", "Manga", "German"));
+            bookList.Add(new Book(12, "Bello Callico et Civili", 449, 2, "Julius Ceasar", "Historia", "Inbunden", "Latin"));
             
             bookSource.DataSource = bookList;
         }
@@ -33,16 +33,16 @@ namespace Laboration4Affärssystem
 
         public void createGameList()
         {
-            gameList.Add(new Videogame(21, "Elden Ring", 599, "Playstation 5"));
-            gameList.Add(new Videogame(22, "Demon's Souls", 499, "Playstation 5"));
+            gameList.Add(new Videogame(21, "Elden Ring", 599, 3, "Playstation 5"));
+            gameList.Add(new Videogame(22, "Demon's Souls", 499, 3, "Playstation 5"));
 
             gameSource.DataSource = gameList;
         }
 
         public void createFilmList()
         {
-            filmList.Add(new Film(31, "Nyckeln till frihet", 99, "DVD", "142 min"));
-            filmList.Add(new Film(32, "Gudfadern", 99, "DVD", "152 min"));
+            filmList.Add(new Film(31, "Nyckeln till frihet", 99, 5, "DVD", "142 min"));
+            filmList.Add(new Film(32, "Gudfadern", 99, 6, "DVD", "152 min"));
 
             filmSource.DataSource = filmList;
         }

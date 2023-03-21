@@ -30,13 +30,17 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.checkoutTab = new System.Windows.Forms.TabPage();
+            this.labelKundKorg = new System.Windows.Forms.Label();
+            this.kundKorg = new System.Windows.Forms.ListView();
+            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Namn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Pris = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.gridViewKassaBok = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.addToShoppingCartButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -48,41 +52,26 @@
             this.button9 = new System.Windows.Forms.Button();
             this.gridViewKassaFilm = new System.Windows.Forms.DataGridView();
             this.lagerTab = new System.Windows.Forms.TabPage();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabLager = new System.Windows.Forms.TabControl();
             this.booksTab = new System.Windows.Forms.TabPage();
             this.addShipmentBookButton = new System.Windows.Forms.Button();
             this.removeBookButton = new System.Windows.Forms.Button();
             this.addBookButton = new System.Windows.Forms.Button();
-            this.dataGridViewBooks = new System.Windows.Forms.DataGridView();
-            this.IDBook = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Book = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceBook = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FormatBook = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Language = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountBook = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gridViewLagerBok = new System.Windows.Forms.DataGridView();
             this.gamesTab = new System.Windows.Forms.TabPage();
             this.addShipmentGameButton = new System.Windows.Forms.Button();
             this.removeGameButton = new System.Windows.Forms.Button();
             this.addGameButton = new System.Windows.Forms.Button();
-            this.dataGridViewGames = new System.Windows.Forms.DataGridView();
-            this.IDGame = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Game = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceGame = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Plattform = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountGame = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gridViewLagerSpel = new System.Windows.Forms.DataGridView();
             this.filmsTab = new System.Windows.Forms.TabPage();
             this.addShipmentFilmButton = new System.Windows.Forms.Button();
             this.removeFilmButton = new System.Windows.Forms.Button();
             this.addFilmButton = new System.Windows.Forms.Button();
-            this.dataGridViewFilms = new System.Windows.Forms.DataGridView();
-            this.IDFilm = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Film = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceFilm = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountFilm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gridViewLagerFilm = new System.Windows.Forms.DataGridView();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.Antal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.totalPriceLabel = new System.Windows.Forms.Label();
+            this.totalPriceTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -93,13 +82,13 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewKassaFilm)).BeginInit();
             this.lagerTab.SuspendLayout();
-            this.tabControl2.SuspendLayout();
+            this.tabLager.SuspendLayout();
             this.booksTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerBok)).BeginInit();
             this.gamesTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGames)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerSpel)).BeginInit();
             this.filmsTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilms)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerFilm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,6 +105,10 @@
             // 
             // checkoutTab
             // 
+            this.checkoutTab.Controls.Add(this.totalPriceTextBox);
+            this.checkoutTab.Controls.Add(this.totalPriceLabel);
+            this.checkoutTab.Controls.Add(this.labelKundKorg);
+            this.checkoutTab.Controls.Add(this.kundKorg);
             this.checkoutTab.Controls.Add(this.tabControl3);
             this.checkoutTab.Location = new System.Drawing.Point(4, 30);
             this.checkoutTab.Name = "checkoutTab";
@@ -125,51 +118,86 @@
             this.checkoutTab.Text = "Kassa";
             this.checkoutTab.UseVisualStyleBackColor = true;
             // 
+            // labelKundKorg
+            // 
+            this.labelKundKorg.AutoSize = true;
+            this.labelKundKorg.Location = new System.Drawing.Point(12, 247);
+            this.labelKundKorg.Name = "labelKundKorg";
+            this.labelKundKorg.Size = new System.Drawing.Size(85, 21);
+            this.labelKundKorg.TabIndex = 4;
+            this.labelKundKorg.Text = "KundKorg";
+            // 
+            // kundKorg
+            // 
+            this.kundKorg.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ID,
+            this.Namn,
+            this.Pris,
+            this.Antal});
+            this.kundKorg.HideSelection = false;
+            this.kundKorg.Location = new System.Drawing.Point(6, 271);
+            this.kundKorg.Name = "kundKorg";
+            this.kundKorg.Size = new System.Drawing.Size(363, 118);
+            this.kundKorg.TabIndex = 3;
+            this.kundKorg.UseCompatibleStateImageBehavior = false;
+            this.kundKorg.View = System.Windows.Forms.View.Details;
+            // 
+            // ID
+            // 
+            this.ID.Text = "ID";
+            this.ID.Width = 48;
+            // 
+            // Namn
+            // 
+            this.Namn.Text = "Namn";
+            this.Namn.Width = 175;
+            // 
+            // Pris
+            // 
+            this.Pris.Text = "Pris";
+            // 
             // tabControl3
             // 
+            this.tabControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControl3.Controls.Add(this.tabPage1);
             this.tabControl3.Controls.Add(this.tabPage2);
             this.tabControl3.Controls.Add(this.tabPage3);
             this.tabControl3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl3.Location = new System.Drawing.Point(13, 12);
+            this.tabControl3.Location = new System.Drawing.Point(6, 6);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(858, 368);
+            this.tabControl3.Size = new System.Drawing.Size(858, 238);
             this.tabControl3.TabIndex = 1;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.gridViewKassaBok);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.addToShoppingCartButton);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(850, 338);
+            this.tabPage1.Size = new System.Drawing.Size(850, 208);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Böcker";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(433, 298);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(411, 23);
-            this.textBox1.TabIndex = 6;
-            // 
             // gridViewKassaBok
             // 
+            this.gridViewKassaBok.AllowUserToAddRows = false;
+            this.gridViewKassaBok.AllowUserToDeleteRows = false;
             this.gridViewKassaBok.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewKassaBok.Location = new System.Drawing.Point(6, 6);
             this.gridViewKassaBok.Name = "gridViewKassaBok";
-            this.gridViewKassaBok.Size = new System.Drawing.Size(838, 286);
+            this.gridViewKassaBok.Size = new System.Drawing.Size(841, 161);
             this.gridViewKassaBok.TabIndex = 5;
+            this.gridViewKassaBok.SelectionChanged += new System.EventHandler(this.gridViewKassaBok_SelectionChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(231, 298);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(231, 171);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 34);
             this.button1.TabIndex = 4;
@@ -178,21 +206,24 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(117, 298);
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.Location = new System.Drawing.Point(117, 171);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(108, 34);
             this.button2.TabIndex = 3;
             this.button2.Text = "ta bort Bok";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // addToShoppingCartButton
             // 
-            this.button3.Location = new System.Drawing.Point(3, 298);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(108, 34);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "lägg till Bok";
-            this.button3.UseVisualStyleBackColor = true;
+            this.addToShoppingCartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addToShoppingCartButton.Location = new System.Drawing.Point(3, 171);
+            this.addToShoppingCartButton.Name = "addToShoppingCartButton";
+            this.addToShoppingCartButton.Size = new System.Drawing.Size(108, 34);
+            this.addToShoppingCartButton.TabIndex = 2;
+            this.addToShoppingCartButton.Text = "sälja Bok";
+            this.addToShoppingCartButton.UseVisualStyleBackColor = true;
+            this.addToShoppingCartButton.Click += new System.EventHandler(this.addToShoppingCartButton_Click);
             // 
             // tabPage2
             // 
@@ -203,7 +234,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(850, 338);
+            this.tabPage2.Size = new System.Drawing.Size(850, 208);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Dataspel";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -252,7 +283,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(850, 338);
+            this.tabPage3.Size = new System.Drawing.Size(850, 208);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Filmer";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -294,7 +325,7 @@
             // 
             // lagerTab
             // 
-            this.lagerTab.Controls.Add(this.tabControl2);
+            this.lagerTab.Controls.Add(this.tabLager);
             this.lagerTab.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lagerTab.Location = new System.Drawing.Point(4, 30);
             this.lagerTab.Name = "lagerTab";
@@ -304,24 +335,24 @@
             this.lagerTab.Text = "Lager";
             this.lagerTab.UseVisualStyleBackColor = true;
             // 
-            // tabControl2
+            // tabLager
             // 
-            this.tabControl2.Controls.Add(this.booksTab);
-            this.tabControl2.Controls.Add(this.gamesTab);
-            this.tabControl2.Controls.Add(this.filmsTab);
-            this.tabControl2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl2.Location = new System.Drawing.Point(6, 6);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(858, 368);
-            this.tabControl2.TabIndex = 0;
+            this.tabLager.Controls.Add(this.booksTab);
+            this.tabLager.Controls.Add(this.gamesTab);
+            this.tabLager.Controls.Add(this.filmsTab);
+            this.tabLager.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabLager.Location = new System.Drawing.Point(6, 6);
+            this.tabLager.Name = "tabLager";
+            this.tabLager.SelectedIndex = 0;
+            this.tabLager.Size = new System.Drawing.Size(858, 368);
+            this.tabLager.TabIndex = 0;
             // 
             // booksTab
             // 
             this.booksTab.Controls.Add(this.addShipmentBookButton);
             this.booksTab.Controls.Add(this.removeBookButton);
             this.booksTab.Controls.Add(this.addBookButton);
-            this.booksTab.Controls.Add(this.dataGridViewBooks);
+            this.booksTab.Controls.Add(this.gridViewLagerBok);
             this.booksTab.Location = new System.Drawing.Point(4, 26);
             this.booksTab.Name = "booksTab";
             this.booksTab.Padding = new System.Windows.Forms.Padding(3);
@@ -357,69 +388,23 @@
             this.addBookButton.Text = "lägg till Bok";
             this.addBookButton.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewBooks
+            // gridViewLagerBok
             // 
-            this.dataGridViewBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewBooks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IDBook,
-            this.Book,
-            this.PriceBook,
-            this.Author,
-            this.Genre,
-            this.FormatBook,
-            this.Language,
-            this.amountBook});
-            this.dataGridViewBooks.Location = new System.Drawing.Point(6, 6);
-            this.dataGridViewBooks.Name = "dataGridViewBooks";
-            this.dataGridViewBooks.Size = new System.Drawing.Size(841, 286);
-            this.dataGridViewBooks.TabIndex = 1;
-            // 
-            // IDBook
-            // 
-            this.IDBook.HeaderText = "ID";
-            this.IDBook.Name = "IDBook";
-            // 
-            // Book
-            // 
-            this.Book.HeaderText = "Namn";
-            this.Book.Name = "Book";
-            // 
-            // PriceBook
-            // 
-            this.PriceBook.HeaderText = "Pris";
-            this.PriceBook.Name = "PriceBook";
-            // 
-            // Author
-            // 
-            this.Author.HeaderText = "Författare";
-            this.Author.Name = "Author";
-            // 
-            // Genre
-            // 
-            this.Genre.HeaderText = "Genre";
-            this.Genre.Name = "Genre";
-            // 
-            // FormatBook
-            // 
-            this.FormatBook.HeaderText = "Format";
-            this.FormatBook.Name = "FormatBook";
-            // 
-            // Language
-            // 
-            this.Language.HeaderText = "Språk";
-            this.Language.Name = "Language";
-            // 
-            // amountBook
-            // 
-            this.amountBook.HeaderText = "Antal";
-            this.amountBook.Name = "amountBook";
+            this.gridViewLagerBok.AllowUserToAddRows = false;
+            this.gridViewLagerBok.AllowUserToDeleteRows = false;
+            this.gridViewLagerBok.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewLagerBok.Location = new System.Drawing.Point(6, 6);
+            this.gridViewLagerBok.Name = "gridViewLagerBok";
+            this.gridViewLagerBok.ReadOnly = true;
+            this.gridViewLagerBok.Size = new System.Drawing.Size(841, 286);
+            this.gridViewLagerBok.TabIndex = 1;
             // 
             // gamesTab
             // 
             this.gamesTab.Controls.Add(this.addShipmentGameButton);
             this.gamesTab.Controls.Add(this.removeGameButton);
             this.gamesTab.Controls.Add(this.addGameButton);
-            this.gamesTab.Controls.Add(this.dataGridViewGames);
+            this.gamesTab.Controls.Add(this.gridViewLagerSpel);
             this.gamesTab.Location = new System.Drawing.Point(4, 26);
             this.gamesTab.Name = "gamesTab";
             this.gamesTab.Padding = new System.Windows.Forms.Padding(3);
@@ -455,51 +440,20 @@
             this.addGameButton.Text = "lägg till Spel";
             this.addGameButton.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewGames
+            // gridViewLagerSpel
             // 
-            this.dataGridViewGames.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewGames.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IDGame,
-            this.Game,
-            this.PriceGame,
-            this.Plattform,
-            this.amountGame});
-            this.dataGridViewGames.Location = new System.Drawing.Point(6, 6);
-            this.dataGridViewGames.Name = "dataGridViewGames";
-            this.dataGridViewGames.Size = new System.Drawing.Size(631, 286);
-            this.dataGridViewGames.TabIndex = 0;
-            // 
-            // IDGame
-            // 
-            this.IDGame.HeaderText = "ID";
-            this.IDGame.Name = "IDGame";
-            // 
-            // Game
-            // 
-            this.Game.HeaderText = "Namn";
-            this.Game.Name = "Game";
-            // 
-            // PriceGame
-            // 
-            this.PriceGame.HeaderText = "Price";
-            this.PriceGame.Name = "PriceGame";
-            // 
-            // Plattform
-            // 
-            this.Plattform.HeaderText = "Plattform";
-            this.Plattform.Name = "Plattform";
-            // 
-            // amountGame
-            // 
-            this.amountGame.HeaderText = "Antal";
-            this.amountGame.Name = "amountGame";
+            this.gridViewLagerSpel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewLagerSpel.Location = new System.Drawing.Point(6, 6);
+            this.gridViewLagerSpel.Name = "gridViewLagerSpel";
+            this.gridViewLagerSpel.Size = new System.Drawing.Size(829, 286);
+            this.gridViewLagerSpel.TabIndex = 0;
             // 
             // filmsTab
             // 
             this.filmsTab.Controls.Add(this.addShipmentFilmButton);
             this.filmsTab.Controls.Add(this.removeFilmButton);
             this.filmsTab.Controls.Add(this.addFilmButton);
-            this.filmsTab.Controls.Add(this.dataGridViewFilms);
+            this.filmsTab.Controls.Add(this.gridViewLagerFilm);
             this.filmsTab.Location = new System.Drawing.Point(4, 26);
             this.filmsTab.Name = "filmsTab";
             this.filmsTab.Padding = new System.Windows.Forms.Padding(3);
@@ -535,49 +489,39 @@
             this.addFilmButton.Text = "lägg till Film";
             this.addFilmButton.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewFilms
+            // gridViewLagerFilm
             // 
-            this.dataGridViewFilms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFilms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IDFilm,
-            this.Film,
-            this.PriceFilm,
-            this.Time,
-            this.amountFilm});
-            this.dataGridViewFilms.Location = new System.Drawing.Point(6, 6);
-            this.dataGridViewFilms.Name = "dataGridViewFilms";
-            this.dataGridViewFilms.Size = new System.Drawing.Size(726, 286);
-            this.dataGridViewFilms.TabIndex = 0;
-            // 
-            // IDFilm
-            // 
-            this.IDFilm.HeaderText = "ID";
-            this.IDFilm.Name = "IDFilm";
-            // 
-            // Film
-            // 
-            this.Film.HeaderText = "Namn";
-            this.Film.Name = "Film";
-            // 
-            // PriceFilm
-            // 
-            this.PriceFilm.HeaderText = "Pris";
-            this.PriceFilm.Name = "PriceFilm";
-            // 
-            // Time
-            // 
-            this.Time.HeaderText = "Speltid";
-            this.Time.Name = "Time";
-            // 
-            // amountFilm
-            // 
-            this.amountFilm.HeaderText = "Antal";
-            this.amountFilm.Name = "amountFilm";
+            this.gridViewLagerFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewLagerFilm.Location = new System.Drawing.Point(6, 6);
+            this.gridViewLagerFilm.Name = "gridViewLagerFilm";
+            this.gridViewLagerFilm.Size = new System.Drawing.Size(726, 286);
+            this.gridViewLagerFilm.TabIndex = 0;
             // 
             // fileSystemWatcher1
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
+            // 
+            // Antal
+            // 
+            this.Antal.Text = "Antal";
+            // 
+            // totalPriceLabel
+            // 
+            this.totalPriceLabel.AutoSize = true;
+            this.totalPriceLabel.Location = new System.Drawing.Point(375, 365);
+            this.totalPriceLabel.Name = "totalPriceLabel";
+            this.totalPriceLabel.Size = new System.Drawing.Size(98, 21);
+            this.totalPriceLabel.TabIndex = 5;
+            this.totalPriceLabel.Text = "Att betala:";
+            // 
+            // totalPriceTextBox
+            // 
+            this.totalPriceTextBox.Location = new System.Drawing.Point(479, 365);
+            this.totalPriceTextBox.Name = "totalPriceTextBox";
+            this.totalPriceTextBox.Size = new System.Drawing.Size(100, 27);
+            this.totalPriceTextBox.TabIndex = 6;
+            this.totalPriceTextBox.Text = "0";
             // 
             // View
             // 
@@ -590,22 +534,22 @@
             this.Text = "Affärssystem";
             this.tabControl1.ResumeLayout(false);
             this.checkoutTab.ResumeLayout(false);
+            this.checkoutTab.PerformLayout();
             this.tabControl3.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewKassaBok)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewKassaSpel)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewKassaFilm)).EndInit();
             this.lagerTab.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
+            this.tabLager.ResumeLayout(false);
             this.booksTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerBok)).EndInit();
             this.gamesTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGames)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerSpel)).EndInit();
             this.filmsTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilms)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerFilm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
 
@@ -617,46 +561,28 @@
         private System.Windows.Forms.TabPage checkoutTab;
         private System.Windows.Forms.TabPage lagerTab;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
-        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabControl tabLager;
         private System.Windows.Forms.TabPage booksTab;
-        private System.Windows.Forms.DataGridView dataGridViewBooks;
+        private System.Windows.Forms.DataGridView gridViewLagerBok;
         private System.Windows.Forms.TabPage gamesTab;
-        private System.Windows.Forms.DataGridView dataGridViewGames;
+        private System.Windows.Forms.DataGridView gridViewLagerSpel;
         private System.Windows.Forms.TabPage filmsTab;
-        private System.Windows.Forms.DataGridView dataGridViewFilms;
+        private System.Windows.Forms.DataGridView gridViewLagerFilm;
         private System.Windows.Forms.Button addBookButton;
         private System.Windows.Forms.Button removeBookButton;
         private System.Windows.Forms.Button addShipmentBookButton;
         private System.Windows.Forms.Button addShipmentGameButton;
         private System.Windows.Forms.Button removeGameButton;
         private System.Windows.Forms.Button addGameButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDBook;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Book;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PriceBook;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Author;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Genre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FormatBook;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Language;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amountBook;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDGame;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Game;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PriceGame;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Plattform;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amountGame;
         private System.Windows.Forms.Button addShipmentFilmButton;
         private System.Windows.Forms.Button removeFilmButton;
         private System.Windows.Forms.Button addFilmButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDFilm;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Film;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PriceFilm;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Time;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amountFilm;
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView gridViewKassaBok;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button addToShoppingCartButton;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
@@ -667,7 +593,14 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.DataGridView gridViewKassaFilm;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ListView kundKorg;
+        private System.Windows.Forms.ColumnHeader ID;
+        private System.Windows.Forms.ColumnHeader Namn;
+        private System.Windows.Forms.ColumnHeader Pris;
+        private System.Windows.Forms.Label labelKundKorg;
+        private System.Windows.Forms.ColumnHeader Antal;
+        private System.Windows.Forms.Label totalPriceLabel;
+        private System.Windows.Forms.TextBox totalPriceTextBox;
     }
 }
 
