@@ -122,9 +122,20 @@ namespace Laboration4Affärssystem
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void gridViewKassaSpel_SelectionChanged(object sender, EventArgs e)
         {
+            if(gridViewKassaSpel.SelectedRows.Count > 0)
+            {
+                selectedItem = gridViewKassaSpel.SelectedRows[0];
+            }
+        }
 
+        private void gridViewKassaFilm_SelectionChanged(object sender, EventArgs e)
+        {
+            if(gridViewKassaFilm.SelectedRows.Count > 0)
+            {
+                selectedItem = gridViewKassaFilm.SelectedRows[0];
+            }
         }
 
         private void addToShoppingCartButton_Click(object sender, EventArgs e)
@@ -183,5 +194,47 @@ namespace Laboration4Affärssystem
                 MessageBox.Show(error.Message);
             }
         }
+
+        private void removeBookButton_Click(object sender, EventArgs e)
+        {
+            controller.removeBook(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+        }
+
+
+        private void removeGameButton_Click(object sender, EventArgs e)
+        {
+            controller.removeGame(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+        }
+
+        private void removeFilmButton_Click(object sender, EventArgs e)
+        {
+            controller.removeFilm(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+        }
+
+        private void gridViewLagerBok_SelectionChanged(object sender, EventArgs e)
+        {
+            if (gridViewLagerBok.SelectedRows.Count > 0)
+            {
+                selectedItem = gridViewLagerBok.SelectedRows[0];
+            }
+        }
+
+        private void gridViewLagerSpel_SelectionChanged(object sender, EventArgs e)
+        {
+            if(gridViewLagerSpel.SelectedRows.Count > 0)
+            {
+                selectedItem = gridViewLagerSpel.SelectedRows[0];
+            }
+        }
+
+        private void gridViewLagerFilm_SelectionChanged(object sender, EventArgs e)
+        {
+            if(gridViewLagerFilm.SelectedRows.Count > 0)
+            {
+                selectedItem = gridViewLagerFilm.SelectedRows[0];
+            }
+        }
+
+       
     }
 }

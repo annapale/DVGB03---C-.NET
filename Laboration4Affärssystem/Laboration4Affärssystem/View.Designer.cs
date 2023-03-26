@@ -30,17 +30,18 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.checkoutTab = new System.Windows.Forms.TabPage();
+            this.totalPriceTextBox = new System.Windows.Forms.TextBox();
+            this.totalPriceLabel = new System.Windows.Forms.Label();
             this.labelKundKorg = new System.Windows.Forms.Label();
+            this.addToShoppingCartButton = new System.Windows.Forms.Button();
             this.kundKorg = new System.Windows.Forms.ListView();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Namn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Pris = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Antal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gridViewKassaBok = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.addToShoppingCartButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -69,9 +70,6 @@
             this.addFilmButton = new System.Windows.Forms.Button();
             this.gridViewLagerFilm = new System.Windows.Forms.DataGridView();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.Antal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.totalPriceLabel = new System.Windows.Forms.Label();
-            this.totalPriceTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -108,6 +106,7 @@
             this.checkoutTab.Controls.Add(this.totalPriceTextBox);
             this.checkoutTab.Controls.Add(this.totalPriceLabel);
             this.checkoutTab.Controls.Add(this.labelKundKorg);
+            this.checkoutTab.Controls.Add(this.addToShoppingCartButton);
             this.checkoutTab.Controls.Add(this.kundKorg);
             this.checkoutTab.Controls.Add(this.tabControl3);
             this.checkoutTab.Location = new System.Drawing.Point(4, 30);
@@ -118,6 +117,23 @@
             this.checkoutTab.Text = "Kassa";
             this.checkoutTab.UseVisualStyleBackColor = true;
             // 
+            // totalPriceTextBox
+            // 
+            this.totalPriceTextBox.Location = new System.Drawing.Point(479, 365);
+            this.totalPriceTextBox.Name = "totalPriceTextBox";
+            this.totalPriceTextBox.Size = new System.Drawing.Size(100, 27);
+            this.totalPriceTextBox.TabIndex = 6;
+            this.totalPriceTextBox.Text = "0";
+            // 
+            // totalPriceLabel
+            // 
+            this.totalPriceLabel.AutoSize = true;
+            this.totalPriceLabel.Location = new System.Drawing.Point(375, 365);
+            this.totalPriceLabel.Name = "totalPriceLabel";
+            this.totalPriceLabel.Size = new System.Drawing.Size(98, 21);
+            this.totalPriceLabel.TabIndex = 5;
+            this.totalPriceLabel.Text = "Att betala:";
+            // 
             // labelKundKorg
             // 
             this.labelKundKorg.AutoSize = true;
@@ -126,6 +142,17 @@
             this.labelKundKorg.Size = new System.Drawing.Size(85, 21);
             this.labelKundKorg.TabIndex = 4;
             this.labelKundKorg.Text = "KundKorg";
+            // 
+            // addToShoppingCartButton
+            // 
+            this.addToShoppingCartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addToShoppingCartButton.Location = new System.Drawing.Point(10, 196);
+            this.addToShoppingCartButton.Name = "addToShoppingCartButton";
+            this.addToShoppingCartButton.Size = new System.Drawing.Size(165, 34);
+            this.addToShoppingCartButton.TabIndex = 2;
+            this.addToShoppingCartButton.Text = "lägg i kundkorg";
+            this.addToShoppingCartButton.UseVisualStyleBackColor = true;
+            this.addToShoppingCartButton.Click += new System.EventHandler(this.addToShoppingCartButton_Click);
             // 
             // kundKorg
             // 
@@ -156,6 +183,10 @@
             // 
             this.Pris.Text = "Pris";
             // 
+            // Antal
+            // 
+            this.Antal.Text = "Antal";
+            // 
             // tabControl3
             // 
             this.tabControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -166,19 +197,16 @@
             this.tabControl3.Location = new System.Drawing.Point(6, 6);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(858, 238);
+            this.tabControl3.Size = new System.Drawing.Size(858, 188);
             this.tabControl3.TabIndex = 1;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.gridViewKassaBok);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.addToShoppingCartButton);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(850, 208);
+            this.tabPage1.Size = new System.Drawing.Size(850, 158);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Böcker";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -190,40 +218,9 @@
             this.gridViewKassaBok.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewKassaBok.Location = new System.Drawing.Point(6, 6);
             this.gridViewKassaBok.Name = "gridViewKassaBok";
-            this.gridViewKassaBok.Size = new System.Drawing.Size(841, 161);
+            this.gridViewKassaBok.Size = new System.Drawing.Size(841, 146);
             this.gridViewKassaBok.TabIndex = 5;
             this.gridViewKassaBok.SelectionChanged += new System.EventHandler(this.gridViewKassaBok_SelectionChanged);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(231, 171);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 34);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "spara leverans";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(117, 171);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(108, 34);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "ta bort Bok";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // addToShoppingCartButton
-            // 
-            this.addToShoppingCartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.addToShoppingCartButton.Location = new System.Drawing.Point(3, 171);
-            this.addToShoppingCartButton.Name = "addToShoppingCartButton";
-            this.addToShoppingCartButton.Size = new System.Drawing.Size(108, 34);
-            this.addToShoppingCartButton.TabIndex = 2;
-            this.addToShoppingCartButton.Text = "sälja Bok";
-            this.addToShoppingCartButton.UseVisualStyleBackColor = true;
-            this.addToShoppingCartButton.Click += new System.EventHandler(this.addToShoppingCartButton_Click);
             // 
             // tabPage2
             // 
@@ -234,7 +231,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(850, 208);
+            this.tabPage2.Size = new System.Drawing.Size(850, 158);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Dataspel";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -271,8 +268,9 @@
             this.gridViewKassaSpel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewKassaSpel.Location = new System.Drawing.Point(6, 6);
             this.gridViewKassaSpel.Name = "gridViewKassaSpel";
-            this.gridViewKassaSpel.Size = new System.Drawing.Size(631, 286);
+            this.gridViewKassaSpel.Size = new System.Drawing.Size(631, 146);
             this.gridViewKassaSpel.TabIndex = 0;
+            this.gridViewKassaSpel.SelectionChanged += new System.EventHandler(this.gridViewKassaSpel_SelectionChanged);
             // 
             // tabPage3
             // 
@@ -283,7 +281,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(850, 208);
+            this.tabPage3.Size = new System.Drawing.Size(850, 158);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Filmer";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -320,8 +318,9 @@
             this.gridViewKassaFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewKassaFilm.Location = new System.Drawing.Point(6, 6);
             this.gridViewKassaFilm.Name = "gridViewKassaFilm";
-            this.gridViewKassaFilm.Size = new System.Drawing.Size(726, 286);
+            this.gridViewKassaFilm.Size = new System.Drawing.Size(726, 146);
             this.gridViewKassaFilm.TabIndex = 0;
+            this.gridViewKassaFilm.SelectionChanged += new System.EventHandler(this.gridViewKassaFilm_SelectionChanged);
             // 
             // lagerTab
             // 
@@ -378,6 +377,7 @@
             this.removeBookButton.TabIndex = 3;
             this.removeBookButton.Text = "ta bort Bok";
             this.removeBookButton.UseVisualStyleBackColor = true;
+            this.removeBookButton.Click += new System.EventHandler(this.removeBookButton_Click);
             // 
             // addBookButton
             // 
@@ -396,8 +396,9 @@
             this.gridViewLagerBok.Location = new System.Drawing.Point(6, 6);
             this.gridViewLagerBok.Name = "gridViewLagerBok";
             this.gridViewLagerBok.ReadOnly = true;
-            this.gridViewLagerBok.Size = new System.Drawing.Size(841, 286);
+            this.gridViewLagerBok.Size = new System.Drawing.Size(841, 136);
             this.gridViewLagerBok.TabIndex = 1;
+            this.gridViewLagerBok.SelectionChanged += new System.EventHandler(this.gridViewLagerBok_SelectionChanged);
             // 
             // gamesTab
             // 
@@ -430,6 +431,7 @@
             this.removeGameButton.TabIndex = 4;
             this.removeGameButton.Text = "ta bort Spel";
             this.removeGameButton.UseVisualStyleBackColor = true;
+            this.removeGameButton.Click += new System.EventHandler(this.removeGameButton_Click);
             // 
             // addGameButton
             // 
@@ -447,6 +449,7 @@
             this.gridViewLagerSpel.Name = "gridViewLagerSpel";
             this.gridViewLagerSpel.Size = new System.Drawing.Size(829, 286);
             this.gridViewLagerSpel.TabIndex = 0;
+            this.gridViewLagerSpel.SelectionChanged += new System.EventHandler(this.gridViewLagerSpel_SelectionChanged);
             // 
             // filmsTab
             // 
@@ -479,6 +482,7 @@
             this.removeFilmButton.TabIndex = 6;
             this.removeFilmButton.Text = "ta bort Film";
             this.removeFilmButton.UseVisualStyleBackColor = true;
+            this.removeFilmButton.Click += new System.EventHandler(this.removeFilmButton_Click);
             // 
             // addFilmButton
             // 
@@ -494,34 +498,14 @@
             this.gridViewLagerFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewLagerFilm.Location = new System.Drawing.Point(6, 6);
             this.gridViewLagerFilm.Name = "gridViewLagerFilm";
-            this.gridViewLagerFilm.Size = new System.Drawing.Size(726, 286);
+            this.gridViewLagerFilm.Size = new System.Drawing.Size(181, 286);
             this.gridViewLagerFilm.TabIndex = 0;
+            this.gridViewLagerFilm.SelectionChanged += new System.EventHandler(this.gridViewLagerFilm_SelectionChanged);
             // 
             // fileSystemWatcher1
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
-            // Antal
-            // 
-            this.Antal.Text = "Antal";
-            // 
-            // totalPriceLabel
-            // 
-            this.totalPriceLabel.AutoSize = true;
-            this.totalPriceLabel.Location = new System.Drawing.Point(375, 365);
-            this.totalPriceLabel.Name = "totalPriceLabel";
-            this.totalPriceLabel.Size = new System.Drawing.Size(98, 21);
-            this.totalPriceLabel.TabIndex = 5;
-            this.totalPriceLabel.Text = "Att betala:";
-            // 
-            // totalPriceTextBox
-            // 
-            this.totalPriceTextBox.Location = new System.Drawing.Point(479, 365);
-            this.totalPriceTextBox.Name = "totalPriceTextBox";
-            this.totalPriceTextBox.Size = new System.Drawing.Size(100, 27);
-            this.totalPriceTextBox.TabIndex = 6;
-            this.totalPriceTextBox.Text = "0";
             // 
             // View
             // 
@@ -580,8 +564,6 @@
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView gridViewKassaBok;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button addToShoppingCartButton;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button4;

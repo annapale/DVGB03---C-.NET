@@ -46,5 +46,27 @@ namespace Laboration4Affärssystem
 
             filmSource.DataSource = filmList;
         }
+
+        public void removeBook(int id)
+        {
+            Book book = bookList.SingleOrDefault(p => p.ID == id);
+
+            bookList.Remove(book);  
+        }
+
+        public void removeGame(int id)
+        {
+            Videogame game = gameList.SingleOrDefault(p => p.ID == id);
+
+            gameList.Remove(game);
+        }
+
+        public void removeFilm (int id)
+        {
+            Film film = filmList.SingleOrDefault(p => p.ID == id);
+
+            filmList.Remove(film);
+        }
+
     }
 }
