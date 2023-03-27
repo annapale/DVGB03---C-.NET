@@ -68,5 +68,26 @@ namespace Laboration4Affärssystem
             filmList.Remove(film);
         }
 
+        public Book findBook (int id)
+        {
+            Book book = bookList.SingleOrDefault(p => p.ID == id);
+
+            return book;
+        }
+
+        public Videogame findGame(int id)
+        {
+            Videogame game = gameList.SingleOrDefault(p => p.ID == id);
+
+            return game;
+        }
+
+        public Film findFilm (int id)
+        {
+            Film film = filmList.SingleOrDefault (p => p.ID == id);
+
+            return film;
+        }
+
     }
 }

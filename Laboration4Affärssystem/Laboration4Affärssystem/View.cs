@@ -25,17 +25,17 @@ namespace Laboration4Affärssystem
             controller.createGameList();
             controller.createFilmList();
 
-            addData(gridViewKassaBok, 1);
-            addData(gridViewKassaSpel, 2);
-            addData(gridViewKassaFilm, 3);
+            addDataKassa(gridViewKassaBok, 1);
+            addDataKassa(gridViewKassaSpel, 2);
+            addDataKassa(gridViewKassaFilm, 3);
 
-            addData(gridViewLagerBok, 1);
-            addData(gridViewLagerSpel, 2);
-            addData(gridViewLagerFilm, 3);
+            addDataLager(gridViewLagerBok, 1);
+            addDataLager(gridViewLagerSpel, 2);
+            addDataLager(gridViewLagerFilm, 3);
 
         }
 
-        private void addData(DataGridView table, int itemType)
+        private void addDataKassa(DataGridView table, int itemType)
         {
             // Disable automatic column generation
             table.AutoGenerateColumns = false;
@@ -112,6 +112,58 @@ namespace Laboration4Affärssystem
                     break;
             }
             
+        }
+
+        private void addDataLager(DataGridView table, int itemType)
+        {
+            // Disable automatic column generation
+            table.AutoGenerateColumns = false;
+
+            switch (itemType)
+            {
+                case 1:
+                    //Add books to DataGridView
+                    //Add columns
+                    table.Columns.Add("ID", "ID");
+                    table.Columns.Add("Name", "Namn");
+
+                    //Set column names
+                    table.Columns["ID"].DataPropertyName = "ID";
+                    table.Columns["Name"].DataPropertyName = "Name";
+
+                    //Add data source
+                    table.DataSource = controller.bookSource;
+                    break;
+
+                case 2:
+                    //Add games to DataGridView
+                    //Add columns
+                    table.Columns.Add("ID", "ID");
+                    table.Columns.Add("Name", "Namn");
+
+                    //Set column names
+                    table.Columns["ID"].DataPropertyName = "ID";
+                    table.Columns["Name"].DataPropertyName = "Name";
+
+                    //Add data source
+                    table.DataSource = controller.gameSource;
+                    break;
+
+                case 3:
+                    //Add films to DataGridView
+                    //Add columns
+                    table.Columns.Add("ID", "ID");
+                    table.Columns.Add("Name", "Namn");
+
+                    //Set column names
+                    table.Columns["ID"].DataPropertyName = "ID";
+                    table.Columns["Name"].DataPropertyName = "Name";
+
+                    //Add data source
+                    table.DataSource = controller.filmSource;
+
+                    break;
+            }
         }
 
         private void gridViewKassaBok_SelectionChanged(object sender, EventArgs e)
@@ -200,7 +252,6 @@ namespace Laboration4Affärssystem
             controller.removeBook(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
         }
 
-
         private void removeGameButton_Click(object sender, EventArgs e)
         {
             controller.removeGame(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
@@ -216,6 +267,17 @@ namespace Laboration4Affärssystem
             if (gridViewLagerBok.SelectedRows.Count > 0)
             {
                 selectedItem = gridViewLagerBok.SelectedRows[0];
+
+                Book book = controller.findBook(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+
+                IDBookText.Text = book.ID.ToString();
+                AmountBookText.Text = book.Amount.ToString();
+                NameBookText.Text = book.Name;
+                PriceBookText.Text = book.Price.ToString();
+                AuthorBookText.Text = book.Author;
+                GenreBookText.Text = book.Genre;
+                FormatBookText.Text = book.Format;
+                LanguageBookText.Text = book.Language;
             }
         }
 
@@ -224,6 +286,14 @@ namespace Laboration4Affärssystem
             if(gridViewLagerSpel.SelectedRows.Count > 0)
             {
                 selectedItem = gridViewLagerSpel.SelectedRows[0];
+
+                Videogame game = controller.findGame(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+
+                IDGameText.Text = game.ID.ToString();
+                AmountGameText.Text = game.Amount.ToString();
+                NameGameText.Text = game.Name;
+                PriceGameText.Text = game.Price.ToString();
+                PlattformGameText.Text = game.Plattform;
             }
         }
 
@@ -232,9 +302,16 @@ namespace Laboration4Affärssystem
             if(gridViewLagerFilm.SelectedRows.Count > 0)
             {
                 selectedItem = gridViewLagerFilm.SelectedRows[0];
+
+                Film film = controller.findFilm(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+
+                IDFilmText.Text = film.ID.ToString();
+                AmountFilmText.Text = film.Amount.ToString();
+                NameFilmText.Text = film.Name;
+                PriceFilmText.Text = film.Price.ToString();
+                FormatFilmText.Text = film.Format;
+                TimeGameText.Text = film.Time;
             }
         }
-
-       
     }
 }
