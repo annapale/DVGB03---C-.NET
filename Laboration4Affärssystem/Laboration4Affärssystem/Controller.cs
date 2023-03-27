@@ -47,6 +47,21 @@ namespace Laboration4Affärssystem
             filmSource.DataSource = filmList;
         }
 
+        public void addBook(int id, string name, int price, int amount, string author, string genre, string format, string language)
+        {
+            bookList.Add(new Book(id, name, price, amount, author, genre, format, language));
+        }
+
+        public void addGame(int id, string name, int price, int amount, string plattform)
+        {
+            gameList.Add(new Videogame(id, name, price, amount, plattform));
+        }
+
+        public void addFilm(int id, string name, int price, int amount, string format, string time)
+        {
+            filmList.Add(new Film(id, name, price, amount, format, time));
+        }
+
         public void removeBook(int id)
         {
             Book book = bookList.SingleOrDefault(p => p.ID == id);
@@ -89,5 +104,24 @@ namespace Laboration4Affärssystem
             return film;
         }
 
+        public bool checkID (int id)
+        {
+            if (bookList.Any(book => book.ID == id))
+            {
+                return true;
+            }
+            else if (gameList.Any(game => game.ID == id))
+            {
+                return true;
+            }
+            else if (filmList.Any(film => film.ID == id))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -310,7 +311,138 @@ namespace Laboration4Affärssystem
                 NameFilmText.Text = film.Name;
                 PriceFilmText.Text = film.Price.ToString();
                 FormatFilmText.Text = film.Format;
-                TimeGameText.Text = film.Time;
+                TimeFilmText.Text = film.Time;
+            }
+        }
+
+        private void addBookButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(IDBookText.Text == "")
+                {
+                    throw new Exception("Lägg till ett ID");
+                }
+
+                if (PriceBookText.Text == "")
+                {
+                    throw new Exception("Lägg till pris");
+                }
+
+                if (NameBookText.Text == "")
+                {
+                    throw new Exception("Lägg till ett Namn");
+                }
+
+                int id = int.Parse(IDBookText.Text);
+                if (controller.checkID(id))
+                {
+                    throw new Exception("ID måste vara unik");
+                }
+
+                string name = NameBookText.Text;
+                int price = int.Parse(PriceBookText.Text);
+                int amount = int.Parse(AmountBookText.Text);
+                string author = AuthorBookText.Text;
+                string genre = GenreBookText.Text;
+                string format = FormatBookText.Text;
+                string language = LanguageBookText.Text;
+
+                controller.addBook(id, name, price, amount, author, genre, format, language);
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+          
+        }
+
+        private void addGameButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IDGameText.Text == "")
+                {
+                    throw new Exception("Lägg till ett ID");
+                }
+
+                if (PriceGameText.Text == "")
+                {
+                    throw new Exception("Lägg till pris");
+                }
+
+                if (NameGameText.Text == "")
+                {
+                    throw new Exception("Lägg till ett Namn");
+                }
+                int id = int.Parse(IDGameText.Text);
+                if (controller.checkID(id))
+                {
+                    throw new Exception("ID måste vara unik");
+                }
+                string name = NameGameText.Text;
+                int price = int.Parse(PriceGameText.Text);
+                int amount = int.Parse(AmountGameText.Text);
+                string plattform = PlattformGameText.Text;
+
+                controller.addGame(id, name, price, amount, plattform);
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
+        }
+
+        private void addFilmButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IDFilmText.Text == "")
+                {
+                    throw new Exception("Lägg till ett ID");
+                }
+
+                if (PriceFilmText.Text == "")
+                {
+                    throw new Exception("Lägg till pris");
+                }
+
+                if (NameFilmText.Text == "")
+                {
+                    throw new Exception("Lägg till ett Namn");
+                }
+
+                int id = int.Parse(IDFilmText.Text);
+                if (controller.checkID(id))
+                {
+                    throw new Exception("ID måste vara unik");
+                }
+                string name = NameFilmText.Text;
+                int price = int.Parse(PriceFilmText.Text);
+                int amount = int.Parse(AmountFilmText.Text);
+                string format = FormatFilmText.Text;
+                string time = TimeFilmText.Text;
+
+                controller.addFilm(id, name, price, amount, format, time);
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
+
+        }
+
+        private void addShipmentFilmButton_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
             }
         }
     }
