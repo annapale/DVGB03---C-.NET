@@ -972,6 +972,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "View";
             this.Text = "Affärssystem";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.View_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.checkoutTab.ResumeLayout(false);
             this.checkoutTab.PerformLayout();

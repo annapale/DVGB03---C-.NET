@@ -6,6 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.IO;
+using Microsoft.VisualBasic.FileIO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Laboration4Affärssystem
 {
@@ -19,33 +23,6 @@ namespace Laboration4Affärssystem
 
         public BindingList<Film> filmList = new BindingList<Film>();
         public BindingSource filmSource = new BindingSource();
-
-
-        public void createBookList()
-        {
-            
-            bookList.Add(new Book(11, "One Piece", 70, 1, "Eichhiro Oda", "Shonen", "Manga", "German"));
-            bookList.Add(new Book(12, "Bello Callico et Civili", 449, 2, "Julius Ceasar", "Historia", "Inbunden", "Latin"));
-            
-            bookSource.DataSource = bookList;
-        }
-
-
-        public void createGameList()
-        {
-            gameList.Add(new Videogame(21, "Elden Ring", 599, 3, "Playstation 5"));
-            gameList.Add(new Videogame(22, "Demon's Souls", 499, 3, "Playstation 5"));
-
-            gameSource.DataSource = gameList;
-        }
-
-        public void createFilmList()
-        {
-            filmList.Add(new Film(31, "Nyckeln till frihet", 99, 5, "DVD", "142 min"));
-            filmList.Add(new Film(32, "Gudfadern", 99, 6, "DVD", "152 min"));
-
-            filmSource.DataSource = filmList;
-        }
 
         public void addBook(int id, string name, int price, int amount, string author, string genre, string format, string language)
         {
@@ -62,25 +39,305 @@ namespace Laboration4Affärssystem
             filmList.Add(new Film(id, name, price, amount, format, time));
         }
 
+        public void importBooks()
+        {
+            try
+            {
+                string fileName = "booksFile.csv";
+
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+
+                if(File.Exists(filePath))
+                {
+                    using (StreamReader reader = new StreamReader(filePath))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            string[] data = line.Split(',');
+
+                            int id = int.Parse(data[0]);
+                            string name = data[1];
+                            int price = int.Parse(data[2]);
+                            int amount = int.Parse(data[3]);
+                            string author = data[4];
+                            string genre = data[5];
+                            string format = data[6];
+                            string language = data[7];
+
+                            bookList.Add(new Book(id, name, price, amount, author, genre, format, language));
+
+                            bookSource.DataSource = bookList;
+                        }
+                    }
+                }
+
+                else
+                {
+                    throw new Exception("File not found");
+                }
+            }
+
+            catch(Exception error) 
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+
+        public void importGames()
+        {
+            try
+            {
+                string fileName = "gamesFile.csv";
+
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+
+                if (File.Exists(filePath))
+                {
+                    using (StreamReader reader = new StreamReader(filePath))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            string[] data = line.Split(',');
+
+                            int id = int.Parse(data[0]);
+                            string name = data[1];
+                            int price = int.Parse(data[2]);
+                            int amount = int.Parse(data[3]);
+                            string plattform = data[4];
+
+                            gameList.Add(new Videogame(id, name, price, amount, plattform));
+
+                            gameSource.DataSource = gameList;
+                        }
+                    }
+                }
+
+                else
+                {
+                    throw new Exception("File not found");
+                }
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+
+        public void importFilms()
+        {
+            try
+            {
+                string fileName = "filmsFile.csv";
+
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+
+                if (File.Exists(filePath))
+                {
+                    using (StreamReader reader = new StreamReader(filePath))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            string[] data = line.Split(',');
+
+                            int id = int.Parse(data[0]);
+                            string name = data[1];
+                            int price = int.Parse(data[2]);
+                            int amount = int.Parse(data[3]);
+                            string format = data[4];
+                            string time = data[5];
+                            
+
+                            filmList.Add(new Film(id, name, price, amount, format, time));
+
+                            filmSource.DataSource = filmList;
+                        }
+                    }
+                }
+
+                else
+                {
+                    throw new Exception("File not found");
+                }
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+
+
+        public void updateBookFile()
+        {
+            try
+            {
+                string fileName = "booksFile.csv";
+
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+
+                if (File.Exists(filePath))
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath, false))
+                    {
+                        //int id, string name, int price, int amount, string author, string genre, string format, string language
+                        foreach (Book book in bookList)
+                        {
+                            writer.WriteLine($"{book.ID}, {book.Name}, {book.Price}, {book.Amount}, {book.Author}, {book.Genre}, {book.Format}, {book.Language}");
+                        }
+                    }
+                }
+
+                else
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        //int id, string name, int price, int amount, string author, string genre, string format, string language
+                        foreach (Book book in bookList)
+                        {
+                            writer.WriteLine(book.ID.ToString(), book.Name.ToString(), book.Price, book.Amount, book.Author, book.Genre, book.Format, book.Language);
+                        }
+                    }
+                }
+            }
+            catch(Exception error )
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+
+        public void updateGameFile()
+        {
+            try
+            {
+                string fileName = "gamesFile.csv";
+
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+
+                if (File.Exists(filePath))
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath, false))
+                    {
+                        //int id, string name, int price, int amount, string author, string genre, string format, string language
+                        foreach (Videogame game in gameList)
+                        {
+                            writer.WriteLine($"{game.ID}, {game.Name}, {game.Price}, {game.Amount}, {game.Plattform}");
+                        }
+                    }
+                }
+
+                else
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        foreach (Videogame game in gameList)
+                        {
+                            writer.WriteLine($"{game.ID}, {game.Name}, {game.Price}, {game.Amount}, {game.Plattform}");
+                        }
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+
+        public void updateFilmFile()
+        {
+            try
+            {
+                string fileName = "filmsFile.csv";
+
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+
+                if (File.Exists(filePath))
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath, false))
+                    {
+                        //int id, string name, int price, int amount, string author, string genre, string format, string language
+                        foreach (Film film in filmList)
+                        {
+                            writer.WriteLine($"{film.ID}, {film.Name}, {film.Price}, {film.Amount}, {film.Format}, {film.Time}");
+                        }
+                    }
+                }
+
+                else
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        //int id, string name, int price, int amount, string author, string genre, string format, string language
+                        foreach (Film film in filmList)
+                        {
+                            writer.WriteLine($"{film.ID}, {film.Name}, {film.Price}, {film.Amount}, {film.Format}, {film.Time}");
+                        }
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
         public void removeBook(int id)
         {
             Book book = bookList.SingleOrDefault(p => p.ID == id);
+            if(book.Amount > 0)
+            {
+                DialogResult result = MessageBox.Show("Vill du verkligen ta bort varan?", "", MessageBoxButtons.YesNo);
 
-            bookList.Remove(book);  
+                if (result == DialogResult.Yes)
+                {
+                    bookList.Remove(book);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            
         }
 
         public void removeGame(int id)
         {
             Videogame game = gameList.SingleOrDefault(p => p.ID == id);
 
-            gameList.Remove(game);
+            if (game.Amount > 0)
+            {
+                DialogResult result = MessageBox.Show("Vill du verkligen ta bort varan?", "", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    gameList.Remove(game);
+                }
+                else
+                {
+                    return;
+                }
+            }
         }
 
         public void removeFilm (int id)
         {
             Film film = filmList.SingleOrDefault(p => p.ID == id);
 
-            filmList.Remove(film);
+            if (film.Amount > 0)
+            {
+                DialogResult result = MessageBox.Show("Vill du verkligen ta bort varan?", "", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    filmList.Remove(film);
+                }
+                else
+                {
+                    return;
+                }
+            }
         }
 
         public Book findBook (int id)

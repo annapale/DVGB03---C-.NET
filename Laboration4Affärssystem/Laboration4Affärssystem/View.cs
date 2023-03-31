@@ -22,9 +22,9 @@ namespace Laboration4Affärssystem
         {
             InitializeComponent();
 
-            controller.createBookList();
-            controller.createGameList();
-            controller.createFilmList();
+            controller.importBooks();
+            controller.importGames();
+            controller.importFilms();
 
             addDataKassa(gridViewKassaBok, 1);
             addDataKassa(gridViewKassaSpel, 2);
@@ -444,6 +444,13 @@ namespace Laboration4Affärssystem
             {
                 MessageBox.Show(error.Message);
             }
+        }
+
+        private void View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            controller.updateBookFile();
+            controller.updateGameFile();
+            controller.updateFilmFile();
         }
     }
 }
