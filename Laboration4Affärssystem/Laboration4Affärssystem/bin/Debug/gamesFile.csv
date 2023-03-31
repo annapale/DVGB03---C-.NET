@@ -1,2 +1,6 @@
-21,    Elden Ring, 599, 3,    Playstation 5
-22,    Demon's Souls, 499, 3,    Playstation 5
+ID, Name, Price, Amount, Plattform
+7, Elden Ring, 599, 1, Playstation 5
+8, Demon's Souls, 499, 8, Playstation 5
+9, Microsoft Flight Simulator, 499, 5, PC
+10, Planescape Torment, 99, 4, PC
+11, Disco Elysium, 399, 2, PC

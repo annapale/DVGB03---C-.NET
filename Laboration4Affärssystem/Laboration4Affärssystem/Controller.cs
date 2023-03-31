@@ -41,8 +41,8 @@ namespace Laboration4Affärssystem
 
         public void importBooks()
         {
-            try
-            {
+           try
+           {
                 string fileName = "booksFile.csv";
 
                 string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
@@ -51,6 +51,7 @@ namespace Laboration4Affärssystem
                 {
                     using (StreamReader reader = new StreamReader(filePath))
                     {
+                    reader.ReadLine();
                         string line;
                         while ((line = reader.ReadLine()) != null)
                         {
@@ -76,9 +77,9 @@ namespace Laboration4Affärssystem
                 {
                     throw new Exception("File not found");
                 }
-            }
+           }
 
-            catch(Exception error) 
+           catch(Exception error) 
             {
                 MessageBox.Show(error.Message);
             }
@@ -96,6 +97,8 @@ namespace Laboration4Affärssystem
                 {
                     using (StreamReader reader = new StreamReader(filePath))
                     {
+                        //the first line is not saved
+                        reader.ReadLine();
                         string line;
                         while ((line = reader.ReadLine()) != null)
                         {
@@ -138,6 +141,7 @@ namespace Laboration4Affärssystem
                 {
                     using (StreamReader reader = new StreamReader(filePath))
                     {
+                        reader.ReadLine();
                         string line;
                         while ((line = reader.ReadLine()) != null)
                         {
@@ -170,7 +174,6 @@ namespace Laboration4Affärssystem
             }
         }
 
-
         public void updateBookFile()
         {
             try
@@ -183,10 +186,10 @@ namespace Laboration4Affärssystem
                 {
                     using (StreamWriter writer = new StreamWriter(filePath, false))
                     {
-                        //int id, string name, int price, int amount, string author, string genre, string format, string language
+                        writer.WriteLine("Id, Name, Price, Amount, Author, Genre, Format, Language");
                         foreach (Book book in bookList)
                         {
-                            writer.WriteLine($"{book.ID}, {book.Name}, {book.Price}, {book.Amount}, {book.Author}, {book.Genre}, {book.Format}, {book.Language}");
+                            writer.WriteLine($"{book.ID},{book.Name},{book.Price},{book.Amount},{book.Author},{book.Genre},{book.Format},{book.Language}");
                         }
                     }
                 }
@@ -195,10 +198,11 @@ namespace Laboration4Affärssystem
                 {
                     using (StreamWriter writer = new StreamWriter(filePath))
                     {
+                        writer.WriteLine("Id, Name, Price, Amount, Author, Genre, Format, Language");
                         //int id, string name, int price, int amount, string author, string genre, string format, string language
                         foreach (Book book in bookList)
                         {
-                            writer.WriteLine(book.ID.ToString(), book.Name.ToString(), book.Price, book.Amount, book.Author, book.Genre, book.Format, book.Language);
+                            writer.WriteLine($"{book.ID},{book.Name},{book.Price},{book.Amount},{book.Author},{book.Genre},{book.Format},{book.Language}");
                         }
                     }
                 }
@@ -221,7 +225,7 @@ namespace Laboration4Affärssystem
                 {
                     using (StreamWriter writer = new StreamWriter(filePath, false))
                     {
-                        //int id, string name, int price, int amount, string author, string genre, string format, string language
+                        writer.WriteLine("ID, Name, Price, Amount, Plattform");
                         foreach (Videogame game in gameList)
                         {
                             writer.WriteLine($"{game.ID}, {game.Name}, {game.Price}, {game.Amount}, {game.Plattform}");
@@ -233,6 +237,7 @@ namespace Laboration4Affärssystem
                 {
                     using (StreamWriter writer = new StreamWriter(filePath))
                     {
+                        writer.WriteLine("ID, Name, Price, Amount, Plattform");
                         foreach (Videogame game in gameList)
                         {
                             writer.WriteLine($"{game.ID}, {game.Name}, {game.Price}, {game.Amount}, {game.Plattform}");
@@ -258,7 +263,7 @@ namespace Laboration4Affärssystem
                 {
                     using (StreamWriter writer = new StreamWriter(filePath, false))
                     {
-                        //int id, string name, int price, int amount, string author, string genre, string format, string language
+                        writer.WriteLine("ID, Name, Price, Amount, Format, Time");
                         foreach (Film film in filmList)
                         {
                             writer.WriteLine($"{film.ID}, {film.Name}, {film.Price}, {film.Amount}, {film.Format}, {film.Time}");
@@ -270,7 +275,7 @@ namespace Laboration4Affärssystem
                 {
                     using (StreamWriter writer = new StreamWriter(filePath))
                     {
-                        //int id, string name, int price, int amount, string author, string genre, string format, string language
+                        writer.WriteLine("ID, Name, Price, Amount, Format, Time");
                         foreach (Film film in filmList)
                         {
                             writer.WriteLine($"{film.ID}, {film.Name}, {film.Price}, {film.Amount}, {film.Format}, {film.Time}");
@@ -283,6 +288,7 @@ namespace Laboration4Affärssystem
                 MessageBox.Show(error.Message);
             }
         }
+
         public void removeBook(int id)
         {
             Book book = bookList.SingleOrDefault(p => p.ID == id);
@@ -379,6 +385,11 @@ namespace Laboration4Affärssystem
             {
                 return false;
             }
+        }
+
+        public void sellItem(int id, int amount)
+        {
+
         }
     }
 }

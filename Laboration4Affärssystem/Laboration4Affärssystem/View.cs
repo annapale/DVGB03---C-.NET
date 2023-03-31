@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -171,7 +172,10 @@ namespace Laboration4Affärssystem
         {
             if (gridViewKassaBok.SelectedRows.Count > 0)
             {
-               selectedItem = gridViewKassaBok.SelectedRows[0];
+                selectedItem = gridViewKassaBok.SelectedRows[0];
+                //deselect any selected items in the other tables to avoid problems
+                deselectGame();
+                deselectFilm();
             }
         }
 
@@ -180,6 +184,8 @@ namespace Laboration4Affärssystem
             if(gridViewKassaSpel.SelectedRows.Count > 0)
             {
                 selectedItem = gridViewKassaSpel.SelectedRows[0];
+                deselectBook();
+                deselectFilm();
             }
         }
 
@@ -188,27 +194,61 @@ namespace Laboration4Affärssystem
             if(gridViewKassaFilm.SelectedRows.Count > 0)
             {
                 selectedItem = gridViewKassaFilm.SelectedRows[0];
+                deselectBook();
+                deselectGame();
             }
         }
 
+        private void deselectBook()
+        {
+            if(gridViewKassaBok.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = gridViewKassaBok.SelectedRows[0];
+
+                selectedRow.Selected = false;
+            }
+        }
+
+        private void deselectGame()
+        {
+            if (gridViewKassaSpel.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = gridViewKassaSpel.SelectedRows[0];
+
+                selectedRow.Selected = false;
+            }
+        }
+
+        private void deselectFilm()
+        {
+            if (gridViewKassaFilm.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = gridViewKassaFilm.SelectedRows[0];
+
+                selectedRow.Selected = false;
+            }
+        }
         private void addToShoppingCartButton_Click(object sender, EventArgs e)
         {
             try
             {
                 if (selectedItem != null)
                 {
+                    //get data about the selected item
                     string id = selectedItem.Cells["ID"].Value.ToString();
                     string name = selectedItem.Cells["Name"].Value.ToString();
                     int amountInt = 1;
                     string price = selectedItem.Cells["Price"].Value.ToString();
-                    int counter = 0;
+                    bool itemInList = true;
 
                     string amount = amountInt.ToString();
 
+                    //check if selected item is already in list, if it is update amount and price, if not add to list
                     foreach (ListViewItem listItem in kundKorg.Items)
                     {
-                        counter++;
+                        itemInList = false;
                         string itemId = listItem.SubItems[0].Text;
+
                         if (itemId.Equals(id))
                         {
                             string currentAmount = listItem.SubItems[3].Text;
@@ -218,20 +258,20 @@ namespace Laboration4Affärssystem
 
                             int priceInt = int.Parse(listItem.SubItems[2].Text) + int.Parse(price);
                             listItem.SubItems[2].Text = priceInt.ToString();
-                            break;
                         }
                         else
                         {
-                            counter = 0;
+                            itemInList = true;
                         }
                     }
 
-                    if (counter == 0)
+                    if (itemInList)
                     {
                         ListViewItem item = new ListViewItem(new[] { id, name, price, amount });
                         kundKorg.Items.Add(item);
                     }
 
+                    //update totalPrice
                     int totalPrice = int.Parse(totalPriceTextBox.Text) + int.Parse(price);
                     totalPriceTextBox.Text = totalPrice.ToString();
                 }
@@ -245,6 +285,17 @@ namespace Laboration4Affärssystem
             catch(Exception error)
             {
                 MessageBox.Show(error.Message);
+            }
+        }
+
+        private void payButton_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem listItem in kundKorg.Items)
+            {
+                int listItemID = int.Parse(listItem.SubItems[0].Text);
+                int listItemAmount = int.Parse(listItem.SubItems[3].Text);
+                
+                controller.sellItem(listItemID, listItemAmount);
             }
         }
 
@@ -452,5 +503,7 @@ namespace Laboration4Affärssystem
             controller.updateGameFile();
             controller.updateFilmFile();
         }
+
+        
     }
 }

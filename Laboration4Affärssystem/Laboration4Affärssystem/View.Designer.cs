@@ -111,6 +111,7 @@
             this.addFilmButton = new System.Windows.Forms.Button();
             this.gridViewLagerFilm = new System.Windows.Forms.DataGridView();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.payButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -148,6 +149,7 @@
             // checkoutTab
             // 
             this.checkoutTab.BackColor = System.Drawing.Color.DimGray;
+            this.checkoutTab.Controls.Add(this.payButton);
             this.checkoutTab.Controls.Add(this.totalPriceTextBox);
             this.checkoutTab.Controls.Add(this.totalPriceLabel);
             this.checkoutTab.Controls.Add(this.labelKundKorg);
@@ -962,6 +964,17 @@
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
+            // payButton
+            // 
+            this.payButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.payButton.Location = new System.Drawing.Point(414, 283);
+            this.payButton.Name = "payButton";
+            this.payButton.Size = new System.Drawing.Size(165, 34);
+            this.payButton.TabIndex = 7;
+            this.payButton.Text = "slutför betalning";
+            this.payButton.UseVisualStyleBackColor = true;
+            this.payButton.Click += new System.EventHandler(this.payButton_Click);
+            // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1087,6 +1100,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox IDFilmText;
+        private System.Windows.Forms.Button payButton;
     }
 }
 
