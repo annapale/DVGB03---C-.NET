@@ -443,7 +443,36 @@ namespace Laboration4Affärssystem
 
             //if not found in any of the lists, throw an exception
             throw new Exception("Item not found");
+        }
 
+        public void AddShipment(int id, int shipmentAmount, string itemType)
+        {
+            Item item = null;
+
+            switch(itemType)
+            {
+                case "Book":
+                    item = bookList.SingleOrDefault(p => p.ID == id);
+                    if (item != null)
+                    {
+                        item.Shipment(shipmentAmount);
+                    }
+                    break;
+                case "Game":
+                    item = gameList.SingleOrDefault(p => p.ID == id);
+                    if (item != null)
+                    {
+                        item.Shipment(shipmentAmount);
+                    }
+                    break;
+                case "Film":
+                    item = filmList.SingleOrDefault(p => p.ID == id);
+                    if (item != null)
+                    {
+                        item.Shipment(shipmentAmount);
+                    }
+                    break;
+            }
         }
     }
 }

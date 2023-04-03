@@ -451,6 +451,7 @@ namespace Laboration4Affärssystem
             
         }
 
+        
         private void addFilmButton_Click(object sender, EventArgs e)
         {
             try
@@ -491,11 +492,85 @@ namespace Laboration4Affärssystem
 
         }
 
+        private void addShipmentBookButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string input;
+                int shipmentAmount;
+                string itemType = "Book";
+                int id = int.Parse(selectedItem.Cells["ID"].Value.ToString());
+                input = Microsoft.VisualBasic.Interaction.InputBox("Hur stor är leveransen?:", "Integer Input", "0");
+
+                shipmentAmount = int.Parse(input);
+
+
+                if (shipmentAmount < 1)
+                {
+                    throw new Exception("Leverans måste vara större än 0");
+                }
+
+                controller.AddShipment(id, shipmentAmount, itemType);
+
+                //update display
+                gridViewLagerBok_SelectionChanged(null, null);
+
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+
+        private void addShipmentGameButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string input;
+                int shipmentAmount;
+                string itemType = "Game";
+                int id = int.Parse(selectedItem.Cells["ID"].Value.ToString());
+                input = Microsoft.VisualBasic.Interaction.InputBox("Hur stor är leveransen?:", "Integer Input", "0");
+
+                shipmentAmount = int.Parse(input);
+                if (shipmentAmount < 1)
+                {
+                    throw new Exception("Leverans måste vara större än 0");
+                }
+
+                controller.AddShipment(id, shipmentAmount, itemType);
+
+                //update display
+                gridViewLagerSpel_SelectionChanged(null, null);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+
         private void addShipmentFilmButton_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                string input;
+                int shipmentAmount;
+                string itemType = "Film";
+                int id = int.Parse(selectedItem.Cells["ID"].Value.ToString());
+                input = Microsoft.VisualBasic.Interaction.InputBox("Hur stor är leveransen?:", "Integer Input", "0");
 
+                shipmentAmount = int.Parse(input);
+
+                if (shipmentAmount < 1)
+                {
+                    throw new Exception("Leverans måste vara större än 0");
+                }
+
+                controller.AddShipment(id, shipmentAmount, itemType);
+
+                //update display
+                gridViewLagerFilm_SelectionChanged(null, null);
             }
             catch (Exception error)
             {

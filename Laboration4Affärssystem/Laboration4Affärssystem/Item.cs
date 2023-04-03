@@ -26,6 +26,11 @@ namespace Laboration4Affärssystem
         {
             Amount -= amountSold;
         }
+
+        public void Shipment(int shippmentAmount)
+        {
+            Amount += shippmentAmount;
+        }
         
     }
 

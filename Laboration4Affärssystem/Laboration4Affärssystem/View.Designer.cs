@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.checkoutTab = new System.Windows.Forms.TabPage();
+            this.payButton = new System.Windows.Forms.Button();
             this.totalPriceTextBox = new System.Windows.Forms.TextBox();
             this.totalPriceLabel = new System.Windows.Forms.Label();
             this.labelKundKorg = new System.Windows.Forms.Label();
@@ -111,7 +112,6 @@
             this.addFilmButton = new System.Windows.Forms.Button();
             this.gridViewLagerFilm = new System.Windows.Forms.DataGridView();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.payButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -163,9 +163,20 @@
             this.checkoutTab.TabIndex = 0;
             this.checkoutTab.Text = "Kassa";
             // 
+            // payButton
+            // 
+            this.payButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.payButton.Location = new System.Drawing.Point(585, 355);
+            this.payButton.Name = "payButton";
+            this.payButton.Size = new System.Drawing.Size(165, 34);
+            this.payButton.TabIndex = 7;
+            this.payButton.Text = "slutför betalning";
+            this.payButton.UseVisualStyleBackColor = true;
+            this.payButton.Click += new System.EventHandler(this.payButton_Click);
+            // 
             // totalPriceTextBox
             // 
-            this.totalPriceTextBox.Location = new System.Drawing.Point(479, 365);
+            this.totalPriceTextBox.Location = new System.Drawing.Point(479, 359);
             this.totalPriceTextBox.Name = "totalPriceTextBox";
             this.totalPriceTextBox.Size = new System.Drawing.Size(100, 27);
             this.totalPriceTextBox.TabIndex = 6;
@@ -174,7 +185,7 @@
             // totalPriceLabel
             // 
             this.totalPriceLabel.AutoSize = true;
-            this.totalPriceLabel.Location = new System.Drawing.Point(375, 365);
+            this.totalPriceLabel.Location = new System.Drawing.Point(375, 362);
             this.totalPriceLabel.Name = "totalPriceLabel";
             this.totalPriceLabel.Size = new System.Drawing.Size(98, 21);
             this.totalPriceLabel.TabIndex = 5;
@@ -583,6 +594,7 @@
             this.addShipmentBookButton.TabIndex = 4;
             this.addShipmentBookButton.Text = "spara leverans";
             this.addShipmentBookButton.UseVisualStyleBackColor = true;
+            this.addShipmentBookButton.Click += new System.EventHandler(this.addShipmentBookButton_Click);
             // 
             // removeBookButton
             // 
@@ -747,6 +759,7 @@
             this.addShipmentGameButton.TabIndex = 5;
             this.addShipmentGameButton.Text = "spara leverans";
             this.addShipmentGameButton.UseVisualStyleBackColor = true;
+            this.addShipmentGameButton.Click += new System.EventHandler(this.addShipmentGameButton_Click);
             // 
             // removeGameButton
             // 
@@ -963,17 +976,6 @@
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
-            // payButton
-            // 
-            this.payButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.payButton.Location = new System.Drawing.Point(414, 283);
-            this.payButton.Name = "payButton";
-            this.payButton.Size = new System.Drawing.Size(165, 34);
-            this.payButton.TabIndex = 7;
-            this.payButton.Text = "slutför betalning";
-            this.payButton.UseVisualStyleBackColor = true;
-            this.payButton.Click += new System.EventHandler(this.payButton_Click);
             // 
             // View
             // 
