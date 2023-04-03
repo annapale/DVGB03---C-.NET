@@ -294,8 +294,14 @@ namespace Laboration4Affärssystem
             {
                 int listItemID = int.Parse(listItem.SubItems[0].Text);
                 int listItemAmount = int.Parse(listItem.SubItems[3].Text);
-                
+
                 controller.sellItem(listItemID, listItemAmount);
+
+                gridViewKassaBok.Refresh();
+                gridViewKassaSpel.Refresh();
+                gridViewKassaFilm.Refresh();
+
+                kundKorg.Items.Clear();
             }
         }
 

@@ -21,6 +21,12 @@ namespace Laboration4Affärssystem
             Price = price;
             Amount = amount;
         }
+
+        public void Sell(int amountSold)
+        {
+            Amount -= amountSold;
+        }
+        
     }
 
 

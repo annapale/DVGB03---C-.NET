@@ -387,8 +387,62 @@ namespace Laboration4Affärssystem
             }
         }
 
-        public void sellItem(int id, int amount)
+        public void sellItem(int id, int amountSold)
         {
+            Item item = null;
+
+            //search for the item in the book list
+            item = bookList.SingleOrDefault(p => p.ID == id);
+
+            if (item != null)
+            {
+                if (item.Amount < amountSold)
+                {
+                    throw new Exception("Not enough products in stock");
+                }
+                else
+                {
+                    item.Amount = amountSold;
+                    return;
+                }
+            }
+
+            //if not found, search for the item in the videogame list
+            item = gameList.SingleOrDefault(p => p.ID == id);
+
+            if (item != null)
+            {
+                if (item.Amount < amountSold)
+                {
+                    throw new Exception("Not enough products in stock");
+                }
+                else
+                {
+                    item.Sell(amountSold);
+                    return;
+                }
+                
+            }
+
+            //if not found, search for the item in the film list
+            item = filmList.SingleOrDefault(p => p.ID == id);
+
+            if (item != null)
+            {
+                if (item.Amount < amountSold)
+                {
+                    throw new Exception("Not enough products in stock");
+                }
+                else
+                {
+                    item.Sell(amountSold);
+                    return;
+                }
+                
+            }
+
+            //if not found in any of the lists, throw an exception
+            throw new Exception("Item not found");
 
         }
     }

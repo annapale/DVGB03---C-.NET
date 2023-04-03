@@ -1,5 +1,4 @@
 Id, Name, Price, Amount, Author, Genre, Format, Language
-2, How to Read a Book,149,5, Mortimer J. Adler, Kursliteratur, Pocket, 
-3, Moby Dick,49,5, Herman Melville, Äventyr, Pocket, 
-4, Great Gatsby,79,5, F. Scott Fitzgerald, Noir, E-Bok, 
-5, House of Leaves,49,5, Mark Z. Danielewski, Skräck, , 
+3, Moby Dick,49,0, Herman Melville, Äventyr, Pocket, 
+4, Great Gatsby,79,1, F. Scott Fitzgerald, Noir, E-Bok, 
+5, House of Leaves,49,2, Mark Z. Danielewski, Skräck, , 
