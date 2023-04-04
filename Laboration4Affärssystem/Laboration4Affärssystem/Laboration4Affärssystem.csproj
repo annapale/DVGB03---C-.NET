@@ -48,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
+    <Compile Include="RecieptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecieptForm.Designer.cs">
+      <DependentUpon>RecieptForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Item.cs" />
     <Compile Include="View.cs">
       <SubType>Form</SubType>
@@ -57,6 +63,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="RecieptForm.resx">
+      <DependentUpon>RecieptForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View.resx">
       <DependentUpon>View.cs</DependentUpon>
     </EmbeddedResource>

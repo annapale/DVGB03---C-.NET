@@ -34,7 +34,7 @@ namespace Laboration4Affärssystem
             gameList.Add(new Videogame(id, name, price, amount, plattform));
         }
 
-        public void addFilm(int id, string name, int price, int amount, string format, string time)
+        public void addFilm(int id, string name, int price, int amount, string format, int time)
         {
             filmList.Add(new Film(id, name, price, amount, format, time));
         }
@@ -55,6 +55,9 @@ namespace Laboration4Affärssystem
                         string line;
                         while ((line = reader.ReadLine()) != null)
                         {
+                            //tar bort extra mellanrum
+                            line = String.Join(" ", line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+
                             string[] data = line.Split(',');
 
                             int id = int.Parse(data[0]);
@@ -102,6 +105,7 @@ namespace Laboration4Affärssystem
                         string line;
                         while ((line = reader.ReadLine()) != null)
                         {
+                            line = String.Join(" ", line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
                             string[] data = line.Split(',');
 
                             int id = int.Parse(data[0]);
@@ -145,6 +149,7 @@ namespace Laboration4Affärssystem
                         string line;
                         while ((line = reader.ReadLine()) != null)
                         {
+                            line = String.Join(" ", line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
                             string[] data = line.Split(',');
 
                             int id = int.Parse(data[0]);
@@ -152,7 +157,7 @@ namespace Laboration4Affärssystem
                             int price = int.Parse(data[2]);
                             int amount = int.Parse(data[3]);
                             string format = data[4];
-                            string time = data[5];
+                            int time = int.Parse(data[5]);
                             
 
                             filmList.Add(new Film(id, name, price, amount, format, time));
@@ -228,7 +233,7 @@ namespace Laboration4Affärssystem
                         writer.WriteLine("ID, Name, Price, Amount, Plattform");
                         foreach (Videogame game in gameList)
                         {
-                            writer.WriteLine($"{game.ID}, {game.Name}, {game.Price}, {game.Amount}, {game.Plattform}");
+                            writer.WriteLine($"{game.ID},{game.Name},{game.Price},{game.Amount},{game.Plattform}");
                         }
                     }
                 }
@@ -240,7 +245,7 @@ namespace Laboration4Affärssystem
                         writer.WriteLine("ID, Name, Price, Amount, Plattform");
                         foreach (Videogame game in gameList)
                         {
-                            writer.WriteLine($"{game.ID}, {game.Name}, {game.Price}, {game.Amount}, {game.Plattform}");
+                            writer.WriteLine($"{game.ID},{game.Name},{game.Price},{game.Amount},{game.Plattform}");
                         }
                     }
                 }
@@ -266,7 +271,7 @@ namespace Laboration4Affärssystem
                         writer.WriteLine("ID, Name, Price, Amount, Format, Time");
                         foreach (Film film in filmList)
                         {
-                            writer.WriteLine($"{film.ID}, {film.Name}, {film.Price}, {film.Amount}, {film.Format}, {film.Time}");
+                            writer.WriteLine($"{film.ID},{film.Name},{film.Price},{film.Amount},{film.Format},{film.Time}");
                         }
                     }
                 }
@@ -278,7 +283,7 @@ namespace Laboration4Affärssystem
                         writer.WriteLine("ID, Name, Price, Amount, Format, Time");
                         foreach (Film film in filmList)
                         {
-                            writer.WriteLine($"{film.ID}, {film.Name}, {film.Price}, {film.Amount}, {film.Format}, {film.Time}");
+                            writer.WriteLine($"{film.ID},{film.Name},{film.Price},{film.Amount},{film.Format},{film.Time}");
                         }
                     }
                 }
@@ -402,7 +407,8 @@ namespace Laboration4Affärssystem
                 }
                 else
                 {
-                    item.Amount = amountSold;
+                    item.Sell(amountSold);
+                    
                     return;
                 }
             }
@@ -419,6 +425,7 @@ namespace Laboration4Affärssystem
                 else
                 {
                     item.Sell(amountSold);
+                    
                     return;
                 }
                 
@@ -443,6 +450,12 @@ namespace Laboration4Affärssystem
 
             //if not found in any of the lists, throw an exception
             throw new Exception("Item not found");
+        }
+
+        public void createReceipt(ListView shoppingBasket)
+        {
+            RecieptForm receipt = new RecieptForm(shoppingBasket);
+            receipt.ShowDialog();
         }
 
         public void AddShipment(int id, int shipmentAmount, string itemType)
@@ -474,5 +487,7 @@ namespace Laboration4Affärssystem
                     break;
             }
         }
+
+
     }
 }

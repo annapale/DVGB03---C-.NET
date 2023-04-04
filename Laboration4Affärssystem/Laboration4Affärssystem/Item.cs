@@ -24,7 +24,7 @@ namespace Laboration4Affärssystem
 
         public void Sell(int amountSold)
         {
-            Amount -= amountSold;
+            Amount = Amount - amountSold;
         }
 
         public void Shipment(int shippmentAmount)
@@ -67,10 +67,10 @@ namespace Laboration4Affärssystem
     public class Film : Item
     {
         public string Format { set; get; }
-        public string Time { set; get; }
+        public int Time { set; get; }
 
         //Constructor Film
-        public Film (int id, string name, int price, int amount, string format, string time) : base(id, name, price, amount)
+        public Film (int id, string name, int price, int amount, string format, int time) : base(id, name, price, amount)
         {
             Format = format;
             Time = time;

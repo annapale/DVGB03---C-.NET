@@ -35,7 +35,7 @@
             this.totalPriceLabel = new System.Windows.Forms.Label();
             this.labelKundKorg = new System.Windows.Forms.Label();
             this.addToShoppingCartButton = new System.Windows.Forms.Button();
-            this.kundKorg = new System.Windows.Forms.ListView();
+            this.shoppingBasketList = new System.Windows.Forms.ListView();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Namn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Pris = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -112,6 +112,7 @@
             this.addFilmButton = new System.Windows.Forms.Button();
             this.gridViewLagerFilm = new System.Windows.Forms.DataGridView();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -154,7 +155,7 @@
             this.checkoutTab.Controls.Add(this.totalPriceLabel);
             this.checkoutTab.Controls.Add(this.labelKundKorg);
             this.checkoutTab.Controls.Add(this.addToShoppingCartButton);
-            this.checkoutTab.Controls.Add(this.kundKorg);
+            this.checkoutTab.Controls.Add(this.shoppingBasketList);
             this.checkoutTab.Controls.Add(this.tabControl3);
             this.checkoutTab.Location = new System.Drawing.Point(4, 30);
             this.checkoutTab.Name = "checkoutTab";
@@ -194,7 +195,8 @@
             // labelKundKorg
             // 
             this.labelKundKorg.AutoSize = true;
-            this.labelKundKorg.Location = new System.Drawing.Point(12, 247);
+            this.labelKundKorg.BackColor = System.Drawing.SystemColors.Window;
+            this.labelKundKorg.Location = new System.Drawing.Point(6, 247);
             this.labelKundKorg.Name = "labelKundKorg";
             this.labelKundKorg.Size = new System.Drawing.Size(85, 21);
             this.labelKundKorg.TabIndex = 4;
@@ -211,20 +213,20 @@
             this.addToShoppingCartButton.UseVisualStyleBackColor = true;
             this.addToShoppingCartButton.Click += new System.EventHandler(this.addToShoppingCartButton_Click);
             // 
-            // kundKorg
+            // shoppingBasketList
             // 
-            this.kundKorg.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.shoppingBasketList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ID,
             this.Namn,
             this.Pris,
             this.Antal});
-            this.kundKorg.HideSelection = false;
-            this.kundKorg.Location = new System.Drawing.Point(6, 271);
-            this.kundKorg.Name = "kundKorg";
-            this.kundKorg.Size = new System.Drawing.Size(363, 118);
-            this.kundKorg.TabIndex = 3;
-            this.kundKorg.UseCompatibleStateImageBehavior = false;
-            this.kundKorg.View = System.Windows.Forms.View.Details;
+            this.shoppingBasketList.HideSelection = false;
+            this.shoppingBasketList.Location = new System.Drawing.Point(6, 271);
+            this.shoppingBasketList.Name = "shoppingBasketList";
+            this.shoppingBasketList.Size = new System.Drawing.Size(363, 118);
+            this.shoppingBasketList.TabIndex = 3;
+            this.shoppingBasketList.UseCompatibleStateImageBehavior = false;
+            this.shoppingBasketList.View = System.Windows.Forms.View.Details;
             // 
             // ID
             // 
@@ -808,6 +810,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel3.Controls.Add(this.label19);
             this.panel3.Controls.Add(this.AmountFilmText);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.label18);
@@ -874,7 +877,7 @@
             this.TimeFilmText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TimeFilmText.Location = new System.Drawing.Point(112, 184);
             this.TimeFilmText.Name = "TimeFilmText";
-            this.TimeFilmText.Size = new System.Drawing.Size(339, 23);
+            this.TimeFilmText.Size = new System.Drawing.Size(65, 23);
             this.TimeFilmText.TabIndex = 9;
             // 
             // FormatFilmText
@@ -977,6 +980,15 @@
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(183, 186);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(32, 17);
+            this.label19.TabIndex = 20;
+            this.label19.Text = "min";
+            // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1053,7 +1065,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.DataGridView gridViewKassaFilm;
-        private System.Windows.Forms.ListView kundKorg;
+        private System.Windows.Forms.ListView shoppingBasketList;
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader Namn;
         private System.Windows.Forms.ColumnHeader Pris;
@@ -1103,6 +1115,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox IDFilmText;
         private System.Windows.Forms.Button payButton;
+        private System.Windows.Forms.Label label19;
     }
 }
 

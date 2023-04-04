@@ -68,6 +68,9 @@ namespace Laboration4Affärssystem
 
                     //Add data source
                     table.DataSource = controller.bookSource;
+
+                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
                     break;
 
                 case 2:
@@ -88,6 +91,8 @@ namespace Laboration4Affärssystem
 
                     //Add data source
                     table.DataSource = controller.gameSource;
+
+                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                     break;
 
                 case 3:
@@ -110,6 +115,8 @@ namespace Laboration4Affärssystem
 
                     //Add data source
                     table.DataSource = controller.filmSource;
+
+                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
                     break;
             }
@@ -135,6 +142,8 @@ namespace Laboration4Affärssystem
 
                     //Add data source
                     table.DataSource = controller.bookSource;
+
+                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                     break;
 
                 case 2:
@@ -149,6 +158,8 @@ namespace Laboration4Affärssystem
 
                     //Add data source
                     table.DataSource = controller.gameSource;
+
+                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                     break;
 
                 case 3:
@@ -164,6 +175,7 @@ namespace Laboration4Affärssystem
                     //Add data source
                     table.DataSource = controller.filmSource;
 
+                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                     break;
             }
         }
@@ -228,6 +240,7 @@ namespace Laboration4Affärssystem
                 selectedRow.Selected = false;
             }
         }
+
         private void addToShoppingCartButton_Click(object sender, EventArgs e)
         {
             try
@@ -244,7 +257,7 @@ namespace Laboration4Affärssystem
                     string amount = amountInt.ToString();
 
                     //check if selected item is already in list, if it is update amount and price, if not add to list
-                    foreach (ListViewItem listItem in kundKorg.Items)
+                    foreach (ListViewItem listItem in shoppingBasketList.Items)
                     {
                         itemInList = false;
                         string itemId = listItem.SubItems[0].Text;
@@ -268,7 +281,7 @@ namespace Laboration4Affärssystem
                     if (itemInList)
                     {
                         ListViewItem item = new ListViewItem(new[] { id, name, price, amount });
-                        kundKorg.Items.Add(item);
+                        shoppingBasketList.Items.Add(item);
                     }
 
                     //update totalPrice
@@ -290,7 +303,7 @@ namespace Laboration4Affärssystem
 
         private void payButton_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem listItem in kundKorg.Items)
+            foreach (ListViewItem listItem in shoppingBasketList.Items)
             {
                 int listItemID = int.Parse(listItem.SubItems[0].Text);
                 int listItemAmount = int.Parse(listItem.SubItems[3].Text);
@@ -301,7 +314,8 @@ namespace Laboration4Affärssystem
                 gridViewKassaSpel.Refresh();
                 gridViewKassaFilm.Refresh();
 
-                kundKorg.Items.Clear();
+                controller.createReceipt(shoppingBasketList);
+                shoppingBasketList.Items.Clear();
             }
         }
 
@@ -368,7 +382,7 @@ namespace Laboration4Affärssystem
                 NameFilmText.Text = film.Name;
                 PriceFilmText.Text = film.Price.ToString();
                 FormatFilmText.Text = film.Format;
-                TimeFilmText.Text = film.Time;
+                TimeFilmText.Text = film.Time.ToString();
             }
         }
 
@@ -450,7 +464,6 @@ namespace Laboration4Affärssystem
             }
             
         }
-
         
         private void addFilmButton_Click(object sender, EventArgs e)
         {
@@ -479,8 +492,13 @@ namespace Laboration4Affärssystem
                 string name = NameFilmText.Text;
                 int price = int.Parse(PriceFilmText.Text);
                 int amount = int.Parse(AmountFilmText.Text);
+
+                if (amount >= 0)
+                {
+                    throw new Exception("Speltid kan inte vara negativ");
+                }
                 string format = FormatFilmText.Text;
-                string time = TimeFilmText.Text;
+                int time = int.Parse(TimeFilmText.Text);
 
                 controller.addFilm(id, name, price, amount, format, time);
             }
@@ -584,7 +602,5 @@ namespace Laboration4Affärssystem
             controller.updateGameFile();
             controller.updateFilmFile();
         }
-
-        
     }
 }

@@ -20,3 +20,4 @@ C:\Users\anna-\Source\Repos\annapale\DVGB07---C-.NET\Laboration4Affärssystem\La
 C:\Users\anna-\Source\Repos\annapale\DVGB07---C-.NET\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.csproj.CoreCompileInputs.cache
 C:\Users\anna-\Source\Repos\annapale\DVGB07---C-.NET\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.exe
 C:\Users\anna-\Source\Repos\annapale\DVGB07---C-.NET\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.pdb
+C:\Users\anna-\Source\Repos\annapale\DVGB07---C-.NET\Laboration4Affärssystem\Laboration4Affärssystem\obj\Debug\Laboration4Affärssystem.RecieptForm.resources
