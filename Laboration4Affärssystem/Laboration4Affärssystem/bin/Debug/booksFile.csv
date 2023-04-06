@@ -1,4 +1,4 @@
 Id, Name, Price, Amount, Author, Genre, Format, Language
-3, Moby Dick,49,0, Herman Melville, Äventyr, Pocket,
-4, Great Gatsby,79,0, F. Scott Fitzgerald, Noir, E-Bok,
-5, House of Leaves,49,1, Mark Z. Danielewski, Skräck, ,
+3, Moby Dick,49,5, Herman Melville, Äventyr, Pocket,
+4, Great Gatsby,79,4, F. Scott Fitzgerald, Noir, E-Bok,
+5, House of Leaves,49,3, Mark Z. Danielewski, Skräck, ,

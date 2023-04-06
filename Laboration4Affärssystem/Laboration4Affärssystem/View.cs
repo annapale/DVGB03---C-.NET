@@ -7,6 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -526,7 +527,6 @@ namespace Laboration4Affärssystem
             {
                 string input;
                 int shipmentAmount;
-                string itemType = "Book";
                 int id = int.Parse(selectedItem.Cells["ID"].Value.ToString());
                 input = Microsoft.VisualBasic.Interaction.InputBox("Hur stor är leveransen?:", "Integer Input", "0");
 
@@ -538,7 +538,7 @@ namespace Laboration4Affärssystem
                     throw new Exception("Leverans måste vara större än 0");
                 }
 
-                controller.AddShipment(id, shipmentAmount, itemType);
+                controller.AddItems(id, shipmentAmount);
 
                 //update display
                 gridViewLagerBok_SelectionChanged(null, null);
@@ -557,7 +557,6 @@ namespace Laboration4Affärssystem
             {
                 string input;
                 int shipmentAmount;
-                string itemType = "Game";
                 int id = int.Parse(selectedItem.Cells["ID"].Value.ToString());
                 input = Microsoft.VisualBasic.Interaction.InputBox("Hur stor är leveransen?:", "Integer Input", "0");
 
@@ -567,7 +566,7 @@ namespace Laboration4Affärssystem
                     throw new Exception("Leverans måste vara större än 0");
                 }
 
-                controller.AddShipment(id, shipmentAmount, itemType);
+                controller.AddItems(id, shipmentAmount);
 
                 //update display
                 gridViewLagerSpel_SelectionChanged(null, null);
@@ -584,7 +583,6 @@ namespace Laboration4Affärssystem
             {
                 string input;
                 int shipmentAmount;
-                string itemType = "Film";
                 int id = int.Parse(selectedItem.Cells["ID"].Value.ToString());
                 input = Microsoft.VisualBasic.Interaction.InputBox("Hur stor är leveransen?:", "Integer Input", "0");
 
@@ -595,7 +593,7 @@ namespace Laboration4Affärssystem
                     throw new Exception("Leverans måste vara större än 0");
                 }
 
-                controller.AddShipment(id, shipmentAmount, itemType);
+                controller.AddItems(id, shipmentAmount);
 
                 //update display
                 gridViewLagerFilm_SelectionChanged(null, null);
@@ -611,6 +609,41 @@ namespace Laboration4Affärssystem
             controller.updateBookFile();
             controller.updateGameFile();
             controller.updateFilmFile();
+        }
+
+        private void returnButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string input;
+                int amount;
+                int id = int.Parse(selectedItem.Cells["ID"].Value.ToString());
+
+                input = Microsoft.VisualBasic.Interaction.InputBox("Hur många produkter ska återlämnas?:", "Integer Input", "0");
+
+                amount = int.Parse(input);
+
+                if (amount < 1)
+                {
+                    throw new Exception("Antal produkter måsta vara större än 0");
+                }
+
+                controller.AddItems(id, amount);
+                
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            string query = searchInput.Text.Trim();
+
+            BindingSource source = controller.Search(query);
+
+            gridViewResult.DataSource = source;
         }
     }
 }

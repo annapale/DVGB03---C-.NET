@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using Microsoft.VisualBasic;
 
 namespace Laboration4Affärssystem
 {
@@ -41,17 +42,17 @@ namespace Laboration4Affärssystem
 
         public void importBooks()
         {
-           try
-           {
+            try
+            {
                 string fileName = "booksFile.csv";
 
                 string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
 
-                if(File.Exists(filePath))
+                if (File.Exists(filePath))
                 {
                     using (StreamReader reader = new StreamReader(filePath))
                     {
-                    reader.ReadLine();
+                        reader.ReadLine();
                         string line;
                         while ((line = reader.ReadLine()) != null)
                         {
@@ -80,9 +81,9 @@ namespace Laboration4Affärssystem
                 {
                     throw new Exception("File not found");
                 }
-           }
+            }
 
-           catch(Exception error) 
+            catch (Exception error)
             {
                 MessageBox.Show(error.Message);
             }
@@ -158,7 +159,7 @@ namespace Laboration4Affärssystem
                             int amount = int.Parse(data[3]);
                             string format = data[4];
                             int time = int.Parse(data[5]);
-                            
+
 
                             filmList.Add(new Film(id, name, price, amount, format, time));
 
@@ -212,7 +213,7 @@ namespace Laboration4Affärssystem
                     }
                 }
             }
-            catch(Exception error )
+            catch (Exception error)
             {
                 MessageBox.Show(error.Message);
             }
@@ -297,7 +298,7 @@ namespace Laboration4Affärssystem
         public void removeBook(int id)
         {
             Book book = bookList.SingleOrDefault(p => p.ID == id);
-            if(book.Amount > 0)
+            if (book.Amount > 0)
             {
                 DialogResult result = MessageBox.Show("Vill du verkligen ta bort varan?", "", MessageBoxButtons.YesNo);
 
@@ -310,7 +311,7 @@ namespace Laboration4Affärssystem
                     return;
                 }
             }
-            
+
         }
 
         public void removeGame(int id)
@@ -332,7 +333,7 @@ namespace Laboration4Affärssystem
             }
         }
 
-        public void removeFilm (int id)
+        public void removeFilm(int id)
         {
             Film film = filmList.SingleOrDefault(p => p.ID == id);
 
@@ -351,7 +352,7 @@ namespace Laboration4Affärssystem
             }
         }
 
-        public Book findBook (int id)
+        public Book findBook(int id)
         {
             Book book = bookList.SingleOrDefault(p => p.ID == id);
 
@@ -365,14 +366,45 @@ namespace Laboration4Affärssystem
             return game;
         }
 
-        public Film findFilm (int id)
+        public Film findFilm(int id)
         {
-            Film film = filmList.SingleOrDefault (p => p.ID == id);
+            Film film = filmList.SingleOrDefault(p => p.ID == id);
 
             return film;
         }
 
-        public bool checkID (int id)
+        public Item findItem(int id)
+        {
+            Item item = null;
+
+            //search for the item in the book list
+            item = bookList.SingleOrDefault(p => p.ID == id);
+
+            if (item != null)
+            {
+                return item;
+            }
+
+            //if not found, search for the item in the videogame list
+            item = gameList.SingleOrDefault(p => p.ID == id);
+
+            if (item != null)
+            {
+                return item;
+            }
+
+            //if not found, search for the item in the film list
+            item = filmList.SingleOrDefault(p => p.ID == id);
+
+            if (item != null)
+            {
+                return item;
+            }
+
+            //if not found in any of the lists, throw an exception
+            throw new Exception("Item not found");
+        }
+        public bool checkID(int id)
         {
             if (bookList.Any(book => book.ID == id))
             {
@@ -394,10 +426,7 @@ namespace Laboration4Affärssystem
 
         public void sellItem(int id, int amountSold)
         {
-            Item item = null;
-
-            //search for the item in the book list
-            item = bookList.SingleOrDefault(p => p.ID == id);
+            Item item = findItem(id);
 
             if (item != null)
             {
@@ -408,48 +437,8 @@ namespace Laboration4Affärssystem
                 else
                 {
                     item.Sell(amountSold);
-                    
-                    return;
                 }
             }
-
-            //if not found, search for the item in the videogame list
-            item = gameList.SingleOrDefault(p => p.ID == id);
-
-            if (item != null)
-            {
-                if (item.Amount < amountSold)
-                {
-                    throw new Exception("Not enough products in stock");
-                }
-                else
-                {
-                    item.Sell(amountSold);
-                    
-                    return;
-                }
-                
-            }
-
-            //if not found, search for the item in the film list
-            item = filmList.SingleOrDefault(p => p.ID == id);
-
-            if (item != null)
-            {
-                if (item.Amount < amountSold)
-                {
-                    throw new Exception("Not enough products in stock");
-                }
-                else
-                {
-                    item.Sell(amountSold);
-                    return;
-                }
-                
-            }
-
-            //if not found in any of the lists, throw an exception
-            throw new Exception("Item not found");
         }
 
         public void createReceipt(ListView shoppingBasket, int total)
@@ -458,36 +447,24 @@ namespace Laboration4Affärssystem
             receipt.ShowDialog();
         }
 
-        public void AddShipment(int id, int shipmentAmount, string itemType)
+        public void AddItems(int id, int shipmentAmount)
         {
-            Item item = null;
+            Item item = findItem(id);
 
-            switch(itemType)
-            {
-                case "Book":
-                    item = bookList.SingleOrDefault(p => p.ID == id);
-                    if (item != null)
-                    {
-                        item.Shipment(shipmentAmount);
-                    }
-                    break;
-                case "Game":
-                    item = gameList.SingleOrDefault(p => p.ID == id);
-                    if (item != null)
-                    {
-                        item.Shipment(shipmentAmount);
-                    }
-                    break;
-                case "Film":
-                    item = filmList.SingleOrDefault(p => p.ID == id);
-                    if (item != null)
-                    {
-                        item.Shipment(shipmentAmount);
-                    }
-                    break;
-            }
+            item.Shipment(shipmentAmount);
         }
 
+        public BindingSource Search(string query)
+        {
+            var resultsData = bookList.Where(item => item.Name.Contains(query));
 
+            BindingList<Book> resultList = new BindingList<Book>(resultsData.ToList());
+            BindingSource resultsSource = new BindingSource();
+            resultsSource.DataSource = resultList;
+
+            return resultsSource;
+
+
+        }
     }
 }

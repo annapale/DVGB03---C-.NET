@@ -114,6 +114,10 @@
             this.gridViewLagerFilm = new System.Windows.Forms.DataGridView();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.returnButton = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.searchInput = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.gridViewResult = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -135,6 +139,7 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerFilm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewResult)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -151,6 +156,10 @@
             // checkoutTab
             // 
             this.checkoutTab.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.checkoutTab.Controls.Add(this.gridViewResult);
+            this.checkoutTab.Controls.Add(this.label20);
+            this.checkoutTab.Controls.Add(this.searchInput);
+            this.checkoutTab.Controls.Add(this.searchButton);
             this.checkoutTab.Controls.Add(this.returnButton);
             this.checkoutTab.Controls.Add(this.payButton);
             this.checkoutTab.Controls.Add(this.totalPriceTextBox);
@@ -1001,6 +1010,43 @@
             this.returnButton.TabIndex = 8;
             this.returnButton.Text = "återlämna";
             this.returnButton.UseVisualStyleBackColor = true;
+            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
+            // 
+            // searchButton
+            // 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.searchButton.Location = new System.Drawing.Point(790, 200);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(74, 34);
+            this.searchButton.TabIndex = 9;
+            this.searchButton.Text = "Sök";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // searchInput
+            // 
+            this.searchInput.Location = new System.Drawing.Point(567, 203);
+            this.searchInput.Name = "searchInput";
+            this.searchInput.Size = new System.Drawing.Size(217, 27);
+            this.searchInput.TabIndex = 10;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.White;
+            this.label20.Location = new System.Drawing.Point(434, 206);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(127, 21);
+            this.label20.TabIndex = 11;
+            this.label20.Text = "sök efter Namn";
+            // 
+            // gridViewResult
+            // 
+            this.gridViewResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewResult.Location = new System.Drawing.Point(590, 236);
+            this.gridViewResult.Name = "gridViewResult";
+            this.gridViewResult.Size = new System.Drawing.Size(274, 101);
+            this.gridViewResult.TabIndex = 12;
             // 
             // View
             // 
@@ -1038,6 +1084,7 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerFilm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewResult)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1130,6 +1177,10 @@
         private System.Windows.Forms.Button payButton;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button returnButton;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox searchInput;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.DataGridView gridViewResult;
     }
 }
 
