@@ -452,9 +452,9 @@ namespace Laboration4Affärssystem
             throw new Exception("Item not found");
         }
 
-        public void createReceipt(ListView shoppingBasket)
+        public void createReceipt(ListView shoppingBasket, int total)
         {
-            RecieptForm receipt = new RecieptForm(shoppingBasket);
+            RecieptForm receipt = new RecieptForm(shoppingBasket, total);
             receipt.ShowDialog();
         }
 

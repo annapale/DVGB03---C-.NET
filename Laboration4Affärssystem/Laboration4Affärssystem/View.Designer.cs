@@ -95,6 +95,7 @@
             this.gridViewLagerSpel = new System.Windows.Forms.DataGridView();
             this.filmsTab = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
             this.AmountFilmText = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -112,7 +113,7 @@
             this.addFilmButton = new System.Windows.Forms.Button();
             this.gridViewLagerFilm = new System.Windows.Forms.DataGridView();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.label19 = new System.Windows.Forms.Label();
+            this.returnButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -149,7 +150,8 @@
             // 
             // checkoutTab
             // 
-            this.checkoutTab.BackColor = System.Drawing.Color.DimGray;
+            this.checkoutTab.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.checkoutTab.Controls.Add(this.returnButton);
             this.checkoutTab.Controls.Add(this.payButton);
             this.checkoutTab.Controls.Add(this.totalPriceTextBox);
             this.checkoutTab.Controls.Add(this.totalPriceLabel);
@@ -274,6 +276,7 @@
             // 
             this.gridViewKassaBok.AllowUserToAddRows = false;
             this.gridViewKassaBok.AllowUserToDeleteRows = false;
+            this.gridViewKassaBok.BackgroundColor = System.Drawing.Color.LightCyan;
             this.gridViewKassaBok.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewKassaBok.Location = new System.Drawing.Point(6, 6);
             this.gridViewKassaBok.Name = "gridViewKassaBok";
@@ -828,6 +831,15 @@
             this.panel3.Size = new System.Drawing.Size(541, 286);
             this.panel3.TabIndex = 8;
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(183, 186);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(32, 17);
+            this.label19.TabIndex = 20;
+            this.label19.Text = "min";
+            // 
             // AmountFilmText
             // 
             this.AmountFilmText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -980,21 +992,22 @@
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
-            // label19
+            // returnButton
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(183, 186);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(32, 17);
-            this.label19.TabIndex = 20;
-            this.label19.Text = "min";
+            this.returnButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.returnButton.Location = new System.Drawing.Point(181, 196);
+            this.returnButton.Name = "returnButton";
+            this.returnButton.Size = new System.Drawing.Size(165, 34);
+            this.returnButton.TabIndex = 8;
+            this.returnButton.Text = "återlämna";
+            this.returnButton.UseVisualStyleBackColor = true;
             // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.AliceBlue;
+            this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(952, 451);
             this.Controls.Add(this.tabControl1);
             this.Name = "View";
@@ -1116,6 +1129,7 @@
         private System.Windows.Forms.TextBox IDFilmText;
         private System.Windows.Forms.Button payButton;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button returnButton;
     }
 }
 

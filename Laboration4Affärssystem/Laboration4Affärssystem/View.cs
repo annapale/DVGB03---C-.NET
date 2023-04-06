@@ -303,20 +303,30 @@ namespace Laboration4Affärssystem
 
         private void payButton_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem listItem in shoppingBasketList.Items)
+            try
             {
-                int listItemID = int.Parse(listItem.SubItems[0].Text);
-                int listItemAmount = int.Parse(listItem.SubItems[3].Text);
+                foreach (ListViewItem listItem in shoppingBasketList.Items)
+                {
+                    int listItemID = int.Parse(listItem.SubItems[0].Text);
+                    int listItemAmount = int.Parse(listItem.SubItems[3].Text);
 
-                controller.sellItem(listItemID, listItemAmount);
+                    int total = int.Parse(totalPriceTextBox.Text);
 
-                gridViewKassaBok.Refresh();
-                gridViewKassaSpel.Refresh();
-                gridViewKassaFilm.Refresh();
+                    controller.sellItem(listItemID, listItemAmount);
 
-                controller.createReceipt(shoppingBasketList);
-                shoppingBasketList.Items.Clear();
+                    gridViewKassaBok.Refresh();
+                    gridViewKassaSpel.Refresh();
+                    gridViewKassaFilm.Refresh();
+
+                    controller.createReceipt(shoppingBasketList, total);
+                    shoppingBasketList.Items.Clear();
+                }
             }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
         }
 
         private void removeBookButton_Click(object sender, EventArgs e)

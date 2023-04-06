@@ -48,7 +48,6 @@
             this.DateTimeLabel.Size = new System.Drawing.Size(69, 17);
             this.DateTimeLabel.TabIndex = 0;
             this.DateTimeLabel.Text = "DateTime";
-            this.DateTimeLabel.Click += new System.EventHandler(this.DateTimeLabel_Click);
             // 
             // Title
             // 
@@ -59,7 +58,6 @@
             this.Title.Size = new System.Drawing.Size(67, 25);
             this.Title.TabIndex = 1;
             this.Title.Text = "Kvitto";
-            this.Title.Click += new System.EventHandler(this.Title_Click);
             // 
             // PriceLabel
             // 
@@ -114,6 +112,7 @@
             this.printReceiptButton.TabIndex = 5;
             this.printReceiptButton.Text = "Skriv ut";
             this.printReceiptButton.UseVisualStyleBackColor = true;
+            this.printReceiptButton.Click += new System.EventHandler(this.printReceiptButton_Click);
             // 
             // RecieptForm
             // 
@@ -128,7 +127,6 @@
             this.Controls.Add(this.DateTimeLabel);
             this.Name = "RecieptForm";
             this.Text = "Kvitto";
-            this.Load += new System.EventHandler(this.RecieptForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
