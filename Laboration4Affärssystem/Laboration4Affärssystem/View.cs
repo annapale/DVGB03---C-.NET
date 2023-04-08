@@ -18,7 +18,8 @@ namespace Laboration4Affärssystem
     public partial class View : System.Windows.Forms.Form
     {
         Controller controller = new Controller();
-        DataGridViewRow selectedItem = null;
+        //DataGridViewRow selectedRow = null;
+        Item currentItem = null;
 
         public View()
         {
@@ -185,10 +186,12 @@ namespace Laboration4Affärssystem
         {
             if (gridViewKassaBok.SelectedRows.Count > 0)
             {
-                selectedItem = gridViewKassaBok.SelectedRows[0];
+                //selectedRow = gridViewKassaBok.SelectedRows[0];
+                currentItem = controller.selectBook(gridViewKassaBok.SelectedRows[0]);
                 //deselect any selected items in the other tables to avoid problems
                 deselectGame();
                 deselectFilm();
+                deselectResult();
             }
         }
 
@@ -196,9 +199,11 @@ namespace Laboration4Affärssystem
         {
             if(gridViewKassaSpel.SelectedRows.Count > 0)
             {
-                selectedItem = gridViewKassaSpel.SelectedRows[0];
+                //selectedRow = gridViewKassaSpel.SelectedRows[0];
+                currentItem = controller.selectGame(gridViewKassaBok.SelectedRows[0]);
                 deselectBook();
                 deselectFilm();
+                deselectResult();
             }
         }
 
@@ -206,9 +211,22 @@ namespace Laboration4Affärssystem
         {
             if(gridViewKassaFilm.SelectedRows.Count > 0)
             {
-                selectedItem = gridViewKassaFilm.SelectedRows[0];
+                //selectedRow = gridViewKassaFilm.SelectedRows[0];
+                currentItem = controller.selectFilm(gridViewKassaBok.SelectedRows[0]);
                 deselectBook();
                 deselectGame();
+                deselectResult();
+            }
+        }
+        private void gridViewResult_SelectionChanged(object sender, EventArgs e)
+        {
+            if (gridViewResult.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = gridViewResult.SelectedRows[0];
+                currentItem = controller.findItem(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
+                deselectBook();
+                deselectGame();
+                deselectFilm();
             }
         }
 
@@ -242,36 +260,51 @@ namespace Laboration4Affärssystem
             }
         }
 
+        private void deselectResult()
+        {
+            if(gridViewResult.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = gridViewResult.SelectedRows[0];
+                selectedRow.Selected = false;
+            }
+        }
+
         private void addToShoppingCartButton_Click(object sender, EventArgs e)
         {
             try
             {
-                if (selectedItem != null)
+                if (currentItem != null)
                 {
                     //get data about the selected item
-                    string id = selectedItem.Cells["ID"].Value.ToString();
-                    string name = selectedItem.Cells["Name"].Value.ToString();
+
                     int amountInt = 1;
-                    string price = selectedItem.Cells["Price"].Value.ToString();
+                    
                     bool itemInList = true;
 
                     string amount = amountInt.ToString();
+
+                    string itemType = currentItem.GetType().Name;
+                    string id = currentItem.ID.ToString();
+                    string name = currentItem.Name;
+                    string price = currentItem.Price.ToString();
+
 
                     //check if selected item is already in list, if it is update amount and price, if not add to list
                     foreach (ListViewItem listItem in shoppingBasketList.Items)
                     {
                         itemInList = false;
-                        string itemId = listItem.SubItems[0].Text;
+                        string itemId = listItem.SubItems[1].Text;
 
                         if (itemId.Equals(id))
                         {
-                            string currentAmount = listItem.SubItems[3].Text;
-                            amountInt = int.Parse(currentAmount);
+                            //uppdate amount of items in shoppingcart
+                            amountInt = int.Parse(listItem.SubItems[4].Text);
                             amountInt++;
-                            listItem.SubItems[3].Text = amountInt.ToString();
+                            listItem.SubItems[4].Text = amountInt.ToString();
 
-                            int priceInt = int.Parse(listItem.SubItems[2].Text) + int.Parse(price);
-                            listItem.SubItems[2].Text = priceInt.ToString();
+                            //update price
+                            int priceInt = int.Parse(listItem.SubItems[3].Text) + int.Parse(price);
+                            listItem.SubItems[3].Text = priceInt.ToString();
                         }
                         else
                         {
@@ -281,7 +314,8 @@ namespace Laboration4Affärssystem
 
                     if (itemInList)
                     {
-                        ListViewItem item = new ListViewItem(new[] { id, name, price, amount });
+                        //add new item to shoppingCart
+                        ListViewItem item = new ListViewItem(new[] { itemType , id, name, price, amount });
                         shoppingBasketList.Items.Add(item);
                     }
 
@@ -332,26 +366,28 @@ namespace Laboration4Affärssystem
 
         private void removeBookButton_Click(object sender, EventArgs e)
         {
-            controller.removeBook(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+            controller.removeBook(currentItem.ID);
         }
 
         private void removeGameButton_Click(object sender, EventArgs e)
         {
-            controller.removeGame(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+            controller.removeGame(currentItem.ID);
         }
 
         private void removeFilmButton_Click(object sender, EventArgs e)
         {
-            controller.removeFilm(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+            controller.removeFilm(currentItem.ID);
         }
 
         private void gridViewLagerBok_SelectionChanged(object sender, EventArgs e)
         {
             if (gridViewLagerBok.SelectedRows.Count > 0)
             {
-                selectedItem = gridViewLagerBok.SelectedRows[0];
+                DataGridViewRow selectedRow = gridViewLagerBok.SelectedRows[0];
 
-                Book book = controller.findBook(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+                Book book = controller.findBook(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
+
+                currentItem = book;
 
                 IDBookText.Text = book.ID.ToString();
                 AmountBookText.Text = book.Amount.ToString();
@@ -368,9 +404,11 @@ namespace Laboration4Affärssystem
         {
             if(gridViewLagerSpel.SelectedRows.Count > 0)
             {
-                selectedItem = gridViewLagerSpel.SelectedRows[0];
+                DataGridViewRow selectedRow = gridViewLagerSpel.SelectedRows[0];
 
-                Videogame game = controller.findGame(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+                Videogame game = controller.findGame(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
+
+                currentItem = game;
 
                 IDGameText.Text = game.ID.ToString();
                 AmountGameText.Text = game.Amount.ToString();
@@ -384,9 +422,11 @@ namespace Laboration4Affärssystem
         {
             if(gridViewLagerFilm.SelectedRows.Count > 0)
             {
-                selectedItem = gridViewLagerFilm.SelectedRows[0];
+                DataGridViewRow selectedRow = gridViewLagerFilm.SelectedRows[0];
 
-                Film film = controller.findFilm(int.Parse(selectedItem.Cells["ID"].Value.ToString()));
+                Film film = controller.findFilm(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
+
+                currentItem = film;
 
                 IDFilmText.Text = film.ID.ToString();
                 AmountFilmText.Text = film.Amount.ToString();
@@ -396,7 +436,7 @@ namespace Laboration4Affärssystem
                 TimeFilmText.Text = film.Time.ToString();
             }
         }
-
+        
         private void addBookButton_Click(object sender, EventArgs e)
         {
             try
@@ -527,7 +567,7 @@ namespace Laboration4Affärssystem
             {
                 string input;
                 int shipmentAmount;
-                int id = int.Parse(selectedItem.Cells["ID"].Value.ToString());
+                int id = currentItem.ID;
                 input = Microsoft.VisualBasic.Interaction.InputBox("Hur stor är leveransen?:", "Integer Input", "0");
 
                 shipmentAmount = int.Parse(input);
@@ -556,8 +596,8 @@ namespace Laboration4Affärssystem
             try
             {
                 string input;
-                int shipmentAmount;
-                int id = int.Parse(selectedItem.Cells["ID"].Value.ToString());
+                int shipmentAmount; 
+                int id = currentItem.ID;
                 input = Microsoft.VisualBasic.Interaction.InputBox("Hur stor är leveransen?:", "Integer Input", "0");
 
                 shipmentAmount = int.Parse(input);
@@ -576,6 +616,7 @@ namespace Laboration4Affärssystem
                 MessageBox.Show(error.Message);
             }
         }
+       
 
         private void addShipmentFilmButton_Click(object sender, EventArgs e)
         {
@@ -583,7 +624,7 @@ namespace Laboration4Affärssystem
             {
                 string input;
                 int shipmentAmount;
-                int id = int.Parse(selectedItem.Cells["ID"].Value.ToString());
+                int id = currentItem.ID;
                 input = Microsoft.VisualBasic.Interaction.InputBox("Hur stor är leveransen?:", "Integer Input", "0");
 
                 shipmentAmount = int.Parse(input);
@@ -603,6 +644,7 @@ namespace Laboration4Affärssystem
                 MessageBox.Show(error.Message);
             }
         }
+       
 
         private void View_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -617,7 +659,7 @@ namespace Laboration4Affärssystem
             {
                 string input;
                 int amount;
-                int id = int.Parse(selectedItem.Cells["ID"].Value.ToString());
+                int id = currentItem.ID;
 
                 input = Microsoft.VisualBasic.Interaction.InputBox("Hur många produkter ska återlämnas?:", "Integer Input", "0");
 
@@ -629,7 +671,11 @@ namespace Laboration4Affärssystem
                 }
 
                 controller.AddItems(id, amount);
-                
+
+                gridViewKassaBok.Refresh();
+                gridViewKassaFilm.Refresh();
+                gridViewKassaSpel.Refresh();
+                gridViewResult.Refresh();
             }
             catch(Exception error)
             {
@@ -641,9 +687,23 @@ namespace Laboration4Affärssystem
         {
             string query = searchInput.Text.Trim();
 
-            BindingSource source = controller.Search(query);
+            DataGridView table = gridViewResult;
 
-            gridViewResult.DataSource = source;
+            //style result table
+            table.Columns.Add("Produkt", "Produkt");
+            table.Columns.Add("ID", "ID");
+            table.Columns.Add("Name", "Namn");
+
+            table.Columns["Produkt"].DataPropertyName = "Produkt";
+            table.Columns["ID"].DataPropertyName = "ID";
+            table.Columns["Name"].DataPropertyName = "Name";
+
+            //add results to table
+            table.DataSource = controller.Search(query);
+
+            table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+
+        
     }
 }

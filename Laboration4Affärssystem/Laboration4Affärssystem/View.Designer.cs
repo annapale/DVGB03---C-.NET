@@ -30,12 +30,13 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.checkoutTab = new System.Windows.Forms.TabPage();
+            this.returnButton = new System.Windows.Forms.Button();
             this.payButton = new System.Windows.Forms.Button();
             this.totalPriceTextBox = new System.Windows.Forms.TextBox();
             this.totalPriceLabel = new System.Windows.Forms.Label();
-            this.labelKundKorg = new System.Windows.Forms.Label();
             this.addToShoppingCartButton = new System.Windows.Forms.Button();
             this.shoppingBasketList = new System.Windows.Forms.ListView();
+            this.Produkt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Namn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Pris = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -112,12 +113,10 @@
             this.removeFilmButton = new System.Windows.Forms.Button();
             this.addFilmButton = new System.Windows.Forms.Button();
             this.gridViewLagerFilm = new System.Windows.Forms.DataGridView();
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.returnButton = new System.Windows.Forms.Button();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.searchInput = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
             this.gridViewResult = new System.Windows.Forms.DataGridView();
+            this.searchInput = new System.Windows.Forms.TextBox();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -138,57 +137,71 @@
             this.filmsTab.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerFilm)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewResult)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.checkoutTab);
             this.tabControl1.Controls.Add(this.lagerTab);
             this.tabControl1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(893, 426);
+            this.tabControl1.Size = new System.Drawing.Size(880, 491);
             this.tabControl1.TabIndex = 0;
             // 
             // checkoutTab
             // 
-            this.checkoutTab.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.checkoutTab.Controls.Add(this.gridViewResult);
-            this.checkoutTab.Controls.Add(this.label20);
-            this.checkoutTab.Controls.Add(this.searchInput);
-            this.checkoutTab.Controls.Add(this.searchButton);
+            this.checkoutTab.BackColor = System.Drawing.Color.Lavender;
             this.checkoutTab.Controls.Add(this.returnButton);
             this.checkoutTab.Controls.Add(this.payButton);
             this.checkoutTab.Controls.Add(this.totalPriceTextBox);
             this.checkoutTab.Controls.Add(this.totalPriceLabel);
-            this.checkoutTab.Controls.Add(this.labelKundKorg);
             this.checkoutTab.Controls.Add(this.addToShoppingCartButton);
             this.checkoutTab.Controls.Add(this.shoppingBasketList);
             this.checkoutTab.Controls.Add(this.tabControl3);
             this.checkoutTab.Location = new System.Drawing.Point(4, 30);
             this.checkoutTab.Name = "checkoutTab";
             this.checkoutTab.Padding = new System.Windows.Forms.Padding(3);
-            this.checkoutTab.Size = new System.Drawing.Size(885, 392);
+            this.checkoutTab.Size = new System.Drawing.Size(872, 457);
             this.checkoutTab.TabIndex = 0;
             this.checkoutTab.Text = "Kassa";
             // 
+            // returnButton
+            // 
+            this.returnButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.returnButton.BackColor = System.Drawing.Color.Lavender;
+            this.returnButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.returnButton.Location = new System.Drawing.Point(187, 221);
+            this.returnButton.Name = "returnButton";
+            this.returnButton.Size = new System.Drawing.Size(165, 34);
+            this.returnButton.TabIndex = 8;
+            this.returnButton.Text = "återlämna";
+            this.returnButton.UseVisualStyleBackColor = false;
+            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
+            // 
             // payButton
             // 
-            this.payButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.payButton.Location = new System.Drawing.Point(585, 355);
+            this.payButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.payButton.BackColor = System.Drawing.Color.Lavender;
+            this.payButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.payButton.Location = new System.Drawing.Point(532, 328);
             this.payButton.Name = "payButton";
             this.payButton.Size = new System.Drawing.Size(165, 34);
             this.payButton.TabIndex = 7;
             this.payButton.Text = "slutför betalning";
-            this.payButton.UseVisualStyleBackColor = true;
+            this.payButton.UseVisualStyleBackColor = false;
             this.payButton.Click += new System.EventHandler(this.payButton_Click);
             // 
             // totalPriceTextBox
             // 
-            this.totalPriceTextBox.Location = new System.Drawing.Point(479, 359);
+            this.totalPriceTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.totalPriceTextBox.Location = new System.Drawing.Point(561, 295);
             this.totalPriceTextBox.Name = "totalPriceTextBox";
             this.totalPriceTextBox.Size = new System.Drawing.Size(100, 27);
             this.totalPriceTextBox.TabIndex = 6;
@@ -196,53 +209,55 @@
             // 
             // totalPriceLabel
             // 
+            this.totalPriceLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.totalPriceLabel.AutoSize = true;
-            this.totalPriceLabel.Location = new System.Drawing.Point(375, 362);
+            this.totalPriceLabel.Location = new System.Drawing.Point(557, 271);
             this.totalPriceLabel.Name = "totalPriceLabel";
             this.totalPriceLabel.Size = new System.Drawing.Size(98, 21);
             this.totalPriceLabel.TabIndex = 5;
             this.totalPriceLabel.Text = "Att betala:";
             // 
-            // labelKundKorg
-            // 
-            this.labelKundKorg.AutoSize = true;
-            this.labelKundKorg.BackColor = System.Drawing.SystemColors.Window;
-            this.labelKundKorg.Location = new System.Drawing.Point(6, 247);
-            this.labelKundKorg.Name = "labelKundKorg";
-            this.labelKundKorg.Size = new System.Drawing.Size(85, 21);
-            this.labelKundKorg.TabIndex = 4;
-            this.labelKundKorg.Text = "KundKorg";
-            // 
             // addToShoppingCartButton
             // 
-            this.addToShoppingCartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.addToShoppingCartButton.Location = new System.Drawing.Point(10, 196);
+            this.addToShoppingCartButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.addToShoppingCartButton.BackColor = System.Drawing.Color.Lavender;
+            this.addToShoppingCartButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.addToShoppingCartButton.ForeColor = System.Drawing.Color.Black;
+            this.addToShoppingCartButton.Location = new System.Drawing.Point(16, 221);
             this.addToShoppingCartButton.Name = "addToShoppingCartButton";
             this.addToShoppingCartButton.Size = new System.Drawing.Size(165, 34);
             this.addToShoppingCartButton.TabIndex = 2;
             this.addToShoppingCartButton.Text = "lägg i kundkorg";
-            this.addToShoppingCartButton.UseVisualStyleBackColor = true;
+            this.addToShoppingCartButton.UseVisualStyleBackColor = false;
             this.addToShoppingCartButton.Click += new System.EventHandler(this.addToShoppingCartButton_Click);
             // 
             // shoppingBasketList
             // 
+            this.shoppingBasketList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.shoppingBasketList.BackColor = System.Drawing.Color.LavenderBlush;
             this.shoppingBasketList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Produkt,
             this.ID,
             this.Namn,
             this.Pris,
             this.Antal});
             this.shoppingBasketList.HideSelection = false;
-            this.shoppingBasketList.Location = new System.Drawing.Point(6, 271);
+            this.shoppingBasketList.Location = new System.Drawing.Point(16, 271);
             this.shoppingBasketList.Name = "shoppingBasketList";
-            this.shoppingBasketList.Size = new System.Drawing.Size(363, 118);
+            this.shoppingBasketList.Size = new System.Drawing.Size(510, 176);
             this.shoppingBasketList.TabIndex = 3;
             this.shoppingBasketList.UseCompatibleStateImageBehavior = false;
             this.shoppingBasketList.View = System.Windows.Forms.View.Details;
             // 
+            // Produkt
+            // 
+            this.Produkt.Text = "Produkt";
+            this.Produkt.Width = 100;
+            // 
             // ID
             // 
             this.ID.Text = "ID";
-            this.ID.Width = 48;
+            this.ID.Width = 50;
             // 
             // Namn
             // 
@@ -259,15 +274,14 @@
             // 
             // tabControl3
             // 
-            this.tabControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControl3.Controls.Add(this.tabPage1);
             this.tabControl3.Controls.Add(this.tabPage2);
             this.tabControl3.Controls.Add(this.tabPage3);
             this.tabControl3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl3.Location = new System.Drawing.Point(6, 6);
+            this.tabControl3.Location = new System.Drawing.Point(6, 8);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(858, 188);
+            this.tabControl3.Size = new System.Drawing.Size(858, 211);
             this.tabControl3.TabIndex = 1;
             // 
             // tabPage1
@@ -277,7 +291,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(850, 158);
+            this.tabPage1.Size = new System.Drawing.Size(850, 181);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Böcker";
             // 
@@ -285,11 +299,11 @@
             // 
             this.gridViewKassaBok.AllowUserToAddRows = false;
             this.gridViewKassaBok.AllowUserToDeleteRows = false;
-            this.gridViewKassaBok.BackgroundColor = System.Drawing.Color.LightCyan;
+            this.gridViewKassaBok.BackgroundColor = System.Drawing.Color.MediumPurple;
             this.gridViewKassaBok.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewKassaBok.Location = new System.Drawing.Point(6, 6);
             this.gridViewKassaBok.Name = "gridViewKassaBok";
-            this.gridViewKassaBok.Size = new System.Drawing.Size(838, 146);
+            this.gridViewKassaBok.Size = new System.Drawing.Size(838, 169);
             this.gridViewKassaBok.TabIndex = 5;
             this.gridViewKassaBok.SelectionChanged += new System.EventHandler(this.gridViewKassaBok_SelectionChanged);
             // 
@@ -303,7 +317,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(850, 158);
+            this.tabPage2.Size = new System.Drawing.Size(850, 181);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Dataspel";
             // 
@@ -353,7 +367,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(850, 158);
+            this.tabPage3.Size = new System.Drawing.Size(850, 181);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Filmer";
             // 
@@ -401,7 +415,7 @@
             this.lagerTab.Location = new System.Drawing.Point(4, 30);
             this.lagerTab.Name = "lagerTab";
             this.lagerTab.Padding = new System.Windows.Forms.Padding(3);
-            this.lagerTab.Size = new System.Drawing.Size(885, 392);
+            this.lagerTab.Size = new System.Drawing.Size(872, 457);
             this.lagerTab.TabIndex = 1;
             this.lagerTab.Text = "Lager";
             // 
@@ -411,10 +425,10 @@
             this.tabLager.Controls.Add(this.gamesTab);
             this.tabLager.Controls.Add(this.filmsTab);
             this.tabLager.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabLager.Location = new System.Drawing.Point(6, 6);
+            this.tabLager.Location = new System.Drawing.Point(3, 6);
             this.tabLager.Name = "tabLager";
             this.tabLager.SelectedIndex = 0;
-            this.tabLager.Size = new System.Drawing.Size(858, 368);
+            this.tabLager.Size = new System.Drawing.Size(876, 368);
             this.tabLager.TabIndex = 0;
             // 
             // booksTab
@@ -428,7 +442,7 @@
             this.booksTab.Location = new System.Drawing.Point(4, 26);
             this.booksTab.Name = "booksTab";
             this.booksTab.Padding = new System.Windows.Forms.Padding(3);
-            this.booksTab.Size = new System.Drawing.Size(850, 338);
+            this.booksTab.Size = new System.Drawing.Size(868, 338);
             this.booksTab.TabIndex = 0;
             this.booksTab.Text = "Böcker";
             // 
@@ -451,9 +465,9 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.IDBookText);
-            this.panel1.Location = new System.Drawing.Point(303, 6);
+            this.panel1.Location = new System.Drawing.Point(279, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(541, 286);
+            this.panel1.Size = new System.Drawing.Size(583, 286);
             this.panel1.TabIndex = 5;
             // 
             // AmountBookText
@@ -638,7 +652,7 @@
             this.gridViewLagerBok.Location = new System.Drawing.Point(6, 6);
             this.gridViewLagerBok.Name = "gridViewLagerBok";
             this.gridViewLagerBok.ReadOnly = true;
-            this.gridViewLagerBok.Size = new System.Drawing.Size(291, 286);
+            this.gridViewLagerBok.Size = new System.Drawing.Size(267, 286);
             this.gridViewLagerBok.TabIndex = 1;
             this.gridViewLagerBok.SelectionChanged += new System.EventHandler(this.gridViewLagerBok_SelectionChanged);
             // 
@@ -653,7 +667,7 @@
             this.gamesTab.Location = new System.Drawing.Point(4, 26);
             this.gamesTab.Name = "gamesTab";
             this.gamesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.gamesTab.Size = new System.Drawing.Size(850, 338);
+            this.gamesTab.Size = new System.Drawing.Size(868, 305);
             this.gamesTab.TabIndex = 1;
             this.gamesTab.Text = "Dataspel";
             // 
@@ -815,7 +829,7 @@
             this.filmsTab.Location = new System.Drawing.Point(4, 26);
             this.filmsTab.Name = "filmsTab";
             this.filmsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.filmsTab.Size = new System.Drawing.Size(850, 338);
+            this.filmsTab.Size = new System.Drawing.Size(868, 305);
             this.filmsTab.TabIndex = 2;
             this.filmsTab.Text = "Filmer";
             // 
@@ -996,26 +1010,32 @@
             this.gridViewLagerFilm.TabIndex = 0;
             this.gridViewLagerFilm.SelectionChanged += new System.EventHandler(this.gridViewLagerFilm_SelectionChanged);
             // 
-            // fileSystemWatcher1
+            // gridViewResult
             // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
+            this.gridViewResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridViewResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewResult.Location = new System.Drawing.Point(898, 76);
+            this.gridViewResult.Name = "gridViewResult";
+            this.gridViewResult.Size = new System.Drawing.Size(332, 413);
+            this.gridViewResult.TabIndex = 12;
+            this.gridViewResult.SelectionChanged += new System.EventHandler(this.gridViewResult_SelectionChanged);
             // 
-            // returnButton
+            // searchInput
             // 
-            this.returnButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.returnButton.Location = new System.Drawing.Point(181, 196);
-            this.returnButton.Name = "returnButton";
-            this.returnButton.Size = new System.Drawing.Size(165, 34);
-            this.returnButton.TabIndex = 8;
-            this.returnButton.Text = "återlämna";
-            this.returnButton.UseVisualStyleBackColor = true;
-            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
+            this.searchInput.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.searchInput.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchInput.Location = new System.Drawing.Point(898, 42);
+            this.searchInput.Name = "searchInput";
+            this.searchInput.Size = new System.Drawing.Size(245, 26);
+            this.searchInput.TabIndex = 10;
             // 
             // searchButton
             // 
-            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.searchButton.Location = new System.Drawing.Point(790, 200);
+            this.searchButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.searchButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchButton.Location = new System.Drawing.Point(1149, 37);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(74, 34);
             this.searchButton.TabIndex = 9;
@@ -1023,38 +1043,21 @@
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
-            // searchInput
+            // fileSystemWatcher1
             // 
-            this.searchInput.Location = new System.Drawing.Point(567, 203);
-            this.searchInput.Name = "searchInput";
-            this.searchInput.Size = new System.Drawing.Size(217, 27);
-            this.searchInput.TabIndex = 10;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(434, 206);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(127, 21);
-            this.label20.TabIndex = 11;
-            this.label20.Text = "sök efter Namn";
-            // 
-            // gridViewResult
-            // 
-            this.gridViewResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridViewResult.Location = new System.Drawing.Point(590, 236);
-            this.gridViewResult.Name = "gridViewResult";
-            this.gridViewResult.Size = new System.Drawing.Size(274, 101);
-            this.gridViewResult.TabIndex = 12;
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
             // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(952, 451);
+            this.BackColor = System.Drawing.Color.MediumPurple;
+            this.ClientSize = new System.Drawing.Size(1235, 515);
+            this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.searchInput);
+            this.Controls.Add(this.gridViewResult);
             this.Controls.Add(this.tabControl1);
             this.Name = "View";
             this.Text = "Affärssystem";
@@ -1083,9 +1086,10 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerFilm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewResult)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1129,7 +1133,6 @@
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader Namn;
         private System.Windows.Forms.ColumnHeader Pris;
-        private System.Windows.Forms.Label labelKundKorg;
         private System.Windows.Forms.ColumnHeader Antal;
         private System.Windows.Forms.Label totalPriceLabel;
         private System.Windows.Forms.TextBox totalPriceTextBox;
@@ -1177,10 +1180,10 @@
         private System.Windows.Forms.Button payButton;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button returnButton;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox searchInput;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.DataGridView gridViewResult;
+        private System.Windows.Forms.ColumnHeader Produkt;
     }
 }
 

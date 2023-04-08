@@ -27,9 +27,9 @@ namespace Laboration4Affärssystem
             Amount = Amount - amountSold;
         }
 
-        public void Shipment(int shippmentAmount)
+        public void Add(int amount)
         {
-            Amount += shippmentAmount;
+            Amount += amount;
         }
         
     }

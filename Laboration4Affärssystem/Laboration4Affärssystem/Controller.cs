@@ -295,6 +295,24 @@ namespace Laboration4Affärssystem
             }
         }
 
+        public Item selectBook(DataGridViewRow row)
+        {
+            Item item = bookList[row.Index];
+            return item;
+        }
+
+        public Item selectGame(DataGridViewRow row)
+        {
+            Item item = gameList[row.Index];
+            return item;
+        }
+
+        public Item selectFilm(DataGridViewRow row) 
+        {
+            Item item = filmList[row.Index];
+            return item;
+        }
+
         public void removeBook(int id)
         {
             Book book = bookList.SingleOrDefault(p => p.ID == id);
@@ -456,13 +474,35 @@ namespace Laboration4Affärssystem
 
         public BindingSource Search(string query)
         {
-            var resultsData = bookList.Where(item => item.Name.Contains(query));
+            BindingList<Item> resultList = new BindingList<Item>();
+            
+            foreach (Item item in bookList)
+            {
+                if (item.Name.Contains(query))
+                {
+                    resultList.Add(item);
+                }
+            }
 
-            BindingList<Book> resultList = new BindingList<Book>(resultsData.ToList());
-            BindingSource resultsSource = new BindingSource();
-            resultsSource.DataSource = resultList;
+            foreach (Item item in gameList)
+            {
+                if(item.Name.Contains(query))
+                {
+                    resultList.Add(item);
+                }
+            }
 
-            return resultsSource;
+            foreach (Item item in filmList)
+            {
+                if (item.Name.Contains(query))
+                {
+                    resultList.Add(item);
+                }
+            }
+
+            BindingSource resultSource = new BindingSource();
+            resultSource.DataSource = resultList;
+            return resultSource;
 
 
         }
