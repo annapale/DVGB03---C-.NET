@@ -28,8 +28,6 @@ namespace Laboration4Affärssystem
             }
 
             PriceLabel.Text = total.ToString();
-
-            int totalPrice = total;
         }
 
         private void printReceiptButton_Click(object sender, EventArgs e)

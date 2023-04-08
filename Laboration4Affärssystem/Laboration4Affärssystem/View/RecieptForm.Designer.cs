@@ -37,6 +37,7 @@
             this.Pris = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Antal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.printReceiptButton = new System.Windows.Forms.Button();
+            this.Produkt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // DateTimeLabel
@@ -72,6 +73,7 @@
             // receiptItemsList
             // 
             this.receiptItemsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Produkt,
             this.ID,
             this.Namn,
             this.Pris,
@@ -87,20 +89,24 @@
             // 
             // ID
             // 
+            this.ID.DisplayIndex = 0;
             this.ID.Text = "ID";
             this.ID.Width = 48;
             // 
             // Namn
             // 
+            this.Namn.DisplayIndex = 1;
             this.Namn.Text = "Namn";
             this.Namn.Width = 175;
             // 
             // Pris
             // 
+            this.Pris.DisplayIndex = 2;
             this.Pris.Text = "Pris";
             // 
             // Antal
             // 
+            this.Antal.DisplayIndex = 3;
             this.Antal.Text = "Antal";
             // 
             // printReceiptButton
@@ -113,6 +119,10 @@
             this.printReceiptButton.Text = "Skriv ut";
             this.printReceiptButton.UseVisualStyleBackColor = true;
             this.printReceiptButton.Click += new System.EventHandler(this.printReceiptButton_Click);
+            // 
+            // Produkt
+            // 
+            this.Produkt.Text = "Produkt";
             // 
             // RecieptForm
             // 
@@ -143,5 +153,6 @@
         private System.Windows.Forms.ColumnHeader Pris;
         private System.Windows.Forms.ColumnHeader Antal;
         private System.Windows.Forms.Button printReceiptButton;
+        private System.Windows.Forms.ColumnHeader Produkt;
     }
 }

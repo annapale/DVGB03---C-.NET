@@ -11,35 +11,46 @@ using System.IO;
 using Microsoft.VisualBasic.FileIO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using Microsoft.VisualBasic;
+using Laboration4Affärssystem.Model;
 
 namespace Laboration4Affärssystem
 {
     internal class Controller
     {
-        public BindingList<Book> bookList = new BindingList<Book>();
-        public BindingSource bookSource = new BindingSource();
+        Inventory inventory = new Inventory();
+        
 
-        public BindingList<Videogame> gameList = new BindingList<Videogame>();
-        public BindingSource gameSource = new BindingSource();
+        public void setBookSource(BindingSource source)
+        {
+            source.DataSource = inventory.bookList;   
+        }
 
-        public BindingList<Film> filmList = new BindingList<Film>();
-        public BindingSource filmSource = new BindingSource();
+        public void setGameSource(BindingSource source)
+        {
+            source.DataSource = inventory.gameList;
+        }
+
+        public void setFilmSource(BindingSource source)
+        {
+            source.DataSource = inventory.filmList;
+        }
 
         public void addBook(int id, string name, int price, int amount, string author, string genre, string format, string language)
         {
-            bookList.Add(new Book(id, name, price, amount, author, genre, format, language));
+            inventory.bookList.Add(new Book(id, name, price, amount, author, genre, format, language));
         }
 
         public void addGame(int id, string name, int price, int amount, string plattform)
         {
-            gameList.Add(new Videogame(id, name, price, amount, plattform));
+            inventory.gameList.Add(new Videogame(id, name, price, amount, plattform));
         }
 
         public void addFilm(int id, string name, int price, int amount, string format, int time)
         {
-            filmList.Add(new Film(id, name, price, amount, format, time));
+            inventory.filmList.Add(new Film(id, name, price, amount, format, time));
         }
 
+        //get items from database and add to lists
         public void importBooks()
         {
             try
@@ -70,9 +81,7 @@ namespace Laboration4Affärssystem
                             string format = data[6];
                             string language = data[7];
 
-                            bookList.Add(new Book(id, name, price, amount, author, genre, format, language));
-
-                            bookSource.DataSource = bookList;
+                            addBook(id, name, price, amount, author, genre, format, language);
                         }
                     }
                 }
@@ -115,9 +124,7 @@ namespace Laboration4Affärssystem
                             int amount = int.Parse(data[3]);
                             string plattform = data[4];
 
-                            gameList.Add(new Videogame(id, name, price, amount, plattform));
-
-                            gameSource.DataSource = gameList;
+                            addGame(id, name, price, amount, plattform);
                         }
                     }
                 }
@@ -161,9 +168,9 @@ namespace Laboration4Affärssystem
                             int time = int.Parse(data[5]);
 
 
-                            filmList.Add(new Film(id, name, price, amount, format, time));
+                            addFilm(id, name, price, amount, format, time);
 
-                            filmSource.DataSource = filmList;
+                            //filmSource.DataSource = inventory.filmList;
                         }
                     }
                 }
@@ -193,7 +200,7 @@ namespace Laboration4Affärssystem
                     using (StreamWriter writer = new StreamWriter(filePath, false))
                     {
                         writer.WriteLine("Id, Name, Price, Amount, Author, Genre, Format, Language");
-                        foreach (Book book in bookList)
+                        foreach (Book book in inventory.bookList)
                         {
                             writer.WriteLine($"{book.ID},{book.Name},{book.Price},{book.Amount},{book.Author},{book.Genre},{book.Format},{book.Language}");
                         }
@@ -206,7 +213,7 @@ namespace Laboration4Affärssystem
                     {
                         writer.WriteLine("Id, Name, Price, Amount, Author, Genre, Format, Language");
                         //int id, string name, int price, int amount, string author, string genre, string format, string language
-                        foreach (Book book in bookList)
+                        foreach (Book book in inventory.bookList)
                         {
                             writer.WriteLine($"{book.ID},{book.Name},{book.Price},{book.Amount},{book.Author},{book.Genre},{book.Format},{book.Language}");
                         }
@@ -232,7 +239,7 @@ namespace Laboration4Affärssystem
                     using (StreamWriter writer = new StreamWriter(filePath, false))
                     {
                         writer.WriteLine("ID, Name, Price, Amount, Plattform");
-                        foreach (Videogame game in gameList)
+                        foreach (Videogame game in inventory.gameList)
                         {
                             writer.WriteLine($"{game.ID},{game.Name},{game.Price},{game.Amount},{game.Plattform}");
                         }
@@ -244,7 +251,7 @@ namespace Laboration4Affärssystem
                     using (StreamWriter writer = new StreamWriter(filePath))
                     {
                         writer.WriteLine("ID, Name, Price, Amount, Plattform");
-                        foreach (Videogame game in gameList)
+                        foreach (Videogame game in inventory.gameList)
                         {
                             writer.WriteLine($"{game.ID},{game.Name},{game.Price},{game.Amount},{game.Plattform}");
                         }
@@ -270,7 +277,7 @@ namespace Laboration4Affärssystem
                     using (StreamWriter writer = new StreamWriter(filePath, false))
                     {
                         writer.WriteLine("ID, Name, Price, Amount, Format, Time");
-                        foreach (Film film in filmList)
+                        foreach (Film film in inventory.filmList)
                         {
                             writer.WriteLine($"{film.ID},{film.Name},{film.Price},{film.Amount},{film.Format},{film.Time}");
                         }
@@ -282,7 +289,7 @@ namespace Laboration4Affärssystem
                     using (StreamWriter writer = new StreamWriter(filePath))
                     {
                         writer.WriteLine("ID, Name, Price, Amount, Format, Time");
-                        foreach (Film film in filmList)
+                        foreach (Film film in inventory.filmList)
                         {
                             writer.WriteLine($"{film.ID},{film.Name},{film.Price},{film.Amount},{film.Format},{film.Time}");
                         }
@@ -297,32 +304,32 @@ namespace Laboration4Affärssystem
 
         public Item selectBook(DataGridViewRow row)
         {
-            Item item = bookList[row.Index];
+            Item item = inventory.bookList[row.Index];
             return item;
         }
 
         public Item selectGame(DataGridViewRow row)
         {
-            Item item = gameList[row.Index];
+            Item item = inventory.gameList[row.Index];
             return item;
         }
 
         public Item selectFilm(DataGridViewRow row) 
         {
-            Item item = filmList[row.Index];
+            Item item = inventory.filmList[row.Index];
             return item;
         }
 
         public void removeBook(int id)
         {
-            Book book = bookList.SingleOrDefault(p => p.ID == id);
+            Book book = inventory.bookList.SingleOrDefault(p => p.ID == id);
             if (book.Amount > 0)
             {
                 DialogResult result = MessageBox.Show("Vill du verkligen ta bort varan?", "", MessageBoxButtons.YesNo);
 
                 if (result == DialogResult.Yes)
                 {
-                    bookList.Remove(book);
+                    inventory.bookList.Remove(book);
                 }
                 else
                 {
@@ -334,7 +341,7 @@ namespace Laboration4Affärssystem
 
         public void removeGame(int id)
         {
-            Videogame game = gameList.SingleOrDefault(p => p.ID == id);
+            Videogame game = inventory.gameList.SingleOrDefault(p => p.ID == id);
 
             if (game.Amount > 0)
             {
@@ -342,7 +349,7 @@ namespace Laboration4Affärssystem
 
                 if (result == DialogResult.Yes)
                 {
-                    gameList.Remove(game);
+                    inventory.gameList.Remove(game);
                 }
                 else
                 {
@@ -353,7 +360,7 @@ namespace Laboration4Affärssystem
 
         public void removeFilm(int id)
         {
-            Film film = filmList.SingleOrDefault(p => p.ID == id);
+            Film film = inventory.filmList.SingleOrDefault(p => p.ID == id);
 
             if (film.Amount > 0)
             {
@@ -361,7 +368,7 @@ namespace Laboration4Affärssystem
 
                 if (result == DialogResult.Yes)
                 {
-                    filmList.Remove(film);
+                    inventory.filmList.Remove(film);
                 }
                 else
                 {
@@ -372,21 +379,21 @@ namespace Laboration4Affärssystem
 
         public Book findBook(int id)
         {
-            Book book = bookList.SingleOrDefault(p => p.ID == id);
+            Book book = inventory.bookList.SingleOrDefault(p => p.ID == id);
 
             return book;
         }
 
         public Videogame findGame(int id)
         {
-            Videogame game = gameList.SingleOrDefault(p => p.ID == id);
+            Videogame game = inventory.gameList.SingleOrDefault(p => p.ID == id);
 
             return game;
         }
 
         public Film findFilm(int id)
         {
-            Film film = filmList.SingleOrDefault(p => p.ID == id);
+            Film film = inventory.filmList.SingleOrDefault(p => p.ID == id);
 
             return film;
         }
@@ -396,7 +403,7 @@ namespace Laboration4Affärssystem
             Item item = null;
 
             //search for the item in the book list
-            item = bookList.SingleOrDefault(p => p.ID == id);
+            item = inventory.bookList.SingleOrDefault(p => p.ID == id);
 
             if (item != null)
             {
@@ -404,7 +411,7 @@ namespace Laboration4Affärssystem
             }
 
             //if not found, search for the item in the videogame list
-            item = gameList.SingleOrDefault(p => p.ID == id);
+            item = inventory.gameList.SingleOrDefault(p => p.ID == id);
 
             if (item != null)
             {
@@ -412,7 +419,7 @@ namespace Laboration4Affärssystem
             }
 
             //if not found, search for the item in the film list
-            item = filmList.SingleOrDefault(p => p.ID == id);
+            item = inventory.filmList.SingleOrDefault(p => p.ID == id);
 
             if (item != null)
             {
@@ -424,15 +431,15 @@ namespace Laboration4Affärssystem
         }
         public bool checkID(int id)
         {
-            if (bookList.Any(book => book.ID == id))
+            if (inventory.bookList.Any(book => book.ID == id))
             {
                 return true;
             }
-            else if (gameList.Any(game => game.ID == id))
+            else if (inventory.gameList.Any(game => game.ID == id))
             {
                 return true;
             }
-            else if (filmList.Any(film => film.ID == id))
+            else if (inventory.filmList.Any(film => film.ID == id))
             {
                 return true;
             }
@@ -465,18 +472,18 @@ namespace Laboration4Affärssystem
             receipt.ShowDialog();
         }
 
-        public void AddItems(int id, int shipmentAmount)
+        public void AddItems(int id, int amount)
         {
             Item item = findItem(id);
 
-            item.Shipment(shipmentAmount);
+            item.Add(amount);
         }
 
         public BindingSource Search(string query)
         {
             BindingList<Item> resultList = new BindingList<Item>();
             
-            foreach (Item item in bookList)
+            foreach (Book item in inventory.bookList)
             {
                 if (item.Name.Contains(query))
                 {
@@ -484,7 +491,7 @@ namespace Laboration4Affärssystem
                 }
             }
 
-            foreach (Item item in gameList)
+            foreach (Videogame item in inventory.gameList)
             {
                 if(item.Name.Contains(query))
                 {
@@ -492,7 +499,7 @@ namespace Laboration4Affärssystem
                 }
             }
 
-            foreach (Item item in filmList)
+            foreach (Film item in inventory.filmList)
             {
                 if (item.Name.Contains(query))
                 {
@@ -503,8 +510,6 @@ namespace Laboration4Affärssystem
             BindingSource resultSource = new BindingSource();
             resultSource.DataSource = resultList;
             return resultSource;
-
-
         }
     }
 }
