@@ -117,6 +117,7 @@
             this.searchInput = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.emtypCartButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControlKassa.SuspendLayout();
@@ -158,6 +159,7 @@
             // checkoutTab
             // 
             this.checkoutTab.BackColor = System.Drawing.Color.DimGray;
+            this.checkoutTab.Controls.Add(this.emtypCartButton);
             this.checkoutTab.Controls.Add(this.returnButton);
             this.checkoutTab.Controls.Add(this.payButton);
             this.checkoutTab.Controls.Add(this.totalPriceTextBox);
@@ -633,7 +635,7 @@
             this.removeBookButton.TabIndex = 3;
             this.removeBookButton.Text = "ta bort Bok";
             this.removeBookButton.UseVisualStyleBackColor = false;
-            this.removeBookButton.Click += new System.EventHandler(this.removeBookButton_Click);
+            this.removeBookButton.Click += new System.EventHandler(this.removeItemButton_Click);
             // 
             // addBookButton
             // 
@@ -802,7 +804,7 @@
             this.removeGameButton.TabIndex = 4;
             this.removeGameButton.Text = "ta bort Spel";
             this.removeGameButton.UseVisualStyleBackColor = false;
-            this.removeGameButton.Click += new System.EventHandler(this.removeGameButton_Click);
+            this.removeGameButton.Click += new System.EventHandler(this.removeItemButton_Click);
             // 
             // addGameButton
             // 
@@ -998,7 +1000,7 @@
             this.removeFilmButton.TabIndex = 6;
             this.removeFilmButton.Text = "ta bort Film";
             this.removeFilmButton.UseVisualStyleBackColor = false;
-            this.removeFilmButton.Click += new System.EventHandler(this.removeFilmButton_Click);
+            this.removeFilmButton.Click += new System.EventHandler(this.removeItemButton_Click);
             // 
             // addFilmButton
             // 
@@ -1061,6 +1063,18 @@
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
+            // 
+            // emtypCartButton
+            // 
+            this.emtypCartButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.emtypCartButton.BackColor = System.Drawing.Color.Lavender;
+            this.emtypCartButton.Location = new System.Drawing.Point(532, 408);
+            this.emtypCartButton.Name = "emtypCartButton";
+            this.emtypCartButton.Size = new System.Drawing.Size(165, 34);
+            this.emtypCartButton.TabIndex = 9;
+            this.emtypCartButton.Text = "töm kundkorg";
+            this.emtypCartButton.UseVisualStyleBackColor = false;
+            this.emtypCartButton.Click += new System.EventHandler(this.emtypCartButton_Click);
             // 
             // View
             // 
@@ -1198,6 +1212,7 @@
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.DataGridView gridViewResult;
         private System.Windows.Forms.ColumnHeader Produkt;
+        private System.Windows.Forms.Button emtypCartButton;
     }
 }
 

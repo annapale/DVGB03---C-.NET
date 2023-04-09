@@ -18,7 +18,7 @@ namespace Laboration4Affärssystem
     internal class Controller
     {
         Inventory inventory = new Inventory();
-        
+        TransactionArchive archive = new TransactionArchive();
 
         public void setBookSource(BindingSource source)
         {
@@ -35,158 +35,71 @@ namespace Laboration4Affärssystem
             source.DataSource = inventory.filmList;
         }
 
-        public void addBook(int id, string name, int price, int amount, string author, string genre, string format, string language)
-        {
-            inventory.bookList.Add(new Book(id, name, price, amount, author, genre, format, language));
-        }
-
-        public void addGame(int id, string name, int price, int amount, string plattform)
-        {
-            inventory.gameList.Add(new Videogame(id, name, price, amount, plattform));
-        }
-
-        public void addFilm(int id, string name, int price, int amount, string format, int time)
-        {
-            inventory.filmList.Add(new Film(id, name, price, amount, format, time));
-        }
-
         //get items from database and add to lists
-        public void importBooks()
+        public void importData()
         {
-            try
-            {
-                string fileName = "booksFile.csv";
-
-                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
-
-                if (File.Exists(filePath))
-                {
-                    using (StreamReader reader = new StreamReader(filePath))
-                    {
-                        reader.ReadLine();
-                        string line;
-                        while ((line = reader.ReadLine()) != null)
-                        {
-                            //tar bort extra mellanrum
-                            line = String.Join(" ", line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-
-                            string[] data = line.Split(',');
-
-                            int id = int.Parse(data[0]);
-                            string name = data[1];
-                            int price = int.Parse(data[2]);
-                            int amount = int.Parse(data[3]);
-                            string author = data[4];
-                            string genre = data[5];
-                            string format = data[6];
-                            string language = data[7];
-
-                            addBook(id, name, price, amount, author, genre, format, language);
-                        }
-                    }
-                }
-
-                else
-                {
-                    throw new Exception("File not found");
-                }
-            }
-
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message);
-            }
+            inventory.importBooks();
+            inventory.importGames();
+            inventory.importFilms();
         }
 
-        public void importGames()
+        //handler methods for adding items to inventory
+        public void addBookToInventory(int id, string name, int price, int amount, string author, string genre, string format, string language)
         {
-            try
-            {
-                string fileName = "gamesFile.csv";
-
-                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
-
-                if (File.Exists(filePath))
-                {
-                    using (StreamReader reader = new StreamReader(filePath))
-                    {
-                        //the first line is not saved
-                        reader.ReadLine();
-                        string line;
-                        while ((line = reader.ReadLine()) != null)
-                        {
-                            line = String.Join(" ", line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-                            string[] data = line.Split(',');
-
-                            int id = int.Parse(data[0]);
-                            string name = data[1];
-                            int price = int.Parse(data[2]);
-                            int amount = int.Parse(data[3]);
-                            string plattform = data[4];
-
-                            addGame(id, name, price, amount, plattform);
-                        }
-                    }
-                }
-
-                else
-                {
-                    throw new Exception("File not found");
-                }
-            }
-
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message);
-            }
+            inventory.addBook(id, name, price, amount, author, genre, format, language);
         }
 
-        public void importFilms()
+        public void addGameToInventory(int id, string name, int price, int amount, string plattform)
         {
-            try
-            {
-                string fileName = "filmsFile.csv";
-
-                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
-
-                if (File.Exists(filePath))
-                {
-                    using (StreamReader reader = new StreamReader(filePath))
-                    {
-                        reader.ReadLine();
-                        string line;
-                        while ((line = reader.ReadLine()) != null)
-                        {
-                            line = String.Join(" ", line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-                            string[] data = line.Split(',');
-
-                            int id = int.Parse(data[0]);
-                            string name = data[1];
-                            int price = int.Parse(data[2]);
-                            int amount = int.Parse(data[3]);
-                            string format = data[4];
-                            int time = int.Parse(data[5]);
-
-
-                            addFilm(id, name, price, amount, format, time);
-
-                            //filmSource.DataSource = inventory.filmList;
-                        }
-                    }
-                }
-
-                else
-                {
-                    throw new Exception("File not found");
-                }
-            }
-
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message);
-            }
+            inventory.addGame(id, name, price, amount, plattform);
         }
 
+        public void addFilmToInventory(int id, string name, int price, int amount, string format, int time)
+        {
+            inventory.addFilm(id, name, price, amount, format, time);
+        }
+
+        public void removeBookFromInventory(int id)
+        {
+            Book book = inventory.findBook(id);
+            inventory.removeBook(book);
+        }
+
+        public void removeGameFromInventory(int id)
+        {
+            Videogame game = inventory.findGame(id);
+            inventory.removeGame(game);
+        }
+
+        public void removeFilmFromInventory(int id)
+        {
+            Film film = inventory.findFilm(id);
+            inventory.removeFilm(film);
+        }
+
+
+        public Item getItemFromInventory(int id)
+        {
+            Item item = inventory.findItem(id);
+            return item;
+        }
+
+        public Book getBookFromInventory(int id)
+        {
+            return inventory.findBook(id);
+        }
+
+        public Videogame getGameFromInventory(int id)
+        {
+            return inventory.findGame(id);
+        }
+
+        public Film getFilmFromInventory(int id)
+        {
+            return inventory.findFilm(id);
+        }
+
+        //update CSV.file
         public void updateBookFile()
         {
             try
@@ -302,6 +215,7 @@ namespace Laboration4Affärssystem
             }
         }
 
+        //select item 
         public Item selectBook(DataGridViewRow row)
         {
             Item item = inventory.bookList[row.Index];
@@ -319,116 +233,7 @@ namespace Laboration4Affärssystem
             Item item = inventory.filmList[row.Index];
             return item;
         }
-
-        public void removeBook(int id)
-        {
-            Book book = inventory.bookList.SingleOrDefault(p => p.ID == id);
-            if (book.Amount > 0)
-            {
-                DialogResult result = MessageBox.Show("Vill du verkligen ta bort varan?", "", MessageBoxButtons.YesNo);
-
-                if (result == DialogResult.Yes)
-                {
-                    inventory.bookList.Remove(book);
-                }
-                else
-                {
-                    return;
-                }
-            }
-
-        }
-
-        public void removeGame(int id)
-        {
-            Videogame game = inventory.gameList.SingleOrDefault(p => p.ID == id);
-
-            if (game.Amount > 0)
-            {
-                DialogResult result = MessageBox.Show("Vill du verkligen ta bort varan?", "", MessageBoxButtons.YesNo);
-
-                if (result == DialogResult.Yes)
-                {
-                    inventory.gameList.Remove(game);
-                }
-                else
-                {
-                    return;
-                }
-            }
-        }
-
-        public void removeFilm(int id)
-        {
-            Film film = inventory.filmList.SingleOrDefault(p => p.ID == id);
-
-            if (film.Amount > 0)
-            {
-                DialogResult result = MessageBox.Show("Vill du verkligen ta bort varan?", "", MessageBoxButtons.YesNo);
-
-                if (result == DialogResult.Yes)
-                {
-                    inventory.filmList.Remove(film);
-                }
-                else
-                {
-                    return;
-                }
-            }
-        }
-
-        public Book findBook(int id)
-        {
-            Book book = inventory.bookList.SingleOrDefault(p => p.ID == id);
-
-            return book;
-        }
-
-        public Videogame findGame(int id)
-        {
-            Videogame game = inventory.gameList.SingleOrDefault(p => p.ID == id);
-
-            return game;
-        }
-
-        public Film findFilm(int id)
-        {
-            Film film = inventory.filmList.SingleOrDefault(p => p.ID == id);
-
-            return film;
-        }
-
-        public Item findItem(int id)
-        {
-            Item item = null;
-
-            //search for the item in the book list
-            item = inventory.bookList.SingleOrDefault(p => p.ID == id);
-
-            if (item != null)
-            {
-                return item;
-            }
-
-            //if not found, search for the item in the videogame list
-            item = inventory.gameList.SingleOrDefault(p => p.ID == id);
-
-            if (item != null)
-            {
-                return item;
-            }
-
-            //if not found, search for the item in the film list
-            item = inventory.filmList.SingleOrDefault(p => p.ID == id);
-
-            if (item != null)
-            {
-                return item;
-            }
-
-            //if not found in any of the lists, throw an exception
-            throw new Exception("Item not found");
-        }
+        
         public bool checkID(int id)
         {
             if (inventory.bookList.Any(book => book.ID == id))
@@ -451,7 +256,7 @@ namespace Laboration4Affärssystem
 
         public void sellItem(int id, int amountSold)
         {
-            Item item = findItem(id);
+            Item item = inventory.findItem(id);
 
             if (item != null)
             {
@@ -474,7 +279,7 @@ namespace Laboration4Affärssystem
 
         public void AddItems(int id, int amount)
         {
-            Item item = findItem(id);
+            Item item = inventory.findItem(id);
 
             item.Add(amount);
         }
@@ -510,6 +315,49 @@ namespace Laboration4Affärssystem
             BindingSource resultSource = new BindingSource();
             resultSource.DataSource = resultList;
             return resultSource;
+        }
+
+        public void addTransactionToArchive(int id, int month, int year, int amount)
+        {
+            archive.addTransaction(id, month, year, amount);
+        }
+
+        public void updateTransactionFile()
+        {
+            try
+            {
+                string fileName = "transactions.csv";
+
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+
+                if (File.Exists(filePath))
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath, false))
+                    {
+                        writer.WriteLine("Id, Month, Year, Amount");
+                        foreach (Transaction transaction in archive.transactions)
+                        {
+                            writer.WriteLine($"{transaction.ID},{transaction.Month},{transaction.Year},{transaction.Amount}");
+                        }
+                    }
+                }
+
+                else
+                {
+                    using (StreamWriter writer = new StreamWriter(filePath))
+                    {
+                        writer.WriteLine("Id, Month, Year, Amount");
+                        foreach (Transaction transaction in archive.transactions)
+                        {
+                            writer.WriteLine($"{transaction.ID},{transaction.Month},{transaction.Year},{transaction.Amount}");
+                        }
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
         }
     }
 }

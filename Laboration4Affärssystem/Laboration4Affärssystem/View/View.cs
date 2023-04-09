@@ -29,9 +29,7 @@ namespace Laboration4Affärssystem
         {
             InitializeComponent();
 
-            controller.importBooks();
-            controller.importGames();
-            controller.importFilms();
+            controller.importData();
 
             controller.setBookSource(bookSource);
             controller.setGameSource(gameSource);
@@ -233,7 +231,7 @@ namespace Laboration4Affärssystem
                 if (gridViewResult.SelectedRows.Count > 0)
                 {
                     DataGridViewRow selectedRow = gridViewResult.SelectedRows[0];
-                    currentItem = controller.findItem(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
+                    currentItem = controller.getItemFromInventory(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
 
                     if (currentItem.GetType().Name == "Book")
                     {
@@ -328,7 +326,7 @@ namespace Laboration4Affärssystem
             {
                 DataGridViewRow selectedRow = gridViewLagerBok.SelectedRows[0];
 
-                Book book = controller.findBook(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
+                Book book = controller.getBookFromInventory(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
 
                 currentItem = book;
 
@@ -350,7 +348,7 @@ namespace Laboration4Affärssystem
             {
                 DataGridViewRow selectedRow = gridViewLagerSpel.SelectedRows[0];
 
-                Videogame game = controller.findGame(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
+                Videogame game = controller.getGameFromInventory(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
 
                 currentItem = game;
 
@@ -368,7 +366,7 @@ namespace Laboration4Affärssystem
             {
                 DataGridViewRow selectedRow = gridViewLagerFilm.SelectedRows[0];
 
-                Film film = controller.findFilm(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
+                Film film = controller.getFilmFromInventory(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
 
                 currentItem = film;
 
@@ -523,40 +521,22 @@ namespace Laboration4Affärssystem
         }
 
         //remove Items
-        private void removeBookButton_Click(object sender, EventArgs e)
+
+        private void removeItemButton_Click(object sender, EventArgs e)
         {
-            try
+            if(currentItem.GetType().Name == "Book")
             {
-                controller.removeBook(currentItem.ID);
+                controller.removeBookFromInventory(currentItem.ID);
             }
-            catch (Exception error)
+            
+            else if(currentItem.GetType().Name == "Videogame")
             {
-                MessageBox.Show(error.Message);
+                controller.removeGameFromInventory(currentItem.ID);
             }
 
-        }
-
-        private void removeGameButton_Click(object sender, EventArgs e)
-        {
-            try
+            else if (currentItem.GetType().Name == "Film")
             {
-                controller.removeGame(currentItem.ID);
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message);
-            }
-        }
-
-        private void removeFilmButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                controller.removeFilm(currentItem.ID);
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message);
+                controller.removeFilmFromInventory(currentItem.ID);
             }
         }
         
@@ -596,7 +576,7 @@ namespace Laboration4Affärssystem
                 string format = FormatBookText.Text;
                 string language = LanguageBookText.Text;
 
-                controller.addBook(id, name, price, amount, author, genre, format, language);
+                controller.addBookToInventory(id, name, price, amount, author, genre, format, language);
             }
             catch(Exception error)
             {
@@ -633,7 +613,7 @@ namespace Laboration4Affärssystem
                 int amount = int.Parse(AmountGameText.Text);
                 string plattform = PlattformGameText.Text;
 
-                controller.addGame(id, name, price, amount, plattform);
+                controller.addGameToInventory(id, name, price, amount, plattform);
             }
             catch(Exception error)
             {
@@ -677,7 +657,7 @@ namespace Laboration4Affärssystem
                 string format = FormatFilmText.Text;
                 int time = int.Parse(TimeFilmText.Text);
 
-                controller.addFilm(id, name, price, amount, format, time);
+                controller.addFilmToInventory(id, name, price, amount, format, time);
             }
             catch(Exception error)
             {
@@ -841,8 +821,12 @@ namespace Laboration4Affärssystem
             controller.updateBookFile();
             controller.updateGameFile();
             controller.updateFilmFile();
+            controller.updateTransactionFile();
         }
 
-      
+        private void emtypCartButton_Click(object sender, EventArgs e)
+        {
+            shoppingBasketList.Items.Clear();
+        }
     }
 }

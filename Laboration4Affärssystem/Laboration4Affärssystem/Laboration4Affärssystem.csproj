@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
+    <Compile Include="Model\TransactionArchive.cs" />
+    <Compile Include="Model\Transaction.cs" />
     <Compile Include="Model\Inventory.cs" />
     <Compile Include="View\RecieptForm.cs">
       <SubType>Form</SubType>
