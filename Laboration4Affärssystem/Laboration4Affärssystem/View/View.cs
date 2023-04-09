@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using Laboration4Affärssystem.Model;
+using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Laboration4Affärssystem
         public BindingSource bookSource = new BindingSource();
         public BindingSource gameSource = new BindingSource();
         public BindingSource filmSource = new BindingSource();
+        public BindingSource transactionsSource = new BindingSource();
 
         Controller controller = new Controller();
         
@@ -30,10 +32,12 @@ namespace Laboration4Affärssystem
             InitializeComponent();
 
             controller.importData();
+            controller.importTransactionData();
 
             controller.setBookSource(bookSource);
             controller.setGameSource(gameSource);
             controller.setFilmSource(filmSource);
+            controller.setTransactionSource(transactionsSource);
 
             addDataKassa(gridViewKassaBok, 1);
             addDataKassa(gridViewKassaSpel, 2);
@@ -42,6 +46,8 @@ namespace Laboration4Affärssystem
             addDataLager(gridViewLagerBok, 1);
             addDataLager(gridViewLagerSpel, 2);
             addDataLager(gridViewLagerFilm, 3);
+
+            addDataTransactions();
 
         }
 
@@ -509,6 +515,17 @@ namespace Laboration4Affärssystem
                     //show reciept 
                     controller.createReceipt(shoppingBasketList, total);
 
+                    foreach (ListViewItem item in shoppingBasketList.Items)
+                    {
+                        int id = int.Parse(item.SubItems[1].Text);
+                        int month = DateTime.Now.Month;
+                        int year = DateTime.Now.Year;
+                        int amount = int.Parse(item.SubItems[3].Text);
+                        controller.addTransactionToArchive(id, month, year, amount);
+                    }
+
+                    transactionsView.Refresh();
+
                     //empty shopping cart
                     shoppingBasketList.Items.Clear();
                 }
@@ -824,9 +841,75 @@ namespace Laboration4Affärssystem
             controller.updateTransactionFile();
         }
 
-        private void emtypCartButton_Click(object sender, EventArgs e)
+        private void emptyCartButton_Click(object sender, EventArgs e)
         {
             shoppingBasketList.Items.Clear();
+        }
+
+        public void addDataTransactions()
+        {
+            transactionsView.AutoGenerateColumns = false;
+
+            transactionsView.Columns.Add("ID", "ID");
+            transactionsView.Columns.Add("Month", "Månad");
+            transactionsView.Columns.Add("Year", "År");
+            transactionsView.Columns.Add("Amount", "Antal");
+
+
+            //Set column names
+            transactionsView.Columns["ID"].DataPropertyName = "ID";
+            transactionsView.Columns["Month"].DataPropertyName = "Month";
+            transactionsView.Columns["Year"].DataPropertyName = "Year";
+            transactionsView.Columns["Amount"].DataPropertyName = "Amount";
+
+            //Add data source
+            transactionsView.DataSource = transactionsSource;
+
+            transactionsView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+
+            filterView.AutoGenerateColumns = false;
+
+            filterView.Columns.Add("ID", "ID");
+            filterView.Columns.Add("Month", "Månad");
+            filterView.Columns.Add("Year", "År");
+            filterView.Columns.Add("Amount", "Antal");
+
+
+            //Set column names
+            filterView.Columns["ID"].DataPropertyName = "ID";
+            filterView.Columns["Month"].DataPropertyName = "Month";
+            filterView.Columns["Year"].DataPropertyName = "Year";
+            filterView.Columns["Amount"].DataPropertyName = "Amount";
+
+            //Add data source
+            filterView.DataSource = transactionsSource;
+
+            filterView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        private void viewArchiveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void archiveTab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string query = comboBox2.SelectedItem.ToString();
+
+            filterView.DataSource = controller.FilterMonth(query);
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string query = comboBox1.SelectedItem.ToString();
+            top10View.DataSource = controller.FilterYear(query);
         }
     }
 }

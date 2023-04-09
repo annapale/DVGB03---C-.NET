@@ -31,14 +31,7 @@ namespace Laboration4Affärssystem
 
             PriceLabel.Text = total.ToString();
 
-            foreach (ListViewItem item in receiptItemsList.Items)
-            {
-                int id = int.Parse(item.SubItems[1].Text);
-                int month = DateTime.Now.Month;
-                int year = DateTime.Now.Year;
-                int amount = int.Parse(item.SubItems[3].Text);
-                controller.addTransactionToArchive(id, month, year, amount);
-            }
+            
         }
 
         private void printReceiptButton_Click(object sender, EventArgs e)

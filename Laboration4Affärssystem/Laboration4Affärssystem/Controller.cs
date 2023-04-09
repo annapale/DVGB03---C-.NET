@@ -40,7 +40,7 @@ namespace Laboration4Affärssystem
         {
             inventory.importBooks();
             inventory.importGames();
-            inventory.importFilms();
+            inventory.importFilms();      
         }
 
         //handler methods for adding items to inventory
@@ -317,6 +317,52 @@ namespace Laboration4Affärssystem
             return resultSource;
         }
 
+        public BindingSource FilterMonth(string query)
+        {
+            BindingList<Transaction> filterList = new BindingList<Transaction>();
+
+            foreach (Transaction transaction in archive.transactions)
+            {
+                if (transaction.Month.ToString() == query) 
+                {
+                    filterList.Add(transaction);
+                }
+            }
+
+            BindingSource filterSource = new BindingSource();
+            filterSource.DataSource = filterList;
+            return filterSource;
+        }
+
+        public BindingSource FilterYear(string query)
+        {
+            BindingList<Transaction> filterList = new BindingList<Transaction>();
+
+            foreach (Transaction transaction in archive.transactions)
+            {
+                if (transaction.Year.ToString() == query)
+                {
+                    filterList.Add(transaction);
+                }
+            }
+
+            BindingSource filterSource = new BindingSource();
+
+            var groupedTransactions = filterList.GroupBy(t => new { t.ID },(key, g) => new { ID = key.ID, Amount = g.Sum(t => t.Amount) });
+
+            var orderedList = groupedTransactions.OrderByDescending(t => t.Amount).Take(5);
+
+            BindingList<object> mergedList = new BindingList<object>();
+            foreach (var group in orderedList)
+            {
+                var obj = new { ID = group.ID, Amount = group.Amount };
+                mergedList.Add(obj);
+            }
+
+            filterSource.DataSource = mergedList;
+            return filterSource;
+        }
+
         public void addTransactionToArchive(int id, int month, int year, int amount)
         {
             archive.addTransaction(id, month, year, amount);
@@ -358,6 +404,16 @@ namespace Laboration4Affärssystem
             {
                 MessageBox.Show(error.Message);
             }
+        }
+        
+        public void importTransactionData()
+        {
+            archive.importTransactions();
+        }
+
+        public void setTransactionSource(BindingSource source)
+        {
+            source.DataSource = archive.transactions;
         }
     }
 }
