@@ -21,6 +21,7 @@ namespace Laboration4Affärssystem.Model
         public BindingList<Film> filmList = new BindingList<Film>();
 
 
+        //add items
         public void addBook(int id, string name, int price, int amount, string author, string genre, string format, string language)
         {
             bookList.Add(new Book(id, name, price, amount, author, genre, format, language));
@@ -36,6 +37,8 @@ namespace Laboration4Affärssystem.Model
             filmList.Add(new Film(id, name, price, amount, format, time));
         }
 
+
+        //get data from csv.files
         public void importBooks()
         {
             try
@@ -44,10 +47,12 @@ namespace Laboration4Affärssystem.Model
 
                 string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
 
+                //check if there is a file throw exception otherwise
                 if (File.Exists(filePath))
                 {
                     using (StreamReader reader = new StreamReader(filePath))
                     {
+                        //skip first line
                         reader.ReadLine();
                         string line;
                         while ((line = reader.ReadLine()) != null)
@@ -55,8 +60,10 @@ namespace Laboration4Affärssystem.Model
                             //tar bort extra mellanrum
                             line = String.Join(" ", line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
 
+                            //split string to get array
                             string[] data = line.Split(',');
 
+                            //save values
                             int id = int.Parse(data[0]);
                             string name = data[1];
                             int price = int.Parse(data[2]);
@@ -95,7 +102,6 @@ namespace Laboration4Affärssystem.Model
                 {
                     using (StreamReader reader = new StreamReader(filePath))
                     {
-                        //the first line is not saved
                         reader.ReadLine();
                         string line;
                         while ((line = reader.ReadLine()) != null)
@@ -128,7 +134,7 @@ namespace Laboration4Affärssystem.Model
 
         public void importFilms()
         {
-            try
+           try
             {
                 string fileName = "filmsFile.csv";
 
@@ -154,13 +160,11 @@ namespace Laboration4Affärssystem.Model
 
 
                             addFilm(id, name, price, amount, format, time);
-
-                            //filmSource.DataSource = inventory.filmList;
                         }
                     }
                 }
 
-                else
+               else
                 {
                     throw new Exception("File not found");
                 }
@@ -172,6 +176,8 @@ namespace Laboration4Affärssystem.Model
             }
         }
 
+
+        //search items
         public Book findBook(int id)
         {
             Book book = bookList.SingleOrDefault(p => p.ID == id);
@@ -225,6 +231,8 @@ namespace Laboration4Affärssystem.Model
             throw new Exception("Item not found");
         }
 
+
+        //remove items
         public void removeBook(Book book)
         {
             bookList.Remove(book);
@@ -240,6 +248,42 @@ namespace Laboration4Affärssystem.Model
             filmList.Remove(film);
         }
 
+
+        //search in lists
+        public BindingSource search(string query)
+        {
+            //check every item in every list for query, add to resultList if name contains query
+            BindingList<Item> resultList = new BindingList<Item>();
+
+            foreach (Book item in bookList)
+            {
+                if (item.Name.Contains(query))
+                {
+                    resultList.Add(item);
+                }
+            }
+
+            foreach (Videogame item in gameList)
+            {
+                if (item.Name.Contains(query))
+                {
+                    resultList.Add(item);
+                }
+            }
+
+            foreach (Film item in filmList)
+            {
+                if (item.Name.Contains(query))
+                {
+                    resultList.Add(item);
+                }
+            }
+
+            //set and return bindingsource
+            BindingSource resultSource = new BindingSource();
+            resultSource.DataSource = resultList;
+            return resultSource;
+        }
 
     }
 }

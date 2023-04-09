@@ -115,25 +115,24 @@
             this.addFilmButton = new System.Windows.Forms.Button();
             this.gridViewLagerFilm = new System.Windows.Forms.DataGridView();
             this.archiveTab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.yearBox = new System.Windows.Forms.ComboBox();
+            this.totalAntalLabel = new System.Windows.Forms.Label();
+            this.monthBox = new System.Windows.Forms.ComboBox();
+            this.top10View = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.filterView = new System.Windows.Forms.DataGridView();
+            this.label20 = new System.Windows.Forms.Label();
             this.transactionsView = new System.Windows.Forms.DataGridView();
             this.gridViewResult = new System.Windows.Forms.DataGridView();
             this.searchInput = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.viewArchiveButton = new System.Windows.Forms.Button();
-            this.label20 = new System.Windows.Forms.Label();
-            this.filterView = new System.Windows.Forms.DataGridView();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.top10View = new System.Windows.Forms.DataGridView();
-            this.monthBox = new System.Windows.Forms.ComboBox();
-            this.totalAntalLabel = new System.Windows.Forms.Label();
-            this.yearBox = new System.Windows.Forms.ComboBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControlKassa.SuspendLayout();
@@ -155,11 +154,11 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerFilm)).BeginInit();
             this.archiveTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.top10View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.filterView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.filterView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.top10View)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -337,6 +336,7 @@
             this.gridViewKassaBok.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewKassaBok.Location = new System.Drawing.Point(6, 6);
             this.gridViewKassaBok.Name = "gridViewKassaBok";
+            this.gridViewKassaBok.ReadOnly = true;
             this.gridViewKassaBok.Size = new System.Drawing.Size(838, 169);
             this.gridViewKassaBok.TabIndex = 5;
             this.gridViewKassaBok.SelectionChanged += new System.EventHandler(this.gridViewKassaBok_SelectionChanged);
@@ -384,10 +384,14 @@
             // 
             // gridViewKassaSpel
             // 
+            this.gridViewKassaSpel.AllowUserToAddRows = false;
+            this.gridViewKassaSpel.AllowUserToDeleteRows = false;
+            this.gridViewKassaSpel.BackgroundColor = System.Drawing.Color.Lavender;
             this.gridViewKassaSpel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewKassaSpel.Location = new System.Drawing.Point(6, 6);
             this.gridViewKassaSpel.Name = "gridViewKassaSpel";
-            this.gridViewKassaSpel.Size = new System.Drawing.Size(631, 146);
+            this.gridViewKassaSpel.ReadOnly = true;
+            this.gridViewKassaSpel.Size = new System.Drawing.Size(631, 169);
             this.gridViewKassaSpel.TabIndex = 0;
             this.gridViewKassaSpel.SelectionChanged += new System.EventHandler(this.gridViewKassaSpel_SelectionChanged);
             // 
@@ -434,17 +438,20 @@
             // 
             // gridViewKassaFilm
             // 
+            this.gridViewKassaFilm.AllowUserToAddRows = false;
+            this.gridViewKassaFilm.AllowUserToDeleteRows = false;
+            this.gridViewKassaFilm.BackgroundColor = System.Drawing.Color.Lavender;
             this.gridViewKassaFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewKassaFilm.Location = new System.Drawing.Point(6, 6);
             this.gridViewKassaFilm.Name = "gridViewKassaFilm";
-            this.gridViewKassaFilm.Size = new System.Drawing.Size(726, 146);
+            this.gridViewKassaFilm.ReadOnly = true;
+            this.gridViewKassaFilm.Size = new System.Drawing.Size(726, 172);
             this.gridViewKassaFilm.TabIndex = 0;
             this.gridViewKassaFilm.SelectionChanged += new System.EventHandler(this.gridViewKassaFilm_SelectionChanged);
             // 
             // lagerTab
             // 
             this.lagerTab.BackColor = System.Drawing.Color.DimGray;
-            this.lagerTab.Controls.Add(this.viewArchiveButton);
             this.lagerTab.Controls.Add(this.tabControlLager);
             this.lagerTab.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lagerTab.Location = new System.Drawing.Point(4, 30);
@@ -853,10 +860,13 @@
             // 
             // gridViewLagerSpel
             // 
+            this.gridViewLagerSpel.AllowUserToAddRows = false;
+            this.gridViewLagerSpel.AllowUserToDeleteRows = false;
             this.gridViewLagerSpel.BackgroundColor = System.Drawing.Color.Lavender;
             this.gridViewLagerSpel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewLagerSpel.Location = new System.Drawing.Point(6, 6);
             this.gridViewLagerSpel.Name = "gridViewLagerSpel";
+            this.gridViewLagerSpel.ReadOnly = true;
             this.gridViewLagerSpel.Size = new System.Drawing.Size(291, 286);
             this.gridViewLagerSpel.TabIndex = 0;
             this.gridViewLagerSpel.SelectionChanged += new System.EventHandler(this.gridViewLagerSpel_SelectionChanged);
@@ -1049,16 +1059,20 @@
             // 
             // gridViewLagerFilm
             // 
+            this.gridViewLagerFilm.AllowUserToAddRows = false;
+            this.gridViewLagerFilm.AllowUserToDeleteRows = false;
             this.gridViewLagerFilm.BackgroundColor = System.Drawing.Color.Lavender;
             this.gridViewLagerFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewLagerFilm.Location = new System.Drawing.Point(6, 6);
             this.gridViewLagerFilm.Name = "gridViewLagerFilm";
+            this.gridViewLagerFilm.ReadOnly = true;
             this.gridViewLagerFilm.Size = new System.Drawing.Size(291, 286);
             this.gridViewLagerFilm.TabIndex = 0;
             this.gridViewLagerFilm.SelectionChanged += new System.EventHandler(this.gridViewLagerFilm_SelectionChanged);
             // 
             // archiveTab
             // 
+            this.archiveTab.BackColor = System.Drawing.Color.Lavender;
             this.archiveTab.Controls.Add(this.button1);
             this.archiveTab.Controls.Add(this.label27);
             this.archiveTab.Controls.Add(this.label26);
@@ -1079,15 +1093,157 @@
             this.archiveTab.Size = new System.Drawing.Size(872, 457);
             this.archiveTab.TabIndex = 2;
             this.archiveTab.Text = "Archive";
-            this.archiveTab.UseVisualStyleBackColor = true;
-            this.archiveTab.Click += new System.EventHandler(this.archiveTab_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(749, 41);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 32);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Filter";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(590, 15);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(68, 21);
+            this.label27.TabIndex = 14;
+            this.label27.Text = "Månad";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(687, 15);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(28, 21);
+            this.label26.TabIndex = 13;
+            this.label26.Text = "År";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(407, 36);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(28, 21);
+            this.label25.TabIndex = 12;
+            this.label25.Text = "År";
+            // 
+            // yearBox
+            // 
+            this.yearBox.FormattingEnabled = true;
+            this.yearBox.Items.AddRange(new object[] {
+            "2023",
+            "2022"});
+            this.yearBox.Location = new System.Drawing.Point(674, 44);
+            this.yearBox.Name = "yearBox";
+            this.yearBox.Size = new System.Drawing.Size(50, 29);
+            this.yearBox.TabIndex = 11;
+            // 
+            // totalAntalLabel
+            // 
+            this.totalAntalLabel.AutoSize = true;
+            this.totalAntalLabel.Location = new System.Drawing.Point(646, 83);
+            this.totalAntalLabel.Name = "totalAntalLabel";
+            this.totalAntalLabel.Size = new System.Drawing.Size(92, 21);
+            this.totalAntalLabel.TabIndex = 10;
+            this.totalAntalLabel.Text = "totalAntal";
+            // 
+            // monthBox
+            // 
+            this.monthBox.FormattingEnabled = true;
+            this.monthBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"});
+            this.monthBox.Location = new System.Drawing.Point(593, 44);
+            this.monthBox.Name = "monthBox";
+            this.monthBox.Size = new System.Drawing.Size(65, 29);
+            this.monthBox.TabIndex = 9;
+            // 
+            // top10View
+            // 
+            this.top10View.AllowUserToAddRows = false;
+            this.top10View.AllowUserToDeleteRows = false;
+            this.top10View.BackgroundColor = System.Drawing.Color.DimGray;
+            this.top10View.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.top10View.Location = new System.Drawing.Point(308, 95);
+            this.top10View.Name = "top10View";
+            this.top10View.ReadOnly = true;
+            this.top10View.Size = new System.Drawing.Size(219, 356);
+            this.top10View.TabIndex = 7;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "2023",
+            "2022"});
+            this.comboBox1.Location = new System.Drawing.Point(359, 60);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 29);
+            this.comboBox1.TabIndex = 6;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(368, 15);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(96, 21);
+            this.label22.TabIndex = 5;
+            this.label22.Text = "top-10-lista";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(524, 140);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(0, 21);
+            this.label21.TabIndex = 4;
+            // 
+            // filterView
+            // 
+            this.filterView.AllowUserToAddRows = false;
+            this.filterView.AllowUserToDeleteRows = false;
+            this.filterView.BackgroundColor = System.Drawing.Color.DimGray;
+            this.filterView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.filterView.Location = new System.Drawing.Point(533, 107);
+            this.filterView.Name = "filterView";
+            this.filterView.ReadOnly = true;
+            this.filterView.Size = new System.Drawing.Size(336, 344);
+            this.filterView.TabIndex = 3;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(111, 15);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(40, 21);
+            this.label20.TabIndex = 2;
+            this.label20.Text = "Alla";
             // 
             // transactionsView
             // 
+            this.transactionsView.AllowUserToAddRows = false;
+            this.transactionsView.AllowUserToDeleteRows = false;
+            this.transactionsView.BackgroundColor = System.Drawing.Color.DimGray;
             this.transactionsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.transactionsView.Location = new System.Drawing.Point(6, 44);
             this.transactionsView.Name = "transactionsView";
-            this.transactionsView.Size = new System.Drawing.Size(259, 407);
+            this.transactionsView.ReadOnly = true;
+            this.transactionsView.Size = new System.Drawing.Size(291, 407);
             this.transactionsView.TabIndex = 1;
             // 
             // gridViewResult
@@ -1131,149 +1287,6 @@
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
-            // viewArchiveButton
-            // 
-            this.viewArchiveButton.BackColor = System.Drawing.Color.Lavender;
-            this.viewArchiveButton.Location = new System.Drawing.Point(13, 401);
-            this.viewArchiveButton.Name = "viewArchiveButton";
-            this.viewArchiveButton.Size = new System.Drawing.Size(121, 34);
-            this.viewArchiveButton.TabIndex = 8;
-            this.viewArchiveButton.Text = "Archive";
-            this.viewArchiveButton.UseVisualStyleBackColor = false;
-            this.viewArchiveButton.Click += new System.EventHandler(this.viewArchiveButton_Click);
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(111, 15);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(40, 21);
-            this.label20.TabIndex = 2;
-            this.label20.Text = "Alla";
-            // 
-            // filterView
-            // 
-            this.filterView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.filterView.Location = new System.Drawing.Point(528, 107);
-            this.filterView.Name = "filterView";
-            this.filterView.Size = new System.Drawing.Size(336, 344);
-            this.filterView.TabIndex = 3;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(524, 140);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(0, 21);
-            this.label21.TabIndex = 4;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(322, 15);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(96, 21);
-            this.label22.TabIndex = 5;
-            this.label22.Text = "top-10-lista";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "2023",
-            "2022"});
-            this.comboBox1.Location = new System.Drawing.Point(312, 60);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 29);
-            this.comboBox1.TabIndex = 6;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // top10View
-            // 
-            this.top10View.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.top10View.Location = new System.Drawing.Point(287, 95);
-            this.top10View.Name = "top10View";
-            this.top10View.Size = new System.Drawing.Size(219, 356);
-            this.top10View.TabIndex = 7;
-            // 
-            // monthBox
-            // 
-            this.monthBox.FormattingEnabled = true;
-            this.monthBox.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12"});
-            this.monthBox.Location = new System.Drawing.Point(593, 44);
-            this.monthBox.Name = "monthBox";
-            this.monthBox.Size = new System.Drawing.Size(65, 29);
-            this.monthBox.TabIndex = 9;
-            // 
-            // totalAntalLabel
-            // 
-            this.totalAntalLabel.AutoSize = true;
-            this.totalAntalLabel.Location = new System.Drawing.Point(646, 83);
-            this.totalAntalLabel.Name = "totalAntalLabel";
-            this.totalAntalLabel.Size = new System.Drawing.Size(92, 21);
-            this.totalAntalLabel.TabIndex = 10;
-            this.totalAntalLabel.Text = "totalAntal";
-            // 
-            // yearBox
-            // 
-            this.yearBox.FormattingEnabled = true;
-            this.yearBox.Items.AddRange(new object[] {
-            "2023",
-            "2022"});
-            this.yearBox.Location = new System.Drawing.Point(674, 44);
-            this.yearBox.Name = "yearBox";
-            this.yearBox.Size = new System.Drawing.Size(50, 29);
-            this.yearBox.TabIndex = 11;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(355, 36);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(28, 21);
-            this.label25.TabIndex = 12;
-            this.label25.Text = "År";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(687, 15);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(28, 21);
-            this.label26.TabIndex = 13;
-            this.label26.Text = "År";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(590, 15);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(68, 21);
-            this.label27.TabIndex = 14;
-            this.label27.Text = "Månad";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(749, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 32);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Filter";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1314,11 +1327,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewLagerFilm)).EndInit();
             this.archiveTab.ResumeLayout(false);
             this.archiveTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.top10View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.filterView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewResult)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.filterView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.top10View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1418,7 +1431,6 @@
         private System.Windows.Forms.Button emptyCartButton;
         private System.Windows.Forms.TabPage archiveTab;
         private System.Windows.Forms.DataGridView transactionsView;
-        private System.Windows.Forms.Button viewArchiveButton;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.DataGridView filterView;
         private System.Windows.Forms.Label label20;

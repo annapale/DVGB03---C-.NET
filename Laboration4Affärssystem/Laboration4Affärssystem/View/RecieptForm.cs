@@ -14,66 +14,87 @@ namespace Laboration4Affärssystem
 {
     public partial class RecieptForm : Form
     {
-        Controller controller = new Controller();
-        
 
         public RecieptForm(ListView shoppingBasket, int total)
         {
             InitializeComponent();
 
-            DateTimeLabel.Text = DateTime.Now.ToString();
-
-            foreach (ListViewItem item in shoppingBasket.Items)
+            try
             {
-                ListViewItem receiptItem = (ListViewItem)item.Clone();
-                receiptItemsList.Items.Add(receiptItem);
-            }
+                DateTimeLabel.Text = DateTime.Now.ToString();
 
-            PriceLabel.Text = total.ToString();
+                //clone shippingcart items
+                foreach (ListViewItem item in shoppingBasket.Items)
+                {
+                    ListViewItem receiptItem = (ListViewItem)item.Clone();
+                    receiptItemsList.Items.Add(receiptItem);
+                }
+
+                PriceLabel.Text = total.ToString();
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
 
             
         }
 
         private void printReceiptButton_Click(object sender, EventArgs e)
         {
-            PrintDocument pd = new PrintDocument();
-            pd.PrintPage += new PrintPageEventHandler(PrintReceipt);
-
-            // Display the PrintDialog to get the user's printer and print settings
-            PrintDialog printDialog = new PrintDialog();
-            printDialog.Document = pd;
-            if (printDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                // Set the printer settings and start the printing process
-                pd.PrinterSettings = printDialog.PrinterSettings;
-                pd.Print();
+                PrintDocument pd = new PrintDocument();
+                pd.PrintPage += new PrintPageEventHandler(PrintReceipt);
+
+                //display print dialog
+                PrintDialog printDialog = new PrintDialog();
+                printDialog.Document = pd;
+                if (printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //start printing
+                    pd.PrinterSettings = printDialog.PrinterSettings;
+                    pd.Print();
+                }
             }
+            catch(Exception error )
+            {
+                MessageBox.Show(error.Message);
+            }
+            
         }
 
         private void PrintReceipt(object sender, PrintPageEventArgs e)
         {
-            // Define the font and brush to use for printing
-            Font font = new Font("Times New Roman", 16);
-            Brush brush = Brushes.Black;
-
-            // Calculate the position of the next line of text
-            int lineHeight = font.Height + 5;
-            int x = 100;
-            int y = 100;
-
-            // Print the transaction details on the page
-            e.Graphics.DrawString("Kvitto", font, brush, new PointF(x, y));
-            y += lineHeight;
-            e.Graphics.DrawString("Datum: " + DateTime.Now.ToString(), font, brush, new PointF(x, y));
-            y += lineHeight;
-            
-            foreach (ListViewItem item in receiptItemsList.Items)
+            try
             {
+                // set font, brush and line height
+                Font font = new Font("Times New Roman", 16);
+                Brush brush = Brushes.Black;
+
+                int lineHeight = font.Height + 5;
+                int x = 100;
+                int y = 100;
+
+                //print info
+                e.Graphics.DrawString("Kvitto", font, brush, new PointF(x, y));
                 y += lineHeight;
-                e.Graphics.DrawString(item.SubItems[3].Text + "x" + item.SubItems[1].Text + "   " + item.SubItems[2].Text + "kr" , font, brush, new PointF(x, y));
+                e.Graphics.DrawString("Datum: " + DateTime.Now.ToString(), font, brush, new PointF(x, y));
+                y += lineHeight;
+
+                foreach (ListViewItem item in receiptItemsList.Items)
+                {
+                    y += lineHeight;
+                    e.Graphics.DrawString(item.SubItems[4].Text + " x " + item.SubItems[2].Text + "   " + item.SubItems[3].Text + "kr", font, brush, new PointF(x, y));
+                }
+                y += lineHeight;
+                e.Graphics.DrawString("Total: " + PriceLabel.Text.ToString() + "kr", font, brush, new PointF(x, y));
             }
-            y += lineHeight;
-            e.Graphics.DrawString("Total: " + PriceLabel.Text.ToString() + "kr", font, brush, new PointF(x, y));
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
         }
     }
 }

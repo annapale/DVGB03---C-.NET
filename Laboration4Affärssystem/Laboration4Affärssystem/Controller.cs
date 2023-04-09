@@ -20,6 +20,7 @@ namespace Laboration4Affärssystem
         Inventory inventory = new Inventory();
         TransactionArchive archive = new TransactionArchive();
 
+        //set sources
         public void setBookSource(BindingSource source)
         {
             source.DataSource = inventory.bookList;   
@@ -35,6 +36,7 @@ namespace Laboration4Affärssystem
             source.DataSource = inventory.filmList;
         }
 
+
         //get items from database and add to lists
         public void importData()
         {
@@ -42,6 +44,7 @@ namespace Laboration4Affärssystem
             inventory.importGames();
             inventory.importFilms();      
         }
+
 
         //handler methods for adding items to inventory
         public void addBookToInventory(int id, string name, int price, int amount, string author, string genre, string format, string language)
@@ -59,6 +62,8 @@ namespace Laboration4Affärssystem
             inventory.addFilm(id, name, price, amount, format, time);
         }
 
+
+        //handler methods for removing items
         public void removeBookFromInventory(int id)
         {
             Book book = inventory.findBook(id);
@@ -78,6 +83,7 @@ namespace Laboration4Affärssystem
         }
 
 
+        //handler methods for returning items
         public Item getItemFromInventory(int id)
         {
             Item item = inventory.findItem(id);
@@ -99,7 +105,8 @@ namespace Laboration4Affärssystem
             return inventory.findFilm(id);
         }
 
-        //update CSV.file
+
+        //update CSV.files
         public void updateBookFile()
         {
             try
@@ -108,11 +115,15 @@ namespace Laboration4Affärssystem
 
                 string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
 
+                //check if there is a bookFile already, save to it if there is, create new one if not
                 if (File.Exists(filePath))
                 {
                     using (StreamWriter writer = new StreamWriter(filePath, false))
                     {
+                        //write headers in first line
                         writer.WriteLine("Id, Name, Price, Amount, Author, Genre, Format, Language");
+
+                        //write books into file
                         foreach (Book book in inventory.bookList)
                         {
                             writer.WriteLine($"{book.ID},{book.Name},{book.Price},{book.Amount},{book.Author},{book.Genre},{book.Format},{book.Language}");
@@ -125,7 +136,7 @@ namespace Laboration4Affärssystem
                     using (StreamWriter writer = new StreamWriter(filePath))
                     {
                         writer.WriteLine("Id, Name, Price, Amount, Author, Genre, Format, Language");
-                        //int id, string name, int price, int amount, string author, string genre, string format, string language
+                        
                         foreach (Book book in inventory.bookList)
                         {
                             writer.WriteLine($"{book.ID},{book.Name},{book.Price},{book.Amount},{book.Author},{book.Genre},{book.Format},{book.Language}");
@@ -214,7 +225,9 @@ namespace Laboration4Affärssystem
                 MessageBox.Show(error.Message);
             }
         }
-        
+
+
+        //check if id exists 
         public bool checkID(int id)
         {
             if (inventory.bookList.Any(book => book.ID == id))
@@ -235,8 +248,11 @@ namespace Laboration4Affärssystem
             }
         }
 
+
+        //sell item
         public void sellItem(int id, int amountSold)
         {
+            //find item in list
             Item item = inventory.findItem(id);
 
             if (item != null)
@@ -247,122 +263,57 @@ namespace Laboration4Affärssystem
                 }
                 else
                 {
+                    //sell item
                     item.Sell(amountSold);
                 }
             }
         }
 
+
+        //open Receipt form
         public void createReceipt(ListView shoppingBasket, int total)
         {
             RecieptForm receipt = new RecieptForm(shoppingBasket, total);
             receipt.ShowDialog();
         }
 
-        public void AddItems(int id, int amount)
+        //add item
+        public void addItems(int id, int amount)
         {
+            //find item
             Item item = inventory.findItem(id);
 
             item.Add(amount);
         }
 
-        public BindingSource Search(string query)
+
+        //handler methods for searching and filtering
+        public BindingSource searchInInventory(string query)
         {
-            BindingList<Item> resultList = new BindingList<Item>();
-            
-            foreach (Book item in inventory.bookList)
-            {
-                if (item.Name.Contains(query))
-                {
-                    resultList.Add(item);
-                }
-            }
-
-            foreach (Videogame item in inventory.gameList)
-            {
-                if(item.Name.Contains(query))
-                {
-                    resultList.Add(item);
-                }
-            }
-
-            foreach (Film item in inventory.filmList)
-            {
-                if (item.Name.Contains(query))
-                {
-                    resultList.Add(item);
-                }
-            }
-
-            BindingSource resultSource = new BindingSource();
-            resultSource.DataSource = resultList;
-            return resultSource;
+            BindingSource source = inventory.search(query);
+            return source;
         }
 
-        public (BindingSource, int total) filter(string queryMonth, string queryYear)
+        public (BindingSource, int) filterTransactions(string queryMonth, string queryYear)
         {
-            BindingList<Transaction> temporary = new BindingList<Transaction>();
-            BindingList<Transaction> filterList = new BindingList<Transaction>();
-
-            foreach (Transaction transaction in archive.transactions)
-            {
-                if (transaction.Month.ToString() == queryMonth) 
-                {
-                    temporary.Add(transaction);
-                }
-            }
-
-            foreach (Transaction transaction in temporary)
-            {
-                if(transaction.Year.ToString() == queryYear)
-                {
-                    filterList.Add(transaction);
-                }
-            }
-
-            int total = 0;
-            foreach (Transaction transaction in filterList)
-            {
-                total += transaction.Amount;
-            }
-            BindingSource filterSource = new BindingSource();
-            filterSource.DataSource = filterList;
-            return (filterSource, total);
+            (BindingSource source, int total) = archive.filter(queryMonth, queryYear);
+            return (source, total);
         }
 
-        public BindingSource FilterYear(string query)
+        public BindingSource getTop10Transactions(string query)
         {
-            BindingList<Transaction> filterList = new BindingList<Transaction>();
-
-            foreach (Transaction transaction in archive.transactions)
-            {
-                if (transaction.Year.ToString() == query)
-                {
-                    filterList.Add(transaction);
-                }
-            }
-
-            BindingSource filterSource = new BindingSource();
-
-            var groupedTransactions = filterList.GroupBy(t => new { t.ID },(key, g) => new { ID = key.ID, Amount = g.Sum(t => t.Amount) });
-
-            var orderedList = groupedTransactions.OrderByDescending(t => t.Amount).Take(10);
-
-            BindingList<object> mergedList = new BindingList<object>();
-            foreach (var group in orderedList)
-            {
-                var obj = new { ID = group.ID, Amount = group.Amount };
-                mergedList.Add(obj);
-            }
-
-            filterSource.DataSource = mergedList;
-            return filterSource;
+            BindingSource source = archive.getTop10(query);
+            return source;
         }
 
+
+        //add transaction 
         public void addTransactionToArchive(int id, int month, int year, int amount)
         {
             archive.addTransaction(id, month, year, amount);
         }
 
+        //update transaction file
         public void updateTransactionFile()
         {
             try
@@ -401,6 +352,8 @@ namespace Laboration4Affärssystem
             }
         }
         
+
+        //handler method for importing transactions
         public void importTransactionData()
         {
             archive.importTransactions();

@@ -31,168 +31,192 @@ namespace Laboration4Affärssystem
         {
             InitializeComponent();
 
-            controller.importData();
-            controller.importTransactionData();
+            try
+            {
+                controller.importData();
+                controller.importTransactionData();
 
-            controller.setBookSource(bookSource);
-            controller.setGameSource(gameSource);
-            controller.setFilmSource(filmSource);
-            controller.setTransactionSource(transactionsSource);
+                controller.setBookSource(bookSource);
+                controller.setGameSource(gameSource);
+                controller.setFilmSource(filmSource);
+                controller.setTransactionSource(transactionsSource);
 
-            addDataKassa(gridViewKassaBok, 1);
-            addDataKassa(gridViewKassaSpel, 2);
-            addDataKassa(gridViewKassaFilm, 3);
+                addDataKassa(gridViewKassaBok, 1);
+                addDataKassa(gridViewKassaSpel, 2);
+                addDataKassa(gridViewKassaFilm, 3);
 
-            addDataLager(gridViewLagerBok, 1);
-            addDataLager(gridViewLagerSpel, 2);
-            addDataLager(gridViewLagerFilm, 3);
+                addDataLager(gridViewLagerBok, 1);
+                addDataLager(gridViewLagerSpel, 2);
+                addDataLager(gridViewLagerFilm, 3);
 
-            addDataTransactions();
+                addDataTransactions();
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
 
         }
 
+        //add Data to DataGridViews
         private void addDataKassa(DataGridView table, int itemType)
         {
-            // Disable automatic column generation
-            table.AutoGenerateColumns = false;
-
-            switch (itemType)
+            try
             {
-                case 1:
-                    //Add books to DataGridView
-                    //Add columns
-                    table.Columns.Add("ID", "ID");
-                    table.Columns.Add("Name", "Namn");
-                    table.Columns.Add("Price", "Pris");
-                    table.Columns.Add("Author", "Författare");
-                    table.Columns.Add("Genre", "Genre");
-                    table.Columns.Add("Format", "Format");
-                    table.Columns.Add("Language", "Språk");
-                    table.Columns.Add("Amount", "Antal");
+                // Disable automatic column generation
+                table.AutoGenerateColumns = false;
 
-                    //Set column names
-                    table.Columns["ID"].DataPropertyName = "ID";
-                    table.Columns["Name"].DataPropertyName = "Name";
-                    table.Columns["Price"].DataPropertyName = "Price";
-                    table.Columns["Author"].DataPropertyName = "Author";
-                    table.Columns["Genre"].DataPropertyName = "Genre";
-                    table.Columns["Format"].DataPropertyName = "Format";
-                    table.Columns["Language"].DataPropertyName = "Language";
-                    table.Columns["Amount"].DataPropertyName = "Amount";
+                switch (itemType)
+                {
+                    case 1:
+                        //Add books to DataGridView
+                        //Add columns
+                        table.Columns.Add("ID", "ID");
+                        table.Columns.Add("Name", "Namn");
+                        table.Columns.Add("Price", "Pris");
+                        table.Columns.Add("Author", "Författare");
+                        table.Columns.Add("Genre", "Genre");
+                        table.Columns.Add("Format", "Format");
+                        table.Columns.Add("Language", "Språk");
+                        table.Columns.Add("Amount", "Antal");
 
-                    //Add data source
-                    table.DataSource = bookSource;
+                        //Set column names
+                        table.Columns["ID"].DataPropertyName = "ID";
+                        table.Columns["Name"].DataPropertyName = "Name";
+                        table.Columns["Price"].DataPropertyName = "Price";
+                        table.Columns["Author"].DataPropertyName = "Author";
+                        table.Columns["Genre"].DataPropertyName = "Genre";
+                        table.Columns["Format"].DataPropertyName = "Format";
+                        table.Columns["Language"].DataPropertyName = "Language";
+                        table.Columns["Amount"].DataPropertyName = "Amount";
 
-                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        //Add data source
+                        table.DataSource = bookSource;
 
-                    break;
+                        table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-                case 2:
-                    //Add games to DataGridView
-                    //Add columns
-                    table.Columns.Add("ID", "ID");
-                    table.Columns.Add("Name", "Namn");
-                    table.Columns.Add("Price", "Pris");
-                    table.Columns.Add("Plattform", "Plattform");
-                    table.Columns.Add("Amount", "Antal");
+                        break;
 
-                    //Set column names
-                    table.Columns["ID"].DataPropertyName = "ID";
-                    table.Columns["Name"].DataPropertyName = "Name";
-                    table.Columns["Price"].DataPropertyName = "Price";
-                    table.Columns["Plattform"].DataPropertyName = "Plattform";
-                    table.Columns["Amount"].DataPropertyName = "Amount";
+                    case 2:
+                        //Add games to DataGridView
+                        //Add columns
+                        table.Columns.Add("ID", "ID");
+                        table.Columns.Add("Name", "Namn");
+                        table.Columns.Add("Price", "Pris");
+                        table.Columns.Add("Plattform", "Plattform");
+                        table.Columns.Add("Amount", "Antal");
 
-                    //Add data source
-                    table.DataSource = gameSource;
+                        //Set column names
+                        table.Columns["ID"].DataPropertyName = "ID";
+                        table.Columns["Name"].DataPropertyName = "Name";
+                        table.Columns["Price"].DataPropertyName = "Price";
+                        table.Columns["Plattform"].DataPropertyName = "Plattform";
+                        table.Columns["Amount"].DataPropertyName = "Amount";
 
-                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                    break;
+                        //Add data source
+                        table.DataSource = gameSource;
 
-                case 3:
-                    //Add films to DataGridView
-                    //Add columns
-                    table.Columns.Add("ID", "ID");
-                    table.Columns.Add("Name", "Namn");
-                    table.Columns.Add("Price", "Pris");
-                    table.Columns.Add("Format", "Format");
-                    table.Columns.Add("Time", "Speltid");
-                    table.Columns.Add("Amount", "Antal");
+                        table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        break;
 
-                    //Set column names
-                    table.Columns["ID"].DataPropertyName = "ID";
-                    table.Columns["Name"].DataPropertyName = "Name";
-                    table.Columns["Price"].DataPropertyName = "Price";
-                    table.Columns["Format"].DataPropertyName = "Format";
-                    table.Columns["Time"].DataPropertyName = "Time";
-                    table.Columns["Amount"].DataPropertyName = "Amount";
+                    case 3:
+                        //Add films to DataGridView
+                        //Add columns
+                        table.Columns.Add("ID", "ID");
+                        table.Columns.Add("Name", "Namn");
+                        table.Columns.Add("Price", "Pris");
+                        table.Columns.Add("Format", "Format");
+                        table.Columns.Add("Time", "Speltid");
+                        table.Columns.Add("Amount", "Antal");
 
-                    //Add data source
-                    table.DataSource = filmSource;
+                        //Set column names
+                        table.Columns["ID"].DataPropertyName = "ID";
+                        table.Columns["Name"].DataPropertyName = "Name";
+                        table.Columns["Price"].DataPropertyName = "Price";
+                        table.Columns["Format"].DataPropertyName = "Format";
+                        table.Columns["Time"].DataPropertyName = "Time";
+                        table.Columns["Amount"].DataPropertyName = "Amount";
 
-                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        //Add data source
+                        table.DataSource = filmSource;
 
-                    break;
+                        table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                        break;
+                }
             }
-            
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }     
         }
 
         private void addDataLager(DataGridView table, int itemType)
         {
-            // Disable automatic column generation
-            table.AutoGenerateColumns = false;
-
-            switch (itemType)
+            try
             {
-                case 1:
-                    //Add books to DataGridView
-                    //Add columns
-                    table.Columns.Add("ID", "ID");
-                    table.Columns.Add("Name", "Namn");
+                // Disable automatic column generation
+                table.AutoGenerateColumns = false;
 
-                    //Set column names
-                    table.Columns["ID"].DataPropertyName = "ID";
-                    table.Columns["Name"].DataPropertyName = "Name";
+                switch (itemType)
+                {
+                    case 1:
+                        //Add books to DataGridView
+                        //Add columns
+                        table.Columns.Add("ID", "ID");
+                        table.Columns.Add("Name", "Namn");
 
-                    //Add data source
-                    table.DataSource = bookSource;
+                        //Set column names
+                        table.Columns["ID"].DataPropertyName = "ID";
+                        table.Columns["Name"].DataPropertyName = "Name";
 
-                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                    break;
+                        //Add data source
+                        table.DataSource = bookSource;
 
-                case 2:
-                    //Add games to DataGridView
-                    //Add columns
-                    table.Columns.Add("ID", "ID");
-                    table.Columns.Add("Name", "Namn");
+                        table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        break;
 
-                    //Set column names
-                    table.Columns["ID"].DataPropertyName = "ID";
-                    table.Columns["Name"].DataPropertyName = "Name";
+                    case 2:
+                        //Add games to DataGridView
+                        //Add columns
+                        table.Columns.Add("ID", "ID");
+                        table.Columns.Add("Name", "Namn");
 
-                    //Add data source
-                    table.DataSource = gameSource;
+                        //Set column names
+                        table.Columns["ID"].DataPropertyName = "ID";
+                        table.Columns["Name"].DataPropertyName = "Name";
 
-                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                    break;
+                        //Add data source
+                        table.DataSource = gameSource;
 
-                case 3:
-                    //Add films to DataGridView
-                    //Add columns
-                    table.Columns.Add("ID", "ID");
-                    table.Columns.Add("Name", "Namn");
+                        table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        break;
 
-                    //Set column names
-                    table.Columns["ID"].DataPropertyName = "ID";
-                    table.Columns["Name"].DataPropertyName = "Name";
+                    case 3:
+                        //Add films to DataGridView
+                        //Add columns
+                        table.Columns.Add("ID", "ID");
+                        table.Columns.Add("Name", "Namn");
 
-                    //Add data source
-                    table.DataSource = filmSource;
+                        //Set column names
+                        table.Columns["ID"].DataPropertyName = "ID";
+                        table.Columns["Name"].DataPropertyName = "Name";
 
-                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                    break;
+                        //Add data source
+                        table.DataSource = filmSource;
+
+                        table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        break;
+                }
             }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
         }
+
 
         //save selected row as current item
         private void gridViewKassaBok_SelectionChanged(object sender, EventArgs e)
@@ -202,7 +226,10 @@ namespace Laboration4Affärssystem
                 if (gridViewKassaBok.SelectedRows.Count > 0)
                 {
                     DataGridViewRow row = gridViewKassaBok.SelectedRows[0];
+
+                    //save selected item
                     currentItem = controller.getItemFromInventory(int.Parse(row.Cells[0].Value.ToString()));
+
                     //deselect any selected items in the other tables to avoid problems
                     deselectGame();
                     deselectFilm();
@@ -223,9 +250,12 @@ namespace Laboration4Affärssystem
                 if (gridViewKassaSpel.SelectedRows.Count > 0)
                 {
                     DataGridViewRow row = gridViewKassaSpel.SelectedRows[0];
+
+                    //save selected Item
                     currentItem = controller.getItemFromInventory(int.Parse(row.Cells[0].Value.ToString()));
+
                     //deselect any selected items in the other tables to avoid problems
-                    deselectGame();
+                    deselectBook();
                     deselectFilm();
                     deselectResult();
                 }
@@ -243,10 +273,12 @@ namespace Laboration4Affärssystem
                 if (gridViewKassaFilm.SelectedRows.Count > 0)
                 {
                     DataGridViewRow row = gridViewKassaFilm.SelectedRows[0];
+                    //save selected Item
                     currentItem = controller.getItemFromInventory(int.Parse(row.Cells[0].Value.ToString()));
+
                     //deselect any selected items in the other tables to avoid problems
                     deselectGame();
-                    deselectFilm();
+                    deselectBook();
                     deselectResult();
                 }
             }
@@ -256,7 +288,8 @@ namespace Laboration4Affärssystem
             }
         }
 
-        //automatically selects row in correct tab if the user selects a row in the search field
+
+        //selects row in correct tab if the user selects a row in the search field
         private void gridViewResult_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -264,6 +297,8 @@ namespace Laboration4Affärssystem
                 if (gridViewResult.SelectedRows.Count > 0)
                 {
                     DataGridViewRow selectedRow = gridViewResult.SelectedRows[0];
+
+                    //save selected item 
                     currentItem = controller.getItemFromInventory(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
 
                     if (currentItem.GetType().Name == "Book")
@@ -284,10 +319,12 @@ namespace Laboration4Affärssystem
                             }
                         }
 
+                        //search correct row
                         foreach (DataGridViewRow row in gridViewLagerBok.Rows)
                         {
                             if (row.Cells["ID"].Value.ToString() == currentItem.ID.ToString())
                             {
+                                //select row
                                 row.Selected = true;
 
                                 gridViewLagerBok.FirstDisplayedScrollingRowIndex = row.Index;
@@ -297,22 +334,28 @@ namespace Laboration4Affärssystem
 
                     if (currentItem.GetType().Name == "Videogame")
                     {
+                        //switch to correct tab 
                         tabControlKassa.SelectedTab = kassaGameTab;
                         tabControlLager.SelectedTab = lagerGamesTab;
+
+                        //search for row
                         foreach (DataGridViewRow row in gridViewKassaSpel.Rows)
                         {
                             if (row.Cells["ID"].Value.ToString() == currentItem.ID.ToString())
                             {
+                                //select row
                                 row.Selected = true;
 
                                 gridViewKassaSpel.FirstDisplayedScrollingRowIndex = row.Index;
                             }
                         }
 
+                        //search for row
                         foreach (DataGridViewRow row in gridViewLagerSpel.Rows)
                         {
                             if (row.Cells["ID"].Value.ToString() == currentItem.ID.ToString())
                             {
+                                //select row
                                 row.Selected = true;
 
                                 gridViewLagerSpel.FirstDisplayedScrollingRowIndex = row.Index;
@@ -322,22 +365,28 @@ namespace Laboration4Affärssystem
 
                     if (currentItem.GetType().Name == "Book")
                     {
+                        //switch to correct tab
                         tabControlKassa.SelectedTab = kassaFilmTab;
                         tabControlLager.SelectedTab = lagerFilmsTab;
+
+                        //search for row
                         foreach (DataGridViewRow row in gridViewKassaFilm.Rows)
                         {
                             if (row.Cells["ID"].Value.ToString() == currentItem.ID.ToString())
                             {
+                                //select row
                                 row.Selected = true;
 
                                 gridViewKassaFilm.FirstDisplayedScrollingRowIndex = row.Index;
                             }
                         }
 
+                        //search for row
                         foreach (DataGridViewRow row in gridViewLagerFilm.Rows)
                         {
                             if (row.Cells["ID"].Value.ToString() == currentItem.ID.ToString())
                             {
+                                //select row
                                 row.Selected = true;
 
                                 gridViewLagerFilm.FirstDisplayedScrollingRowIndex = row.Index;
@@ -352,65 +401,93 @@ namespace Laboration4Affärssystem
             }
         }
 
+
         //save selected row as current item and show info 
         private void gridViewLagerBok_SelectionChanged(object sender, EventArgs e)
         {
-            if (gridViewLagerBok.SelectedRows.Count > 0)
+            try
             {
-                DataGridViewRow selectedRow = gridViewLagerBok.SelectedRows[0];
+                if (gridViewLagerBok.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = gridViewLagerBok.SelectedRows[0];
 
-                Book book = controller.getBookFromInventory(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
+                    Book book = controller.getBookFromInventory(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
 
-                currentItem = book;
+                    currentItem = book;
 
-                //show information about selected item
-                IDBookText.Text = book.ID.ToString();
-                AmountBookText.Text = book.Amount.ToString();
-                NameBookText.Text = book.Name;
-                PriceBookText.Text = book.Price.ToString();
-                AuthorBookText.Text = book.Author;
-                GenreBookText.Text = book.Genre;
-                FormatBookText.Text = book.Format;
-                LanguageBookText.Text = book.Language;
+                    //show information about selected item
+                    IDBookText.Text = book.ID.ToString();
+                    AmountBookText.Text = book.Amount.ToString();
+                    NameBookText.Text = book.Name;
+                    PriceBookText.Text = book.Price.ToString();
+                    AuthorBookText.Text = book.Author;
+                    GenreBookText.Text = book.Genre;
+                    FormatBookText.Text = book.Format;
+                    LanguageBookText.Text = book.Language;
+                }
             }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
         }
 
         private void gridViewLagerSpel_SelectionChanged(object sender, EventArgs e)
         {
-            if (gridViewLagerSpel.SelectedRows.Count > 0)
+            try
             {
-                DataGridViewRow selectedRow = gridViewLagerSpel.SelectedRows[0];
+                if (gridViewLagerSpel.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = gridViewLagerSpel.SelectedRows[0];
 
-                Videogame game = controller.getGameFromInventory(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
+                    Videogame game = controller.getGameFromInventory(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
 
-                currentItem = game;
+                    currentItem = game;
 
-                IDGameText.Text = game.ID.ToString();
-                AmountGameText.Text = game.Amount.ToString();
-                NameGameText.Text = game.Name;
-                PriceGameText.Text = game.Price.ToString();
-                PlattformGameText.Text = game.Plattform;
+                    //show info
+                    IDGameText.Text = game.ID.ToString();
+                    AmountGameText.Text = game.Amount.ToString();
+                    NameGameText.Text = game.Name;
+                    PriceGameText.Text = game.Price.ToString();
+                    PlattformGameText.Text = game.Plattform;
+                }
             }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
         }
 
         private void gridViewLagerFilm_SelectionChanged(object sender, EventArgs e)
         {
-            if (gridViewLagerFilm.SelectedRows.Count > 0)
+            try
             {
-                DataGridViewRow selectedRow = gridViewLagerFilm.SelectedRows[0];
+                if (gridViewLagerFilm.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = gridViewLagerFilm.SelectedRows[0];
 
-                Film film = controller.getFilmFromInventory(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
+                    Film film = controller.getFilmFromInventory(int.Parse(selectedRow.Cells["ID"].Value.ToString()));
 
-                currentItem = film;
+                    currentItem = film;
 
-                IDFilmText.Text = film.ID.ToString();
-                AmountFilmText.Text = film.Amount.ToString();
-                NameFilmText.Text = film.Name;
-                PriceFilmText.Text = film.Price.ToString();
-                FormatFilmText.Text = film.Format;
-                TimeFilmText.Text = film.Time.ToString();
+                    //show info
+                    IDFilmText.Text = film.ID.ToString();
+                    AmountFilmText.Text = film.Amount.ToString();
+                    NameFilmText.Text = film.Name;
+                    PriceFilmText.Text = film.Price.ToString();
+                    FormatFilmText.Text = film.Format;
+                    TimeFilmText.Text = film.Time.ToString();
+                }
             }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+          
         }
+
 
         //deselect items
         private void deselectBook()
@@ -451,6 +528,7 @@ namespace Laboration4Affärssystem
                 selectedRow.Selected = false;
             }
         }
+
 
         //add currentItem to shoppingCart
         private void addToShoppingCartButton_Click(object sender, EventArgs e)
@@ -520,42 +598,45 @@ namespace Laboration4Affärssystem
             }
         }
 
-        //remove items in shoppingCart from inventory and open receiptForm
+
+        //remove items in shoppingCart from inventory, saves transactions and open receiptForm
         private void payButton_Click(object sender, EventArgs e)
         {
             try
             {
+                int total = 0;
                 foreach (ListViewItem listItem in shoppingBasketList.Items)
                 {
                     int listItemID = int.Parse(listItem.SubItems[1].Text);
                     int listItemAmount = int.Parse(listItem.SubItems[4].Text);
 
-                    int total = int.Parse(totalPriceTextBox.Text);
+                    total = int.Parse(totalPriceTextBox.Text);
 
                     controller.sellItem(listItemID, listItemAmount);
-
-                    //refresh lists
-                    gridViewKassaBok.Refresh();
-                    gridViewKassaSpel.Refresh();
-                    gridViewKassaFilm.Refresh();
-
-                    //show reciept 
-                    controller.createReceipt(shoppingBasketList, total);
-
-                    foreach (ListViewItem item in shoppingBasketList.Items)
-                    {
-                        int id = int.Parse(item.SubItems[1].Text);
-                        int month = DateTime.Now.Month;
-                        int year = DateTime.Now.Year;
-                        int amount = int.Parse(item.SubItems[4].Text);
-                        controller.addTransactionToArchive(id, month, year, amount);
-                    }
-
-                    transactionsView.Refresh();
-
-                    //empty shopping cart
-                    shoppingBasketList.Items.Clear();
                 }
+
+                //create Transaction
+                foreach (ListViewItem item in shoppingBasketList.Items)
+                {
+                    int id = int.Parse(item.SubItems[1].Text);
+                    int month = DateTime.Now.Month;
+                    int year = DateTime.Now.Year;
+                    int amount = int.Parse(item.SubItems[4].Text);
+                    controller.addTransactionToArchive(id, month, year, amount);
+                }
+
+                //show reciept 
+                controller.createReceipt(shoppingBasketList, total);
+
+                //refresh lists
+                gridViewKassaBok.Refresh();
+                gridViewKassaSpel.Refresh();
+                gridViewKassaFilm.Refresh();
+                transactionsView.Refresh();
+
+                //empty shopping cart
+                shoppingBasketList.Items.Clear();
+                
             }
             catch(Exception error)
             {
@@ -564,26 +645,39 @@ namespace Laboration4Affärssystem
             
         }
 
-        //remove Items
 
+        //remove Items
         private void removeItemButton_Click(object sender, EventArgs e)
         {
-            if(currentItem.GetType().Name == "Book")
+            try
             {
-                controller.removeBookFromInventory(currentItem.ID);
-            }
-            
-            else if(currentItem.GetType().Name == "Videogame")
-            {
-                controller.removeGameFromInventory(currentItem.ID);
-            }
+                if(currentItem == null)
+                {
+                    throw new Exception("Select item");
+                }
 
-            else if (currentItem.GetType().Name == "Film")
+                if (currentItem.GetType().Name == "Book")
+                {
+                    controller.removeBookFromInventory(currentItem.ID);
+                }
+
+                else if (currentItem.GetType().Name == "Videogame")
+                {
+                    controller.removeGameFromInventory(currentItem.ID);
+                }
+
+                else if (currentItem.GetType().Name == "Film")
+                {
+                    controller.removeFilmFromInventory(currentItem.ID);
+                }
+            }
+            catch(Exception error)
             {
-                controller.removeFilmFromInventory(currentItem.ID);
+                MessageBox.Show(error.Message);
             }
         }
         
+
         //add items
         private void addBookButton_Click(object sender, EventArgs e)
         {
@@ -633,6 +727,7 @@ namespace Laboration4Affärssystem
         {
             try
             {
+                //throw exception for wrong input
                 if (IDGameText.Text == "")
                 {
                     throw new Exception("Lägg till ett ID");
@@ -652,6 +747,8 @@ namespace Laboration4Affärssystem
                 {
                     throw new Exception("ID måste vara unik");
                 }
+
+                //get info and save items
                 string name = NameGameText.Text;
                 int price = int.Parse(PriceGameText.Text);
                 int amount = int.Parse(AmountGameText.Text);
@@ -670,6 +767,7 @@ namespace Laboration4Affärssystem
         {
             try
             {
+                //throw exception for wrong input
                 if (IDFilmText.Text == "")
                 {
                     throw new Exception("Lägg till ett ID");
@@ -694,12 +792,21 @@ namespace Laboration4Affärssystem
                 int price = int.Parse(PriceFilmText.Text);
                 int amount = int.Parse(AmountFilmText.Text);
 
-                if (amount >= 0)
+                if (amount <= 0)
                 {
                     throw new Exception("Speltid kan inte vara negativ");
                 }
+
+                //save info and create item
                 string format = FormatFilmText.Text;
-                int time = int.Parse(TimeFilmText.Text);
+
+                //save empty time as 0 to avoid exceptions
+                string timeStr = TimeFilmText.Text;
+                if(timeStr == "")
+                {
+                    timeStr = "0";
+                }
+                int time = int.Parse(timeStr);
 
                 controller.addFilmToInventory(id, name, price, amount, format, time);
             }
@@ -711,6 +818,7 @@ namespace Laboration4Affärssystem
 
         }
 
+
         //add shipment 
         private void addShipmentBookButton_Click(object sender, EventArgs e)
         {
@@ -718,6 +826,12 @@ namespace Laboration4Affärssystem
             {
                 string input;
                 int shipmentAmount;
+
+                if (currentItem == null)
+                {
+                    throw new Exception("select item");
+                }
+
                 int id = currentItem.ID;
                 input = Microsoft.VisualBasic.Interaction.InputBox("Hur stor är leveransen?:", "Integer Input", "0");
 
@@ -729,7 +843,7 @@ namespace Laboration4Affärssystem
                     throw new Exception("Leverans måste vara större än 0");
                 }
 
-                controller.AddItems(id, shipmentAmount);
+                controller.addItems(id, shipmentAmount);
 
                 //update display
                 gridViewLagerBok_SelectionChanged(null, null);
@@ -757,7 +871,7 @@ namespace Laboration4Affärssystem
                     throw new Exception("Leverans måste vara större än 0");
                 }
 
-                controller.AddItems(id, shipmentAmount);
+                controller.addItems(id, shipmentAmount);
 
                 //update display
                 gridViewLagerSpel_SelectionChanged(null, null);
@@ -784,7 +898,7 @@ namespace Laboration4Affärssystem
                     throw new Exception("Leverans måste vara större än 0");
                 }
 
-                controller.AddItems(id, shipmentAmount);
+                controller.addItems(id, shipmentAmount);
 
                 //update display
                 gridViewLagerFilm_SelectionChanged(null, null);
@@ -795,6 +909,7 @@ namespace Laboration4Affärssystem
             }
         }
 
+
         //return item (similar to add shipment)
         private void returnButton_Click(object sender, EventArgs e)
         {
@@ -802,6 +917,10 @@ namespace Laboration4Affärssystem
             {
                 string input;
                 int amount;
+                if (currentItem == null)
+                {
+                    throw new Exception("Select item");
+                }
                 int id = currentItem.ID;
 
                 input = Microsoft.VisualBasic.Interaction.InputBox("Hur många produkter ska återlämnas?:", "Integer Input", "0");
@@ -813,7 +932,7 @@ namespace Laboration4Affärssystem
                     throw new Exception("Antal produkter måsta vara större än 0");
                 }
 
-                controller.AddItems(id, amount);
+                controller.addItems(id, amount);
 
                 gridViewKassaBok.Refresh();
                 gridViewKassaFilm.Refresh();
@@ -825,6 +944,7 @@ namespace Laboration4Affärssystem
                 MessageBox.Show(error.Message);
             }
         }
+
 
         //search
         private void searchButton_Click(object sender, EventArgs e)
@@ -849,7 +969,7 @@ namespace Laboration4Affärssystem
                 table.Columns["Amount"].DataPropertyName = "Amount";
 
                 //add results to table
-                table.DataSource = controller.Search(query);
+                table.DataSource = controller.searchInInventory(query);
 
                 table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
@@ -858,6 +978,7 @@ namespace Laboration4Affärssystem
                 MessageBox.Show(error.Message);
             }
         }
+
 
         //update database when closing 
         private void View_FormClosing(object sender, FormClosingEventArgs e)
@@ -868,12 +989,17 @@ namespace Laboration4Affärssystem
             controller.updateTransactionFile();
         }
 
+
+        //clear shopping cart
         private void emptyCartButton_Click(object sender, EventArgs e)
         {
             shoppingBasketList.Items.Clear();
         }
 
-        public void addDataTransactions()
+
+        //VERSION 3
+        //fill DataGridView
+        private void addDataTransactions()
         {
             transactionsView.AutoGenerateColumns = false;
 
@@ -915,35 +1041,42 @@ namespace Laboration4Affärssystem
             filterView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
-        private void viewArchiveButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void archiveTab_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //get data for top-10-list
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //send selectedindex as query
             string query = comboBox1.SelectedItem.ToString();
-            top10View.DataSource = controller.FilterYear(query);
+            top10View.DataSource = controller.getTop10Transactions(query);
         }
 
+        //get data for filter
         private void button1_Click(object sender, EventArgs e)
         {
-            string queryMonth = monthBox.SelectedItem.ToString();
-            string queryYear = yearBox.SelectedItem.ToString();
-            (BindingSource source, int total) = controller.filter(queryMonth, queryYear);
-            filterView.DataSource = source;
-            totalAntalLabel.Text = total.ToString();
+            try
+            {
+                if(monthBox.SelectedIndex == -1)
+                {
+                    throw new Exception("Välj Månad");
+                }
+                if(yearBox.SelectedIndex == -1)
+                {
+                    throw new Exception("Välj år");
+                }
+
+                //send selectedindex as query
+                string queryMonth = monthBox.SelectedItem.ToString();
+                string queryYear = yearBox.SelectedItem.ToString();
+
+                //save bindingsource and totalAmount
+                (BindingSource source, int total) = controller.filterTransactions(queryMonth, queryYear);
+                filterView.DataSource = source;
+                totalAntalLabel.Text = total.ToString();
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
         }
     }
 }

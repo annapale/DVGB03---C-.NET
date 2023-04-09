@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Laboration4Affärssystem",
-    "\\Laboration4Affärssystem\\Laboration4Affärssystem"
+    "\\Laboration4Affärssystem\\Laboration4Affärssystem",
+    "\\Laboration4Affärssystem\\Laboration4Affärssystem\\View"
   ],
-  "SelectedNode": "\\Laboration4Affärssystem\\Laboration4Affärssystem\\Controller.cs",
+  "SelectedNode": "\\Laboration4Affärssystem\\Laboration4Affärssystem\\View\\View.cs",
   "PreviewInSolutionExplorer": false
 }
