@@ -520,7 +520,7 @@ namespace Laboration4Affärssystem
                         int id = int.Parse(item.SubItems[1].Text);
                         int month = DateTime.Now.Month;
                         int year = DateTime.Now.Year;
-                        int amount = int.Parse(item.SubItems[3].Text);
+                        int amount = int.Parse(item.SubItems[4].Text);
                         controller.addTransactionToArchive(id, month, year, amount);
                     }
 
@@ -898,11 +898,9 @@ namespace Laboration4Affärssystem
 
         }
 
+
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string query = comboBox2.SelectedItem.ToString();
-
-            filterView.DataSource = controller.FilterMonth(query);
 
         }
 
@@ -910,6 +908,15 @@ namespace Laboration4Affärssystem
         {
             string query = comboBox1.SelectedItem.ToString();
             top10View.DataSource = controller.FilterYear(query);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string queryMonth = monthBox.SelectedItem.ToString();
+            string queryYear = yearBox.SelectedItem.ToString();
+            (BindingSource source, int total) = controller.filter(queryMonth, queryYear);
+            filterView.DataSource = source;
+            totalAntalLabel.Text = total.ToString();
         }
     }
 }

@@ -317,21 +317,35 @@ namespace Laboration4Affärssystem
             return resultSource;
         }
 
-        public BindingSource FilterMonth(string query)
+        public (BindingSource, int total) filter(string queryMonth, string queryYear)
         {
+            BindingList<Transaction> temporary = new BindingList<Transaction>();
             BindingList<Transaction> filterList = new BindingList<Transaction>();
 
             foreach (Transaction transaction in archive.transactions)
             {
-                if (transaction.Month.ToString() == query) 
+                if (transaction.Month.ToString() == queryMonth) 
+                {
+                    temporary.Add(transaction);
+                }
+            }
+
+            foreach (Transaction transaction in temporary)
+            {
+                if(transaction.Year.ToString() == queryYear)
                 {
                     filterList.Add(transaction);
                 }
             }
 
+            int total = 0;
+            foreach (Transaction transaction in filterList)
+            {
+                total += transaction.Amount;
+            }
             BindingSource filterSource = new BindingSource();
             filterSource.DataSource = filterList;
-            return filterSource;
+            return (filterSource, total);
         }
 
         public BindingSource FilterYear(string query)
@@ -350,7 +364,7 @@ namespace Laboration4Affärssystem
 
             var groupedTransactions = filterList.GroupBy(t => new { t.ID },(key, g) => new { ID = key.ID, Amount = g.Sum(t => t.Amount) });
 
-            var orderedList = groupedTransactions.OrderByDescending(t => t.Amount).Take(5);
+            var orderedList = groupedTransactions.OrderByDescending(t => t.Amount).Take(10);
 
             BindingList<object> mergedList = new BindingList<object>();
             foreach (var group in orderedList)

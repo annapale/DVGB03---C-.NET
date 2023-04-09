@@ -127,9 +127,13 @@
             this.label22 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.top10View = new System.Windows.Forms.DataGridView();
-            this.label24 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.monthBox = new System.Windows.Forms.ComboBox();
             this.totalAntalLabel = new System.Windows.Forms.Label();
+            this.yearBox = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControlKassa.SuspendLayout();
@@ -1055,9 +1059,13 @@
             // 
             // archiveTab
             // 
+            this.archiveTab.Controls.Add(this.button1);
+            this.archiveTab.Controls.Add(this.label27);
+            this.archiveTab.Controls.Add(this.label26);
+            this.archiveTab.Controls.Add(this.label25);
+            this.archiveTab.Controls.Add(this.yearBox);
             this.archiveTab.Controls.Add(this.totalAntalLabel);
-            this.archiveTab.Controls.Add(this.comboBox2);
-            this.archiveTab.Controls.Add(this.label24);
+            this.archiveTab.Controls.Add(this.monthBox);
             this.archiveTab.Controls.Add(this.top10View);
             this.archiveTab.Controls.Add(this.comboBox1);
             this.archiveTab.Controls.Add(this.label22);
@@ -1137,7 +1145,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(100, 20);
+            this.label20.Location = new System.Drawing.Point(111, 15);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(40, 21);
             this.label20.TabIndex = 2;
@@ -1146,9 +1154,9 @@
             // filterView
             // 
             this.filterView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.filterView.Location = new System.Drawing.Point(586, 44);
+            this.filterView.Location = new System.Drawing.Point(586, 107);
             this.filterView.Name = "filterView";
-            this.filterView.Size = new System.Drawing.Size(280, 407);
+            this.filterView.Size = new System.Drawing.Size(280, 344);
             this.filterView.TabIndex = 3;
             // 
             // label21
@@ -1162,7 +1170,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(314, 20);
+            this.label22.Location = new System.Drawing.Point(298, 83);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(96, 21);
             this.label22.TabIndex = 5;
@@ -1174,7 +1182,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "2023",
             "2022"});
-            this.comboBox1.Location = new System.Drawing.Point(416, 12);
+            this.comboBox1.Location = new System.Drawing.Point(416, 75);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 29);
             this.comboBox1.TabIndex = 6;
@@ -1183,24 +1191,15 @@
             // top10View
             // 
             this.top10View.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.top10View.Location = new System.Drawing.Point(287, 44);
+            this.top10View.Location = new System.Drawing.Point(287, 107);
             this.top10View.Name = "top10View";
-            this.top10View.Size = new System.Drawing.Size(280, 407);
+            this.top10View.Size = new System.Drawing.Size(280, 344);
             this.top10View.TabIndex = 7;
             // 
-            // label24
+            // monthBox
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(582, 20);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(43, 21);
-            this.label24.TabIndex = 8;
-            this.label24.Text = "filter";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.monthBox.FormattingEnabled = true;
+            this.monthBox.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -1213,20 +1212,67 @@
             "10",
             "11",
             "12"});
-            this.comboBox2.Location = new System.Drawing.Point(631, 12);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 29);
-            this.comboBox2.TabIndex = 9;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.monthBox.Location = new System.Drawing.Point(617, 39);
+            this.monthBox.Name = "monthBox";
+            this.monthBox.Size = new System.Drawing.Size(65, 29);
+            this.monthBox.TabIndex = 9;
             // 
             // totalAntalLabel
             // 
             this.totalAntalLabel.AutoSize = true;
-            this.totalAntalLabel.Location = new System.Drawing.Point(774, 15);
+            this.totalAntalLabel.Location = new System.Drawing.Point(684, 78);
             this.totalAntalLabel.Name = "totalAntalLabel";
             this.totalAntalLabel.Size = new System.Drawing.Size(92, 21);
             this.totalAntalLabel.TabIndex = 10;
             this.totalAntalLabel.Text = "totalAntal";
+            // 
+            // yearBox
+            // 
+            this.yearBox.FormattingEnabled = true;
+            this.yearBox.Items.AddRange(new object[] {
+            "2023",
+            "2022"});
+            this.yearBox.Location = new System.Drawing.Point(688, 39);
+            this.yearBox.Name = "yearBox";
+            this.yearBox.Size = new System.Drawing.Size(50, 29);
+            this.yearBox.TabIndex = 11;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(464, 51);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(28, 21);
+            this.label25.TabIndex = 12;
+            this.label25.Text = "År";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(710, 15);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(28, 21);
+            this.label26.TabIndex = 13;
+            this.label26.Text = "År";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(614, 15);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(68, 21);
+            this.label27.TabIndex = 14;
+            this.label27.Text = "Månad";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(767, 36);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 32);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Filter";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // View
             // 
@@ -1378,10 +1424,14 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox monthBox;
         private System.Windows.Forms.DataGridView top10View;
         private System.Windows.Forms.Label totalAntalLabel;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ComboBox yearBox;
+        private System.Windows.Forms.Button button1;
     }
 }
 
