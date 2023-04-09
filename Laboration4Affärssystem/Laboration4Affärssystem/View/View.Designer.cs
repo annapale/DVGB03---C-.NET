@@ -1154,9 +1154,9 @@
             // filterView
             // 
             this.filterView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.filterView.Location = new System.Drawing.Point(586, 107);
+            this.filterView.Location = new System.Drawing.Point(528, 107);
             this.filterView.Name = "filterView";
-            this.filterView.Size = new System.Drawing.Size(280, 344);
+            this.filterView.Size = new System.Drawing.Size(336, 344);
             this.filterView.TabIndex = 3;
             // 
             // label21
@@ -1170,7 +1170,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(298, 83);
+            this.label22.Location = new System.Drawing.Point(322, 15);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(96, 21);
             this.label22.TabIndex = 5;
@@ -1182,7 +1182,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "2023",
             "2022"});
-            this.comboBox1.Location = new System.Drawing.Point(416, 75);
+            this.comboBox1.Location = new System.Drawing.Point(312, 60);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 29);
             this.comboBox1.TabIndex = 6;
@@ -1191,9 +1191,9 @@
             // top10View
             // 
             this.top10View.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.top10View.Location = new System.Drawing.Point(287, 107);
+            this.top10View.Location = new System.Drawing.Point(287, 95);
             this.top10View.Name = "top10View";
-            this.top10View.Size = new System.Drawing.Size(280, 344);
+            this.top10View.Size = new System.Drawing.Size(219, 356);
             this.top10View.TabIndex = 7;
             // 
             // monthBox
@@ -1212,7 +1212,7 @@
             "10",
             "11",
             "12"});
-            this.monthBox.Location = new System.Drawing.Point(617, 39);
+            this.monthBox.Location = new System.Drawing.Point(593, 44);
             this.monthBox.Name = "monthBox";
             this.monthBox.Size = new System.Drawing.Size(65, 29);
             this.monthBox.TabIndex = 9;
@@ -1220,7 +1220,7 @@
             // totalAntalLabel
             // 
             this.totalAntalLabel.AutoSize = true;
-            this.totalAntalLabel.Location = new System.Drawing.Point(684, 78);
+            this.totalAntalLabel.Location = new System.Drawing.Point(646, 83);
             this.totalAntalLabel.Name = "totalAntalLabel";
             this.totalAntalLabel.Size = new System.Drawing.Size(92, 21);
             this.totalAntalLabel.TabIndex = 10;
@@ -1232,7 +1232,7 @@
             this.yearBox.Items.AddRange(new object[] {
             "2023",
             "2022"});
-            this.yearBox.Location = new System.Drawing.Point(688, 39);
+            this.yearBox.Location = new System.Drawing.Point(674, 44);
             this.yearBox.Name = "yearBox";
             this.yearBox.Size = new System.Drawing.Size(50, 29);
             this.yearBox.TabIndex = 11;
@@ -1240,7 +1240,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(464, 51);
+            this.label25.Location = new System.Drawing.Point(355, 36);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(28, 21);
             this.label25.TabIndex = 12;
@@ -1249,7 +1249,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(710, 15);
+            this.label26.Location = new System.Drawing.Point(687, 15);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(28, 21);
             this.label26.TabIndex = 13;
@@ -1258,7 +1258,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(614, 15);
+            this.label27.Location = new System.Drawing.Point(590, 15);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(68, 21);
             this.label27.TabIndex = 14;
@@ -1266,7 +1266,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(767, 36);
+            this.button1.Location = new System.Drawing.Point(749, 41);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 32);
             this.button1.TabIndex = 15;

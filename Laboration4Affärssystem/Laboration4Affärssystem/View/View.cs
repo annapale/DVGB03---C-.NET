@@ -197,35 +197,62 @@ namespace Laboration4Affärssystem
         //save selected row as current item
         private void gridViewKassaBok_SelectionChanged(object sender, EventArgs e)
         {
-            if (gridViewKassaBok.SelectedRows.Count > 0)
+            try
             {
-                currentItem = controller.selectBook(gridViewKassaBok.SelectedRows[0]);
-                //deselect any selected items in the other tables to avoid problems
-                deselectGame();
-                deselectFilm();
-                deselectResult();
+                if (gridViewKassaBok.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = gridViewKassaBok.SelectedRows[0];
+                    currentItem = controller.getItemFromInventory(int.Parse(row.Cells[0].Value.ToString()));
+                    //deselect any selected items in the other tables to avoid problems
+                    deselectGame();
+                    deselectFilm();
+                    deselectResult();
+                }
             }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
         }
 
         private void gridViewKassaSpel_SelectionChanged(object sender, EventArgs e)
         {
-            if(gridViewKassaSpel.SelectedRows.Count > 0)
+            try
             {
-                currentItem = controller.selectGame(gridViewKassaSpel.SelectedRows[0]);
-                deselectBook();
-                deselectFilm();
-                deselectResult();
+                if (gridViewKassaSpel.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = gridViewKassaSpel.SelectedRows[0];
+                    currentItem = controller.getItemFromInventory(int.Parse(row.Cells[0].Value.ToString()));
+                    //deselect any selected items in the other tables to avoid problems
+                    deselectGame();
+                    deselectFilm();
+                    deselectResult();
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
             }
         }
 
         private void gridViewKassaFilm_SelectionChanged(object sender, EventArgs e)
         {
-            if(gridViewKassaFilm.SelectedRows.Count > 0)
+            try
             {
-                currentItem = controller.selectFilm(gridViewKassaFilm.SelectedRows[0]);
-                deselectBook();
-                deselectGame();
-                deselectResult();
+                if (gridViewKassaFilm.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = gridViewKassaFilm.SelectedRows[0];
+                    currentItem = controller.getItemFromInventory(int.Parse(row.Cells[0].Value.ToString()));
+                    //deselect any selected items in the other tables to avoid problems
+                    deselectGame();
+                    deselectFilm();
+                    deselectResult();
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
             }
         }
 

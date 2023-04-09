@@ -214,25 +214,6 @@ namespace Laboration4Affärssystem
                 MessageBox.Show(error.Message);
             }
         }
-
-        //select item 
-        public Item selectBook(DataGridViewRow row)
-        {
-            Item item = inventory.bookList[row.Index];
-            return item;
-        }
-
-        public Item selectGame(DataGridViewRow row)
-        {
-            Item item = inventory.gameList[row.Index];
-            return item;
-        }
-
-        public Item selectFilm(DataGridViewRow row) 
-        {
-            Item item = inventory.filmList[row.Index];
-            return item;
-        }
         
         public bool checkID(int id)
         {
