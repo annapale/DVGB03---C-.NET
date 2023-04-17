@@ -171,6 +171,7 @@
             this.tabControl1.Controls.Add(this.archiveTab);
             this.tabControl1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(880, 491);
@@ -307,6 +308,9 @@
             // 
             // tabControlKassa
             // 
+            this.tabControlKassa.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlKassa.Controls.Add(this.kassaBookTab);
             this.tabControlKassa.Controls.Add(this.kassaGameTab);
             this.tabControlKassa.Controls.Add(this.kassaFilmTab);
@@ -324,7 +328,7 @@
             this.kassaBookTab.Location = new System.Drawing.Point(4, 26);
             this.kassaBookTab.Name = "kassaBookTab";
             this.kassaBookTab.Padding = new System.Windows.Forms.Padding(3);
-            this.kassaBookTab.Size = new System.Drawing.Size(850, 421);
+            this.kassaBookTab.Size = new System.Drawing.Size(850, 181);
             this.kassaBookTab.TabIndex = 0;
             this.kassaBookTab.Text = "Böcker";
             // 
@@ -332,6 +336,10 @@
             // 
             this.gridViewKassaBok.AllowUserToAddRows = false;
             this.gridViewKassaBok.AllowUserToDeleteRows = false;
+            this.gridViewKassaBok.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridViewKassaBok.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridViewKassaBok.BackgroundColor = System.Drawing.Color.Lavender;
             this.gridViewKassaBok.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewKassaBok.Location = new System.Drawing.Point(6, 6);
@@ -351,7 +359,7 @@
             this.kassaGameTab.Location = new System.Drawing.Point(4, 26);
             this.kassaGameTab.Name = "kassaGameTab";
             this.kassaGameTab.Padding = new System.Windows.Forms.Padding(3);
-            this.kassaGameTab.Size = new System.Drawing.Size(850, 421);
+            this.kassaGameTab.Size = new System.Drawing.Size(850, 181);
             this.kassaGameTab.TabIndex = 1;
             this.kassaGameTab.Text = "Dataspel";
             // 
@@ -386,6 +394,10 @@
             // 
             this.gridViewKassaSpel.AllowUserToAddRows = false;
             this.gridViewKassaSpel.AllowUserToDeleteRows = false;
+            this.gridViewKassaSpel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridViewKassaSpel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridViewKassaSpel.BackgroundColor = System.Drawing.Color.Lavender;
             this.gridViewKassaSpel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewKassaSpel.Location = new System.Drawing.Point(6, 6);
@@ -440,9 +452,11 @@
             // 
             this.gridViewKassaFilm.AllowUserToAddRows = false;
             this.gridViewKassaFilm.AllowUserToDeleteRows = false;
+            this.gridViewKassaFilm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridViewKassaFilm.BackgroundColor = System.Drawing.Color.Lavender;
             this.gridViewKassaFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridViewKassaFilm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridViewKassaFilm.Location = new System.Drawing.Point(3, 3);
             this.gridViewKassaFilm.Name = "gridViewKassaFilm";
             this.gridViewKassaFilm.ReadOnly = true;
@@ -1073,6 +1087,7 @@
             // 
             // archiveTab
             // 
+            this.archiveTab.AutoScroll = true;
             this.archiveTab.BackColor = System.Drawing.Color.Lavender;
             this.archiveTab.Controls.Add(this.button1);
             this.archiveTab.Controls.Add(this.label27);
@@ -1179,7 +1194,7 @@
             this.top10View.AllowUserToDeleteRows = false;
             this.top10View.BackgroundColor = System.Drawing.Color.DimGray;
             this.top10View.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.top10View.Location = new System.Drawing.Point(308, 95);
+            this.top10View.Location = new System.Drawing.Point(303, 95);
             this.top10View.Name = "top10View";
             this.top10View.ReadOnly = true;
             this.top10View.Size = new System.Drawing.Size(219, 356);
@@ -1250,11 +1265,12 @@
             // gridViewResult
             // 
             this.gridViewResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridViewResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridViewResult.BackgroundColor = System.Drawing.Color.DimGray;
             this.gridViewResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridViewResult.Location = new System.Drawing.Point(898, 74);
+            this.gridViewResult.Location = new System.Drawing.Point(913, 74);
             this.gridViewResult.Name = "gridViewResult";
-            this.gridViewResult.Size = new System.Drawing.Size(325, 425);
+            this.gridViewResult.Size = new System.Drawing.Size(310, 425);
             this.gridViewResult.TabIndex = 12;
             this.gridViewResult.SelectionChanged += new System.EventHandler(this.gridViewResult_SelectionChanged);
             // 
@@ -1290,7 +1306,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(1235, 515);
             this.Controls.Add(this.searchButton);
