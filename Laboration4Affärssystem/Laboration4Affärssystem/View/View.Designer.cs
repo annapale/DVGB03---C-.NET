@@ -275,9 +275,9 @@
             this.Pris,
             this.Antal});
             this.shoppingBasketList.HideSelection = false;
-            this.shoppingBasketList.Location = new System.Drawing.Point(16, 271);
+            this.shoppingBasketList.Location = new System.Drawing.Point(16, 261);
             this.shoppingBasketList.Name = "shoppingBasketList";
-            this.shoppingBasketList.Size = new System.Drawing.Size(510, 176);
+            this.shoppingBasketList.Size = new System.Drawing.Size(510, 186);
             this.shoppingBasketList.TabIndex = 3;
             this.shoppingBasketList.UseCompatibleStateImageBehavior = false;
             this.shoppingBasketList.View = System.Windows.Forms.View.Details;
@@ -311,7 +311,7 @@
             this.tabControlKassa.Controls.Add(this.kassaGameTab);
             this.tabControlKassa.Controls.Add(this.kassaFilmTab);
             this.tabControlKassa.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControlKassa.Location = new System.Drawing.Point(6, 8);
+            this.tabControlKassa.Location = new System.Drawing.Point(6, 6);
             this.tabControlKassa.Name = "tabControlKassa";
             this.tabControlKassa.SelectedIndex = 0;
             this.tabControlKassa.Size = new System.Drawing.Size(858, 211);
@@ -324,7 +324,7 @@
             this.kassaBookTab.Location = new System.Drawing.Point(4, 26);
             this.kassaBookTab.Name = "kassaBookTab";
             this.kassaBookTab.Padding = new System.Windows.Forms.Padding(3);
-            this.kassaBookTab.Size = new System.Drawing.Size(850, 181);
+            this.kassaBookTab.Size = new System.Drawing.Size(850, 421);
             this.kassaBookTab.TabIndex = 0;
             this.kassaBookTab.Text = "Böcker";
             // 
@@ -351,7 +351,7 @@
             this.kassaGameTab.Location = new System.Drawing.Point(4, 26);
             this.kassaGameTab.Name = "kassaGameTab";
             this.kassaGameTab.Padding = new System.Windows.Forms.Padding(3);
-            this.kassaGameTab.Size = new System.Drawing.Size(850, 181);
+            this.kassaGameTab.Size = new System.Drawing.Size(850, 421);
             this.kassaGameTab.TabIndex = 1;
             this.kassaGameTab.Text = "Dataspel";
             // 
@@ -442,10 +442,11 @@
             this.gridViewKassaFilm.AllowUserToDeleteRows = false;
             this.gridViewKassaFilm.BackgroundColor = System.Drawing.Color.Lavender;
             this.gridViewKassaFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridViewKassaFilm.Location = new System.Drawing.Point(6, 6);
+            this.gridViewKassaFilm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridViewKassaFilm.Location = new System.Drawing.Point(3, 3);
             this.gridViewKassaFilm.Name = "gridViewKassaFilm";
             this.gridViewKassaFilm.ReadOnly = true;
-            this.gridViewKassaFilm.Size = new System.Drawing.Size(726, 172);
+            this.gridViewKassaFilm.Size = new System.Drawing.Size(844, 175);
             this.gridViewKassaFilm.TabIndex = 0;
             this.gridViewKassaFilm.SelectionChanged += new System.EventHandler(this.gridViewKassaFilm_SelectionChanged);
             // 
@@ -1248,14 +1249,12 @@
             // 
             // gridViewResult
             // 
-            this.gridViewResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridViewResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.gridViewResult.BackgroundColor = System.Drawing.Color.DimGray;
             this.gridViewResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridViewResult.Location = new System.Drawing.Point(913, 86);
+            this.gridViewResult.Location = new System.Drawing.Point(898, 74);
             this.gridViewResult.Name = "gridViewResult";
-            this.gridViewResult.Size = new System.Drawing.Size(310, 413);
+            this.gridViewResult.Size = new System.Drawing.Size(325, 425);
             this.gridViewResult.TabIndex = 12;
             this.gridViewResult.SelectionChanged += new System.EventHandler(this.gridViewResult_SelectionChanged);
             // 

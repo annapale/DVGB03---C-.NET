@@ -44,7 +44,7 @@
             // 
             this.DateTimeLabel.AutoSize = true;
             this.DateTimeLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateTimeLabel.Location = new System.Drawing.Point(150, 34);
+            this.DateTimeLabel.Location = new System.Drawing.Point(201, 29);
             this.DateTimeLabel.Name = "DateTimeLabel";
             this.DateTimeLabel.Size = new System.Drawing.Size(69, 17);
             this.DateTimeLabel.TabIndex = 0;
@@ -54,7 +54,7 @@
             // 
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(152, 9);
+            this.Title.Location = new System.Drawing.Point(203, 4);
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(67, 25);
             this.Title.TabIndex = 1;
@@ -64,7 +64,7 @@
             // 
             this.PriceLabel.AutoSize = true;
             this.PriceLabel.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PriceLabel.Location = new System.Drawing.Point(163, 60);
+            this.PriceLabel.Location = new System.Drawing.Point(204, 60);
             this.PriceLabel.Name = "PriceLabel";
             this.PriceLabel.Size = new System.Drawing.Size(46, 20);
             this.PriceLabel.TabIndex = 3;
@@ -73,7 +73,7 @@
             // printReceiptButton
             // 
             this.printReceiptButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printReceiptButton.Location = new System.Drawing.Point(286, 9);
+            this.printReceiptButton.Location = new System.Drawing.Point(398, 9);
             this.printReceiptButton.Name = "printReceiptButton";
             this.printReceiptButton.Size = new System.Drawing.Size(75, 23);
             this.printReceiptButton.TabIndex = 5;

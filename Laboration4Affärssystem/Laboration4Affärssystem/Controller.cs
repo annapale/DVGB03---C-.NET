@@ -67,19 +67,72 @@ namespace Laboration4Affärssystem
         public void removeBookFromInventory(int id)
         {
             Book book = inventory.findBook(id);
-            inventory.removeBook(book);
+
+            if (book.Amount != 0)
+            {
+                DialogResult result = MessageBox.Show("Ska varan verkligen tas bort?", "Lagerstatus är inte null", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    inventory.removeBook(book);
+                }
+
+                else if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                inventory.removeBook(book);
+            }
         }
 
         public void removeGameFromInventory(int id)
         {
             Videogame game = inventory.findGame(id);
-            inventory.removeGame(game);
+
+            if (game.Amount != 0)
+            {
+                DialogResult result = MessageBox.Show("Ska varan verkligen tas bort?", "Lagerstatus är inte null", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    inventory.removeGame(game);
+                }
+
+                else if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                inventory.removeGame(game);
+            }
         }
 
         public void removeFilmFromInventory(int id)
         {
             Film film = inventory.findFilm(id);
-            inventory.removeFilm(film);
+            if (film.Amount != 0)
+            {
+                DialogResult result = MessageBox.Show("Ska varan verkligen tas bort?", "Lagerstatus är inte null", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    inventory.removeFilm(film);
+                }
+
+                else if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                inventory.removeFilm(film);
+            }
         }
 
 

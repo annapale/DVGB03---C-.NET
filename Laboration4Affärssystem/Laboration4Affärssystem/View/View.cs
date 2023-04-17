@@ -645,7 +645,6 @@ namespace Laboration4Affärssystem
             
         }
 
-
         //remove Items
         private void removeItemButton_Click(object sender, EventArgs e)
         {
@@ -688,7 +687,7 @@ namespace Laboration4Affärssystem
                 {
                     throw new Exception("Lägg till ett ID");
                 }
-
+                
                 if (PriceBookText.Text == "")
                 {
                     throw new Exception("Lägg till pris");
@@ -705,10 +704,27 @@ namespace Laboration4Affärssystem
                     throw new Exception("ID måste vara unik");
                 }
 
+                if (id <= 0)
+                {
+                    throw new Exception("ID måste vara större än 0");
+                }
+
                 //get and save information
                 string name = NameBookText.Text;
                 int price = int.Parse(PriceBookText.Text);
+
+                if (price <= 0)
+                {
+                    throw new Exception("Priset måste var större än 0");
+                }
+
                 int amount = int.Parse(AmountBookText.Text);
+
+                if (amount < 0)
+                {
+                    throw new Exception("Antal måste vara minst 0");
+                }
+
                 string author = AuthorBookText.Text;
                 string genre = GenreBookText.Text;
                 string format = FormatBookText.Text;
@@ -747,11 +763,27 @@ namespace Laboration4Affärssystem
                 {
                     throw new Exception("ID måste vara unik");
                 }
+                if (id <= 0)
+                {
+                    throw new Exception("ID måste vara större än 0");
+                }
 
                 //get info and save items
                 string name = NameGameText.Text;
                 int price = int.Parse(PriceGameText.Text);
+
+                if (price <= 0)
+                {
+                    throw new Exception("Priset måste var större än 0");
+                }
+
                 int amount = int.Parse(AmountGameText.Text);
+
+                if (amount < 0)
+                {
+                    throw new Exception("Antal måste vara minst 0");
+                }
+
                 string plattform = PlattformGameText.Text;
 
                 controller.addGameToInventory(id, name, price, amount, plattform);
@@ -788,14 +820,26 @@ namespace Laboration4Affärssystem
                 {
                     throw new Exception("ID måste vara unik");
                 }
+                if (id <= 0)
+                {
+                    throw new Exception("ID måste vara större än 0");
+                }
                 string name = NameFilmText.Text;
+
                 int price = int.Parse(PriceFilmText.Text);
+
+                if (price <= 0)
+                {
+                    throw new Exception("Priset måste var större än 0");
+                }
+
                 int amount = int.Parse(AmountFilmText.Text);
 
-                if (amount <= 0)
+                if (amount < 0)
                 {
-                    throw new Exception("Speltid kan inte vara negativ");
+                    throw new Exception("Antal måste vara minst 0");
                 }
+
 
                 //save info and create item
                 string format = FormatFilmText.Text;
@@ -807,6 +851,10 @@ namespace Laboration4Affärssystem
                     timeStr = "0";
                 }
                 int time = int.Parse(timeStr);
+                if (time < 0)
+                {
+                    throw new Exception("Speltid får inte vara negativ");
+                }
 
                 controller.addFilmToInventory(id, name, price, amount, format, time);
             }
