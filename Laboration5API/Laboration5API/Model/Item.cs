@@ -32,6 +32,12 @@ namespace Laboration5API
             Amount += amount;
         }
 
+        public void Update(int amount, int price)
+        {
+            Amount = amount;
+            Price = price;
+        }
+
     }
 
 

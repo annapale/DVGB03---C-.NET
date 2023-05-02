@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data.Common;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Laboration5API.Model
 {
@@ -20,7 +22,57 @@ namespace Laboration5API.Model
 
         public BindingList<Film> filmList = new BindingList<Film>();
 
+        //LABORATION 5 
+        public void update()
+        {
+            try
+            {
+                WebClient client = new WebClient();
+                var text = client.DownloadString("https://hex.cse.kau.se/~jonavest/csharp-api");
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(text);
 
+                foreach (XmlElement element in doc.FirstChild.ChildNodes)
+                {
+                    if (element.Name == "products")
+                    {
+                        int id = 0;
+                        int price = 0;
+                        int stock = 0;
+                        foreach (XmlElement pElement in element.ChildNodes)
+                        {
+                            foreach (XmlElement product in pElement.ChildNodes)
+                            {
+                                if (product.Name == "id")
+                                {
+                                    id = int.Parse(product.InnerText);
+                                }
+                                else if (product.Name == "price")
+                                {
+                                    price = int.Parse(product.InnerText);
+                                }
+                                else if (product.Name == "stock")
+                                {
+                                    stock = int.Parse(product.InnerText);
+                                }
+                            }
+
+                            Item item = findItem(id);
+                            if (item != null)
+                            {
+                                item.Update(stock, price);
+                            }
+
+                        }
+                    }
+                }
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
         //add items
         public void addBook(int id, string name, int price, int amount, string author, string genre, string format, string language)
         {

@@ -4,8 +4,10 @@
     "\\Laboration4Affärssystem",
     "\\Laboration4Affärssystem\\Laboration4Affärssystem",
     "\\Laboration4Affärssystem\\Laboration4Affärssystem\\View",
-    "\\Laboration5API"
+    "\\Laboration5API",
+    "\\Laboration5API\\Laboration5API",
+    "\\Laboration5API\\Laboration5API\\View"
   ],
-  "SelectedNode": "\\Laboration5API\\Laboration5API.sln",
+  "SelectedNode": "\\Laboration5API\\Laboration5API\\View\\View.cs",
   "PreviewInSolutionExplorer": false
 }

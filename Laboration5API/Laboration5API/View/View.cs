@@ -59,6 +59,12 @@ namespace Laboration5API
 
         }
 
+        //LABORATION5
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            controller.updateItems();
+        }
+
         //add Data to DataGridViews
         private void addDataKassa(DataGridView table, int itemType)
         {
@@ -1126,5 +1132,7 @@ namespace Laboration5API
             }
 
         }
+
+       
     }
 }

@@ -133,6 +133,7 @@
             this.searchInput = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.updateButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControlKassa.SuspendLayout();
@@ -163,8 +164,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.checkoutTab);
             this.tabControl1.Controls.Add(this.lagerTab);
@@ -308,8 +309,8 @@
             // 
             // tabControlKassa
             // 
-            this.tabControlKassa.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.tabControlKassa.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlKassa.Controls.Add(this.kassaBookTab);
             this.tabControlKassa.Controls.Add(this.kassaGameTab);
@@ -336,8 +337,8 @@
             // 
             this.gridViewKassaBok.AllowUserToAddRows = false;
             this.gridViewKassaBok.AllowUserToDeleteRows = false;
-            this.gridViewKassaBok.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.gridViewKassaBok.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridViewKassaBok.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridViewKassaBok.BackgroundColor = System.Drawing.Color.Lavender;
@@ -394,8 +395,8 @@
             // 
             this.gridViewKassaSpel.AllowUserToAddRows = false;
             this.gridViewKassaSpel.AllowUserToDeleteRows = false;
-            this.gridViewKassaSpel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.gridViewKassaSpel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridViewKassaSpel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gridViewKassaSpel.BackgroundColor = System.Drawing.Color.Lavender;
@@ -452,8 +453,8 @@
             // 
             this.gridViewKassaFilm.AllowUserToAddRows = false;
             this.gridViewKassaFilm.AllowUserToDeleteRows = false;
-            this.gridViewKassaFilm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.gridViewKassaFilm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridViewKassaFilm.BackgroundColor = System.Drawing.Color.Lavender;
             this.gridViewKassaFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -467,6 +468,7 @@
             // lagerTab
             // 
             this.lagerTab.BackColor = System.Drawing.Color.DimGray;
+            this.lagerTab.Controls.Add(this.updateButton);
             this.lagerTab.Controls.Add(this.tabControlLager);
             this.lagerTab.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lagerTab.Location = new System.Drawing.Point(4, 30);
@@ -1302,6 +1304,18 @@
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
+            // updateButton
+            // 
+            this.updateButton.BackColor = System.Drawing.Color.Lavender;
+            this.updateButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateButton.Location = new System.Drawing.Point(6, 380);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(121, 34);
+            this.updateButton.TabIndex = 5;
+            this.updateButton.Text = "update";
+            this.updateButton.UseVisualStyleBackColor = false;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1314,7 +1328,7 @@
             this.Controls.Add(this.gridViewResult);
             this.Controls.Add(this.tabControl1);
             this.Name = "View";
-            this.Text = "Affärssystem";
+            this.Text = "Lab5";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.View_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.checkoutTab.ResumeLayout(false);
@@ -1459,6 +1473,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.ComboBox yearBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button updateButton;
     }
 }
 

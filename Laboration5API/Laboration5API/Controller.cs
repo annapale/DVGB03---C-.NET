@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Laboration5API
@@ -19,6 +21,13 @@ namespace Laboration5API
     {
         Inventory inventory = new Inventory();
         TransactionArchive archive = new TransactionArchive();
+
+        //LABORATION 5
+        public void updateItems()
+        {
+            inventory.update();
+        }
+
 
         //set sources
         public void setBookSource(BindingSource source)
@@ -416,5 +425,7 @@ namespace Laboration5API
         {
             source.DataSource = archive.transactions;
         }
+
+        
     }
 }

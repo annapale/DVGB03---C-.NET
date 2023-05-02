@@ -1,0 +1,12 @@
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\bin\Debug\Laboration5API.exe.config
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\bin\Debug\Laboration5API.exe
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\bin\Debug\Laboration5API.pdb
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\obj\Debug\Laboration5API.csproj.AssemblyReference.cache
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\obj\Debug\Laboration5API.csproj.SuggestedBindingRedirects.cache
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\obj\Debug\Laboration5API.RecieptForm.resources
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\obj\Debug\Laboration5API.View.resources
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\obj\Debug\Laboration5API.Properties.Resources.resources
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\obj\Debug\Laboration5API.csproj.GenerateResource.cache
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\obj\Debug\Laboration5API.csproj.CoreCompileInputs.cache
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\obj\Debug\Laboration5API.exe
+C:\Users\anna-\source\repos\annapale\DVGB07---C-.NET\Laboration5API\Laboration5API\obj\Debug\Laboration5API.pdb
