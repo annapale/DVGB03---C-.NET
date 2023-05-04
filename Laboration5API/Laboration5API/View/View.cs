@@ -64,6 +64,10 @@ namespace Laboration5API
         {
             controller.updateItems();
         }
+        private void syncButton_Click(object sender, EventArgs e)
+        {
+            controller.syncAllItems();
+        }
 
         //add Data to DataGridViews
         private void addDataKassa(DataGridView table, int itemType)
@@ -1133,6 +1137,6 @@ namespace Laboration5API
 
         }
 
-       
+        
     }
 }

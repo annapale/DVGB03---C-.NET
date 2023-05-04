@@ -28,6 +28,39 @@ namespace Laboration5API
             inventory.update();
         }
 
+        public void syncAllItems()
+        {
+            try
+            {
+                foreach(Item item in inventory.bookList)
+                {
+                    int id = item.ID;
+                    int stock = item.Amount;
+
+                    inventory.sync(id, stock);
+                }
+
+                foreach (Item item in inventory.gameList)
+                {
+                    int id = item.ID;
+                    int stock = item.Amount;
+
+                    inventory.sync(id, stock);
+                }
+
+                foreach (Item item in inventory.filmList)
+                {
+                    int id = item.ID;
+                    int stock = item.Amount;
+
+                    inventory.sync(id, stock);
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
 
         //set sources
         public void setBookSource(BindingSource source)

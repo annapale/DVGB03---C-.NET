@@ -56,6 +56,7 @@
             this.button9 = new System.Windows.Forms.Button();
             this.gridViewKassaFilm = new System.Windows.Forms.DataGridView();
             this.lagerTab = new System.Windows.Forms.TabPage();
+            this.updateButton = new System.Windows.Forms.Button();
             this.tabControlLager = new System.Windows.Forms.TabControl();
             this.lagerBookTab = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -133,7 +134,7 @@
             this.searchInput = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.updateButton = new System.Windows.Forms.Button();
+            this.syncButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.checkoutTab.SuspendLayout();
             this.tabControlKassa.SuspendLayout();
@@ -468,6 +469,7 @@
             // lagerTab
             // 
             this.lagerTab.BackColor = System.Drawing.Color.DimGray;
+            this.lagerTab.Controls.Add(this.syncButton);
             this.lagerTab.Controls.Add(this.updateButton);
             this.lagerTab.Controls.Add(this.tabControlLager);
             this.lagerTab.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -477,6 +479,18 @@
             this.lagerTab.Size = new System.Drawing.Size(872, 457);
             this.lagerTab.TabIndex = 1;
             this.lagerTab.Text = "Lager";
+            // 
+            // updateButton
+            // 
+            this.updateButton.BackColor = System.Drawing.Color.Lavender;
+            this.updateButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateButton.Location = new System.Drawing.Point(6, 380);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(121, 34);
+            this.updateButton.TabIndex = 5;
+            this.updateButton.Text = "update";
+            this.updateButton.UseVisualStyleBackColor = false;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // tabControlLager
             // 
@@ -1304,17 +1318,17 @@
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
-            // updateButton
+            // syncButton
             // 
-            this.updateButton.BackColor = System.Drawing.Color.Lavender;
-            this.updateButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateButton.Location = new System.Drawing.Point(6, 380);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(121, 34);
-            this.updateButton.TabIndex = 5;
-            this.updateButton.Text = "update";
-            this.updateButton.UseVisualStyleBackColor = false;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            this.syncButton.BackColor = System.Drawing.Color.Lavender;
+            this.syncButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.syncButton.Location = new System.Drawing.Point(7, 417);
+            this.syncButton.Name = "syncButton";
+            this.syncButton.Size = new System.Drawing.Size(121, 34);
+            this.syncButton.TabIndex = 6;
+            this.syncButton.Text = "sync";
+            this.syncButton.UseVisualStyleBackColor = false;
+            this.syncButton.Click += new System.EventHandler(this.syncButton_Click);
             // 
             // View
             // 
@@ -1474,6 +1488,7 @@
         private System.Windows.Forms.ComboBox yearBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.Button syncButton;
     }
 }
 

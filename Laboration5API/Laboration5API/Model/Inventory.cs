@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Net.Http;
 
 namespace Laboration5API.Model
 {
@@ -73,6 +74,33 @@ namespace Laboration5API.Model
                 MessageBox.Show(error.Message);
             }
         }
+
+        public async Task sync(int id, int stock)
+        {
+            // create a new HttpClient instance
+            using (var httpClient = new HttpClient())
+            {
+                // create the URL with the ID and stock values
+                var apiUrl = $"https://hex.cse.kau.se/~jonavest/csharp-api/?action=update&id={id}&stock={stock}";
+
+                // send the GET request to the API endpoint
+                var response = await httpClient.GetAsync(apiUrl);
+
+                // check the response status code
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine(response.Content);
+                }
+                else
+                {
+                    // handle the error response
+                }
+            }
+
+        }
+
+    
+
         //add items
         public void addBook(int id, string name, int price, int amount, string author, string genre, string format, string language)
         {
