@@ -29,47 +29,143 @@ namespace Laboration5API.Model
             try
             {
                 WebClient client = new WebClient();
-                var text = client.DownloadString("https://hex.cse.kau.se/~jonavest/csharp-api");
+
+                //get XML-Document
+                var text = client.DownloadString("https://hex.cse.kau.se/~jonavest/csharp-api/");
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(text);
-
-                foreach (XmlElement element in doc.FirstChild.ChildNodes)
+               
+                foreach (XmlElement type in doc.FirstChild.ChildNodes)
                 {
-                    if (element.Name == "products")
+                    //search for products in XML-file
+                    if (type.Name == "products")
                     {
-                        int id = 0;
-                        int price = 0;
-                        int stock = 0;
-                        foreach (XmlElement pElement in element.ChildNodes)
+                        int id = 0, price = 0, stock = 0;
+                        
+                        //iterate through all products
+                        foreach (XmlElement product in type.ChildNodes)
                         {
-                            foreach (XmlElement product in pElement.ChildNodes)
+                            string productType = product.Name;
+
+                            //iterate through all tags for each product to get id, price and stock
+                            foreach (XmlElement tag in product.ChildNodes)
                             {
-                                if (product.Name == "id")
+                                if (tag.Name == "id")
                                 {
-                                    id = int.Parse(product.InnerText);
+                                    id = int.Parse(tag.InnerText);
                                 }
-                                else if (product.Name == "price")
+                                else if (tag.Name == "price")
                                 {
-                                    price = int.Parse(product.InnerText);
+                                    price = int.Parse(tag.InnerText);
                                 }
-                                else if (product.Name == "stock")
+                                else if (tag.Name == "stock")
                                 {
-                                    stock = int.Parse(product.InnerText);
+                                    stock = int.Parse(tag.InnerText);
                                 }
                             }
 
+                            //check if item is already in list
                             Item item = findItem(id);
+
+                            //if it is just update stock and price
                             if (item != null)
                             {
                                 item.Update(stock, price);
                             }
 
-                        }
+                            //if not add item to list
+                            else
+                            {
+                                switch (productType)
+                                {
+                                    case "book":
+                                        string name = "", author = "", genre = "", format = "", language = "";
+
+                                        foreach (XmlElement tag in product.ChildNodes)
+                                        {
+                                            if (tag.Name == "name")
+                                            {
+                                                name = tag.InnerText;
+                                            }
+                                            else if (tag.Name == "author")
+                                            {
+                                                author = tag.InnerText;
+                                            }
+                                            else if (tag.Name == "genre")
+                                            {
+                                                genre = tag.InnerText;
+                                            }
+                                            else if (tag.Name == "format")
+                                            {
+                                                format = tag.InnerText;
+                                            }
+                                            else if (tag.Name == "language")
+                                            {
+                                                language = tag.InnerText;
+                                            }
+                                        }
+
+                                        addBook(id, name, price, stock, author, genre, format, language);
+                                        break;
+
+                                    case "game":
+                                        name = "";
+                                        string plattform = "";
+
+                                        foreach (XmlElement tag in product.ChildNodes)
+                                        {
+                                            if (tag.Name == "name")
+                                            {
+                                                name = tag.InnerText;
+                                            }
+                                            else if (tag.Name == "plattform")
+                                            {
+                                                author = tag.InnerText;
+                                            }
+                                        }
+
+                                        addGame(id, name, price, stock, plattform);
+                                        break;
+                                    case "movie":
+
+                                        name = "";
+                                        format = "";
+                                        int playtime = 0;
+
+                                        foreach (XmlElement tag in product.ChildNodes)
+                                        {
+                                            if (tag.Name == "name")
+                                            {
+                                                name = tag.InnerText;
+                                            }
+                                            else if (tag.Name == "format")
+                                            {
+                                                format = tag.InnerText;
+                                            }
+                                            else if (tag.Name == "playtime")
+                                            {
+                                                playtime = int.Parse(tag.InnerText);
+                                            }
+                                        }
+
+                                        addFilm(id, name, price, stock, format, playtime);
+                                        break;
+                                }
+                            }                         
+                        } 
+                    }
+                    //throw exception if there is an error
+                    if (type.Name == "error")
+                    {
+                        throw new WebException(type.InnerText);
                     }
                 }
-
+            }     
+            catch (WebException error)
+            {
+                MessageBox.Show("Felmeddellande från Centrallager: " + error.Message);
             }
-            catch (Exception error)
+            catch(Exception error)
             {
                 MessageBox.Show(error.Message);
             }
@@ -77,26 +173,36 @@ namespace Laboration5API.Model
 
         public async Task sync(int id, int stock)
         {
-            // create a new HttpClient instance
-            using (var httpClient = new HttpClient())
+            try
             {
-                // create the URL with the ID and stock values
-                var apiUrl = $"https://hex.cse.kau.se/~jonavest/csharp-api/?action=update&id={id}&stock={stock}";
-
-                // send the GET request to the API endpoint
-                var response = await httpClient.GetAsync(apiUrl);
-
-                // check the response status code
-                if (response.IsSuccessStatusCode)
+                // create a new HttpClient instance
+                using (var httpClient = new HttpClient())
                 {
-                    Console.WriteLine(response.Content);
+                    // create the URL with the ID and stock values
+                    var apiUrl = $"https://hex.cse.kau.se/~jonavest/csharp-api/?action=update&id={id}&stock={stock}";
+
+                    var response = await httpClient.GetAsync(apiUrl);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine(response.Content);
+                    }
+                    else
+                    {
+                        throw new WebException("någonting gick fel");
+                    }
                 }
-                else
-                {
-                    // handle the error response
-                }
+
+                MessageBox.Show("Sync successful");
             }
-
+            catch (WebException error)
+            {
+                MessageBox.Show("Felmeddellande från Centrallager: " + error.Message);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
         }
 
     
@@ -308,7 +414,8 @@ namespace Laboration5API.Model
             }
 
             //if not found in any of the lists, throw an exception
-            throw new Exception("Item not found");
+            //throw new Exception("Item not found");
+            return item;
         }
 
 

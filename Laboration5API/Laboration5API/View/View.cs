@@ -614,6 +614,9 @@ namespace Laboration5API
         {
             try
             {
+                //get price and stock from central database
+                controller.updateItems();
+
                 int total = 0;
                 foreach (ListViewItem listItem in shoppingBasketList.Items)
                 {
@@ -634,6 +637,9 @@ namespace Laboration5API
                     int amount = int.Parse(item.SubItems[4].Text);
                     controller.addTransactionToArchive(id, month, year, amount);
                 }
+
+                //update central database
+                controller.syncAllItems();
 
                 //show reciept 
                 controller.createReceipt(shoppingBasketList, total);

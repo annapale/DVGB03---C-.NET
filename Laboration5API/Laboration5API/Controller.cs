@@ -26,12 +26,14 @@ namespace Laboration5API
         public void updateItems()
         {
             inventory.update();
+            MessageBox.Show("Update lyckat");
         }
 
         public void syncAllItems()
         {
             try
             {
+                //loop through all lists and send relevant data
                 foreach(Item item in inventory.bookList)
                 {
                     int id = item.ID;
@@ -55,6 +57,8 @@ namespace Laboration5API
 
                     inventory.sync(id, stock);
                 }
+
+                
             }
             catch (Exception error)
             {
