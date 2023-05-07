@@ -57,8 +57,11 @@ namespace Laboration5API
 
                     inventory.sync(id, stock);
                 }
-
-                
+                MessageBox.Show("Sync lyckat");
+            }
+            catch (WebException error)
+            {
+                MessageBox.Show("Felmeddellande från Centrallager: " + error.Message);
             }
             catch (Exception error)
             {

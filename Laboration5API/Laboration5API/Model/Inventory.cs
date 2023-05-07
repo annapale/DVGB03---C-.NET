@@ -171,41 +171,24 @@ namespace Laboration5API.Model
             }
         }
 
-        public async Task sync(int id, int stock)
+        public void sync(int id, int stock)
         {
-            try
+            string id4 = "";
+            using (var httpClient = new HttpClient())
             {
-                // create a new HttpClient instance
-                using (var httpClient = new HttpClient())
+                //create the URL with the ID and stock values
+                var apiUrl = $"https://hex.cse.kau.se/~jonavest/csharp-api/?action=update&id={id4}&stock={stock}";
+
+                //get response
+                var response = httpClient.GetAsync(apiUrl).Result;
+
+                //throw error if api response was not successful
+                if (!response.IsSuccessStatusCode)
                 {
-                    // create the URL with the ID and stock values
-                    var apiUrl = $"https://hex.cse.kau.se/~jonavest/csharp-api/?action=update&id={id}&stock={stock}";
-
-                    var response = await httpClient.GetAsync(apiUrl);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        Console.WriteLine(response.Content);
-                    }
-                    else
-                    {
-                        throw new WebException("någonting gick fel");
-                    }
+                    throw new WebException(response.Content.ToString());
                 }
-
-                MessageBox.Show("Sync successful");
-            }
-            catch (WebException error)
-            {
-                MessageBox.Show("Felmeddellande från Centrallager: " + error.Message);
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message);
-            }
+            }     
         }
-
-    
 
         //add items
         public void addBook(int id, string name, int price, int amount, string author, string genre, string format, string language)
